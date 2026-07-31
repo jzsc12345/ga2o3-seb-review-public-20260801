@@ -23,6 +23,7 @@ harness/
 │   ├── imported/post_cutoff/         # 后期 Markdown 镜像、默认不加载
 │   ├── product-specs/                # Wang2026 拟合验收合同
 │   ├── references/                   # 官方方法论和来源说明
+│   ├── reviews/                      # 外部审计原结论的证据化裁决
 │   ├── research-results/             # 已核验结论与论文图表接口
 │   └── run-evidence/                 # RUN 索引，不复制大文件
 └── tools/                            # 构建、检查、报告脚本
@@ -41,4 +42,3 @@ harness/
 当前工作区有大量历史交叉引用，直接移动会制造新断链。迁入采用“只读镜像 + 来源清单”，
 原文件保留原位；面向新 agent 和 GitHub 的入口只暴露 harness 结构。等引用检查稳定后，才可
 在单独计划中讨论物理迁移。
-

@@ -17,11 +17,11 @@
 2. `ARCHITECTURE.md`：层级、依赖方向和禁止事项。
 3. `docs/exec-plans/active/`：正在执行的计划和决策记录。
 4. `docs/research-results/`：经证据核验的研究结论和汇报底稿。
-5. `docs/imported/post_cutoff/`：后期资料镜像，不自动加载。
-6. `tools/check_harness.py`：结构、链接、SHA 清单和污染边界检查。
+5. `docs/reviews/`：外部审计的逐项核签、降级或驳回理由。
+6. `docs/imported/post_cutoff/`：后期资料镜像，不自动加载。
+7. `tools/check_harness.py`：结构、链接、SHA 清单和污染边界检查。
 
 ## 原则
 
 `skills/` 是方法论正本；`harness/` 是后期工作台。前者不再追加资料，后者可以迭代，
 但每次迭代必须经过清单、验证和垃圾回收。
-

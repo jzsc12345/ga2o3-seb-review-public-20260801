@@ -15,6 +15,7 @@ REQUIRED = [
     ROOT / "docs" / "exec-plans" / "active",
     ROOT / "docs" / "exec-plans" / "completed",
     ROOT / "docs" / "product-specs" / "Wang2026_fit_contract.md",
+    ROOT / "docs" / "reviews",
     ROOT / "docs" / "research-results",
     ROOT / "docs" / "run-evidence" / "index.md",
 ]
