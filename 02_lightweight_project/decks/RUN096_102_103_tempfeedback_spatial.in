@@ -1,0 +1,110 @@
+# Zero-ATLAS spatial comparison for temperature-feedback OFAT.
+# RUN096 = frozen constant-Eg / constant low-field mobility-temperature baseline.
+# RUN102 = Rafique-anchored Eg(T) only.
+# RUN103 = Ma-anchored active-body electron low-field mobility(T) only.
+go victoryextract
+option ON.ERROR=-1
+option DIGITS=9
+
+# Four matched cuts:
+#   hfo2      y=-0.01 um
+#   interface y=+0.01 um
+#   uidsub    y=+0.35 um
+#   track     x=11 um
+
+# -----------------------------------------------------------------------------
+# 100 ps
+# -----------------------------------------------------------------------------
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100ps_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100ps_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100ps_track.csv
+load in=/root/DECKBUILD/runs/RUN102_wang1000-nofp-lgd9-x11-bandt-rafique/RUN102_Wang2026_nofp_Lgd9_x11_bandT_Rafique_SEB_1000V_Et0p8_t100ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100ps_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100ps_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100ps_track.csv
+load in=/root/DECKBUILD/runs/RUN103_wang1000-nofp-lgd9-x11-mobt-ma18/RUN103_Wang2026_nofp_Lgd9_x11_mobT_Ma18_SEB_1000V_Et0p8_t100ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100ps_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100ps_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100ps_track.csv
+
+# -----------------------------------------------------------------------------
+# 400 ps
+# -----------------------------------------------------------------------------
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t400ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t400ps_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t400ps_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t400ps_track.csv
+load in=/root/DECKBUILD/runs/RUN102_wang1000-nofp-lgd9-x11-bandt-rafique/RUN102_Wang2026_nofp_Lgd9_x11_bandT_Rafique_SEB_1000V_Et0p8_t400ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t400ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t400ps_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t400ps_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t400ps_track.csv
+load in=/root/DECKBUILD/runs/RUN103_wang1000-nofp-lgd9-x11-mobt-ma18/RUN103_Wang2026_nofp_Lgd9_x11_mobT_Ma18_SEB_1000V_Et0p8_t400ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t400ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t400ps_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t400ps_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t400ps_track.csv
+
+# -----------------------------------------------------------------------------
+# 1 ns
+# -----------------------------------------------------------------------------
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t1ns_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t1ns_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t1ns_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t1ns_track.csv
+load in=/root/DECKBUILD/runs/RUN102_wang1000-nofp-lgd9-x11-bandt-rafique/RUN102_Wang2026_nofp_Lgd9_x11_bandT_Rafique_SEB_1000V_Et0p8_t1ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t1ns_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t1ns_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t1ns_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t1ns_track.csv
+load in=/root/DECKBUILD/runs/RUN103_wang1000-nofp-lgd9-x11-mobt-ma18/RUN103_Wang2026_nofp_Lgd9_x11_mobT_Ma18_SEB_1000V_Et0p8_t1ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t1ns_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t1ns_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t1ns_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t1ns_track.csv
+
+# -----------------------------------------------------------------------------
+# 10 ns
+# -----------------------------------------------------------------------------
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t10ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t10ns_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t10ns_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t10ns_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t10ns_track.csv
+load in=/root/DECKBUILD/runs/RUN102_wang1000-nofp-lgd9-x11-bandt-rafique/RUN102_Wang2026_nofp_Lgd9_x11_bandT_Rafique_SEB_1000V_Et0p8_t10ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t10ns_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t10ns_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t10ns_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t10ns_track.csv
+load in=/root/DECKBUILD/runs/RUN103_wang1000-nofp-lgd9-x11-mobt-ma18/RUN103_Wang2026_nofp_Lgd9_x11_mobT_Ma18_SEB_1000V_Et0p8_t10ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t10ns_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t10ns_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t10ns_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t10ns_track.csv
+
+# -----------------------------------------------------------------------------
+# 100 us
+# -----------------------------------------------------------------------------
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100us_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100us_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100us_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R096_t100us_track.csv
+load in=/root/DECKBUILD/runs/RUN102_wang1000-nofp-lgd9-x11-bandt-rafique/RUN102_Wang2026_nofp_Lgd9_x11_bandT_Rafique_SEB_1000V_Et0p8_t100us.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100us_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100us_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100us_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R102_t100us_track.csv
+load in=/root/DECKBUILD/runs/RUN103_wang1000-nofp-lgd9-x11-mobt-ma18/RUN103_Wang2026_nofp_Lgd9_x11_mobT_Ma18_SEB_1000V_Et0p8_t100us.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100us_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100us_interface.csv
+extract.profile axis=x y.val=0.35 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100us_uidsub.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_102_103_tempfeedback/R103_t100us_track.csv
+
+quit

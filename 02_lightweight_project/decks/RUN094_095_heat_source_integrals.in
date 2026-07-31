@@ -1,0 +1,87 @@
+# Zero-ATLAS heat-source audit for matched RUN094/RUN095 milestones.
+# RUN094 = frozen Wang geometry with the default Joule source.
+# RUN095 = identical deck except HEAT.FULL + JOULE/GR/PT heat sources.
+# Each EXTRACT.REGION.CONCENTRATION is a 2-D volume integral with WIDTH=1 um.
+go victoryextract
+option ON.ERROR=-1
+option DIGITS=12
+
+# -----------------------------------------------------------------------------
+# RUN094 reference arm
+# -----------------------------------------------------------------------------
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str
+extract.region.concentration name=R094_PJ_t100ps regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PJ_t100ps.result
+extract.region.concentration name=R094_PGR_t100ps regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PGR_t100ps.result
+extract.region.concentration name=R094_PPT_t100ps regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PPT_t100ps.result
+extract.region.concentration name=R094_PTOT_t100ps regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PTOT_t100ps.result
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str
+extract.region.concentration name=R094_PJ_t400ps regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PJ_t400ps.result
+extract.region.concentration name=R094_PGR_t400ps regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PGR_t400ps.result
+extract.region.concentration name=R094_PPT_t400ps regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PPT_t400ps.result
+extract.region.concentration name=R094_PTOT_t400ps regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PTOT_t400ps.result
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str
+extract.region.concentration name=R094_PJ_t1ns regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PJ_t1ns.result
+extract.region.concentration name=R094_PGR_t1ns regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PGR_t1ns.result
+extract.region.concentration name=R094_PPT_t1ns regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PPT_t1ns.result
+extract.region.concentration name=R094_PTOT_t1ns regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PTOT_t1ns.result
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t10ns.str
+extract.region.concentration name=R094_PJ_t10ns regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PJ_t10ns.result
+extract.region.concentration name=R094_PGR_t10ns regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PGR_t10ns.result
+extract.region.concentration name=R094_PPT_t10ns regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PPT_t10ns.result
+extract.region.concentration name=R094_PTOT_t10ns regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PTOT_t10ns.result
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1us.str
+extract.region.concentration name=R094_PJ_t1us regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PJ_t1us.result
+extract.region.concentration name=R094_PGR_t1us regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PGR_t1us.result
+extract.region.concentration name=R094_PPT_t1us regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PPT_t1us.result
+extract.region.concentration name=R094_PTOT_t1us regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PTOT_t1us.result
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str
+extract.region.concentration name=R094_PJ_t100us regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PJ_t100us.result
+extract.region.concentration name=R094_PGR_t100us regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PGR_t100us.result
+extract.region.concentration name=R094_PPT_t100us regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PPT_t100us.result
+extract.region.concentration name=R094_PTOT_t100us regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_PTOT_t100us.result
+
+# -----------------------------------------------------------------------------
+# RUN095 HEAT.FULL arm
+# -----------------------------------------------------------------------------
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str
+extract.region.concentration name=R095_PJ_t100ps regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PJ_t100ps.result
+extract.region.concentration name=R095_PGR_t100ps regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PGR_t100ps.result
+extract.region.concentration name=R095_PPT_t100ps regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PPT_t100ps.result
+extract.region.concentration name=R095_PTOT_t100ps regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PTOT_t100ps.result
+
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str
+extract.region.concentration name=R095_PJ_t400ps regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PJ_t400ps.result
+extract.region.concentration name=R095_PGR_t400ps regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PGR_t400ps.result
+extract.region.concentration name=R095_PPT_t400ps regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PPT_t400ps.result
+extract.region.concentration name=R095_PTOT_t400ps regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PTOT_t400ps.result
+
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str
+extract.region.concentration name=R095_PJ_t1ns regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PJ_t1ns.result
+extract.region.concentration name=R095_PGR_t1ns regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PGR_t1ns.result
+extract.region.concentration name=R095_PPT_t1ns regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PPT_t1ns.result
+extract.region.concentration name=R095_PTOT_t1ns regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PTOT_t1ns.result
+
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t10ns.str
+extract.region.concentration name=R095_PJ_t10ns regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PJ_t10ns.result
+extract.region.concentration name=R095_PGR_t10ns regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PGR_t10ns.result
+extract.region.concentration name=R095_PPT_t10ns regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PPT_t10ns.result
+extract.region.concentration name=R095_PTOT_t10ns regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PTOT_t10ns.result
+
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1us.str
+extract.region.concentration name=R095_PJ_t1us regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PJ_t1us.result
+extract.region.concentration name=R095_PGR_t1us regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PGR_t1us.result
+extract.region.concentration name=R095_PPT_t1us regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PPT_t1us.result
+extract.region.concentration name=R095_PTOT_t1us regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PTOT_t1us.result
+
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str
+extract.region.concentration name=R095_PJ_t100us regions=* field="joule heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PJ_t100us.result
+extract.region.concentration name=R095_PGR_t100us regions=* field="rec heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PGR_t100us.result
+extract.region.concentration name=R095_PPT_t100us regions=* field="peltier-thomson heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PPT_t100us.result
+extract.region.concentration name=R095_PTOT_t100us regions=* field="total heat power" width=1 datafile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_PTOT_t100us.result
+
+quit

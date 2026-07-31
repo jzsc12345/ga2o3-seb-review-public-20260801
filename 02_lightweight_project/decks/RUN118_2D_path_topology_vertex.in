@@ -1,0 +1,23 @@
+# Zero-ATLAS RUN118 half of the frozen native-vertex extraction.
+# Only run/file prefixes differ from RUN096_109_2D_path_topology_vertex.in.
+
+go victoryextract
+option ON.ERROR=-1
+option DIGITS=9
+
+load in=/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_Wang2026_nofp_Lgd9_x11_fvsatT_SEB_1000V_Et0p8_t50ns.str
+extract.vertex.concentration regions=* box.pa="2.0,0.0" box.pb="18.0,0.35" \
+    fields="electron conc","je- x","je- y","total current density","impact gen rate" \
+    csvfile=/root/DECKBUILD/postproc/RUN096_118_2d_vertex_20260731/raw/RUN118_t50ns_vertex.csv
+
+load in=/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_Wang2026_nofp_Lgd9_x11_fvsatT_SEB_1000V_Et0p8_t100ns.str
+extract.vertex.concentration regions=* box.pa="2.0,0.0" box.pb="18.0,0.35" \
+    fields="electron conc","je- x","je- y","total current density","impact gen rate" \
+    csvfile=/root/DECKBUILD/postproc/RUN096_118_2d_vertex_20260731/raw/RUN118_t100ns_vertex.csv
+
+load in=/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_Wang2026_nofp_Lgd9_x11_fvsatT_SEB_1000V_Et0p8_t500ns.str
+extract.vertex.concentration regions=* box.pa="2.0,0.0" box.pb="18.0,0.35" \
+    fields="electron conc","je- x","je- y","total current density","impact gen rate" \
+    csvfile=/root/DECKBUILD/postproc/RUN096_118_2d_vertex_20260731/raw/RUN118_t500ns_vertex.csv
+
+quit

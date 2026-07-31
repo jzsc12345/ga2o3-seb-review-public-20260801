@@ -1,0 +1,108 @@
+# VictoryExtract-only Fe energy-level OFAT audit for RUN085/RUN082/RUN086.
+# No ATLAS solve is present.
+#
+# Common states:
+#   iso1600 / iso2400 / et2400 / et2600
+# Frozen cutlines:
+#   y=0.010 um  channel
+#   y=0.200 um  UID middle
+#   y=0.400 um  substrate top
+#   x=11.000 um field-plate endpoint depth profile
+#
+# fields=* uses the field registry already verified on RUN082-084. Downstream
+# analysis selects:
+#   acceptor trap ionized density #1
+#   acceptor trap dos #1
+#   electron conc
+#   potential
+#   total current density
+
+go victoryextract
+option ON.ERROR=-1
+option DIGITS=9
+
+# ===========================================================================
+# E06: Ec-Et=0.6 eV, RUN085
+# ===========================================================================
+
+load in="/root/DECKBUILD/runs/RUN085_fe-et0p6-staticet/RUN085_Wang2026_LGD20p0_FP11_subFe_Et0p6_isothermal_V1600.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E06_iso1600_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E06_iso1600_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E06_iso1600_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E06_iso1600_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN085_fe-et0p6-staticet/RUN085_Wang2026_LGD20p0_FP11_subFe_Et0p6_isothermal_V2400.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E06_iso2400_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E06_iso2400_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E06_iso2400_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E06_iso2400_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN085_fe-et0p6-staticet/RUN085_Wang2026_LGD20p0_FP11_subFe_Et0p6_staticET_V2400.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E06_et2400_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E06_et2400_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E06_et2400_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E06_et2400_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN085_fe-et0p6-staticet/RUN085_Wang2026_LGD20p0_FP11_subFe_Et0p6_staticET_V2600.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E06_et2600_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E06_et2600_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E06_et2600_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E06_et2600_x_11_all.csv"
+
+# ===========================================================================
+# E08: Ec-Et=0.8 eV, RUN082 formal center
+# ===========================================================================
+
+load in="/root/DECKBUILD/runs/RUN082_wang-static-et/RUN082_Wang2026_LGD20p0_FP11_subFe_isothermal_V1600.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E08_iso1600_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E08_iso1600_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E08_iso1600_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E08_iso1600_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN082_wang-static-et/RUN082_Wang2026_LGD20p0_FP11_subFe_isothermal_V2400.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E08_iso2400_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E08_iso2400_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E08_iso2400_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E08_iso2400_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN082_wang-static-et/RUN082_Wang2026_LGD20p0_FP11_subFe_staticET_V2400.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E08_et2400_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E08_et2400_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E08_et2400_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E08_et2400_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN082_wang-static-et/RUN082_Wang2026_LGD20p0_FP11_subFe_staticET_V2600.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E08_et2600_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E08_et2600_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E08_et2600_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E08_et2600_x_11_all.csv"
+
+# ===========================================================================
+# E10: Ec-Et=1.0 eV, RUN086
+# ===========================================================================
+
+load in="/root/DECKBUILD/runs/RUN086_fe-et1p0-staticet/RUN086_Wang2026_LGD20p0_FP11_subFe_Et1p0_isothermal_V1600.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E10_iso1600_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E10_iso1600_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E10_iso1600_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E10_iso1600_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN086_fe-et1p0-staticet/RUN086_Wang2026_LGD20p0_FP11_subFe_Et1p0_isothermal_V2400.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E10_iso2400_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E10_iso2400_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E10_iso2400_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E10_iso2400_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN086_fe-et1p0-staticet/RUN086_Wang2026_LGD20p0_FP11_subFe_Et1p0_staticET_V2400.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E10_et2400_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E10_et2400_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E10_et2400_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E10_et2400_x_11_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN086_fe-et1p0-staticet/RUN086_Wang2026_LGD20p0_FP11_subFe_Et1p0_staticET_V2600.str"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="E10_et2600_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="E10_et2600_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="E10_et2600_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.000 fields=* regions=* csvfile="E10_et2600_x_11_all.csv"
+
+quit

@@ -1,0 +1,35 @@
+# Zero-ATLAS spatial audit for the heat-source-only comparison.
+go victoryextract
+option ON.ERROR=-1
+option DIGITS=9
+
+# Near-interface x cut and vertical ion-track cut at four matched times.
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t100ps_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t100ps_track_all.csv
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t100ps_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t100ps_track_all.csv
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t400ps_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t400ps_track_all.csv
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t400ps_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t400ps_track_all.csv
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t1ns_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t1ns_track_all.csv
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t1ns_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t1ns_track_all.csv
+
+load in=/root/DECKBUILD/runs/RUN094_wang1000-nofp-lgd9-x11-reference/RUN094_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t100us_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R094_t100us_track_all.csv
+load in=/root/DECKBUILD/runs/RUN095_wang1000-nofp-lgd9-x11-heatfull/RUN095_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t100us_surface_all.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN094_095_heat_sources/R095_t100us_track_all.csv
+
+quit

@@ -1,0 +1,2 @@
+run,nd_sub_cm3,static_vds_V,static_drain_Jt_A_per_um,charge_pC_per_um,charge_error_percent,Id_peak_A_per_um,Id_peak_time_s,Tmax_peak_K,Tmax_peak_time_s,Id_50ns_A_per_um,Id_100us_A_per_um,Tmax_50ns_K,Tmax_100us_K,status
+RUN108,1.15e16,1000,-5.006434712e-16,2.431394503525511,0.34582961828594544,6.204078596e-4,3.1e-11,388.0012504,7.13009314387e-10,5.627530142e-6,1.879617013e-7,340.5589428,368.8682377,COMPLETE_POSTPROCESSED

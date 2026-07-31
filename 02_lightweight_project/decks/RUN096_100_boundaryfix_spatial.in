@@ -1,0 +1,50 @@
+# Zero-ATLAS matched spatial audit for the internal thermal-boundary fix.
+# RUN096 = HfO2 HC.STD with the source/drain line thermal contacts filtered.
+# RUN100 = the same production deck plus ^BOUNDARY on those two contacts.
+# RUN100 inputs are from the completed attempt2 directory.
+go victoryextract
+option ON.ERROR=-1
+option DIGITS=9
+
+# For every matched state:
+#   hfo2      : x-cut through the 20 nm HfO2 at y=-0.01 um
+#   interface : x-cut 10 nm inside Ga2O3 at y=+0.01 um
+#   track     : y-cut along the ion trajectory at x=11 um
+
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t100ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t100ps_interface.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t100ps_track.csv
+load in=/root/DECKBUILD/runs/RUN100_wang1000-nofp-lgd9-x11-boundaryfix_attempt2/RUN100_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t100ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t100ps_interface.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t100ps_track.csv
+
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t400ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t400ps_interface.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t400ps_track.csv
+load in=/root/DECKBUILD/runs/RUN100_wang1000-nofp-lgd9-x11-boundaryfix_attempt2/RUN100_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t400ps_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t400ps_interface.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t400ps_track.csv
+
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t1ns_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t1ns_interface.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t1ns_track.csv
+load in=/root/DECKBUILD/runs/RUN100_wang1000-nofp-lgd9-x11-boundaryfix_attempt2/RUN100_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t1ns_hfo2.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t1ns_track.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t1ns_interface.csv
+
+load in=/root/DECKBUILD/runs/RUN096_wang1000-nofp-lgd9-x11-hfo2hc/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t100us_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t100us_interface.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R096_t100us_track.csv
+load in=/root/DECKBUILD/runs/RUN100_wang1000-nofp-lgd9-x11-boundaryfix_attempt2/RUN100_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str
+extract.profile axis=x y.val=-0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t100us_hfo2.csv
+extract.profile axis=x y.val=0.01 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t100us_interface.csv
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile=/root/DECKBUILD/postproc/RUN096_100_boundaryfix/R100_t100us_track.csv
+
+quit

@@ -1,0 +1,59 @@
+# RUN082 VictoryExtract-only spatial audit.
+# The V2700 snapshot is a real converged 2700 V state. The final snapshot is
+# the last converged state near 2707.192902 V; no filename is trusted as bias.
+
+go victoryextract
+
+load in="/root/DECKBUILD/runs/RUN082_wang-static-et/RUN082_Wang2026_LGD20p0_FP11_subFe_staticET_V2700.str"
+
+EXTRACT.HOTSPOT name=V2700_Emax regions=* fields="electric field" value max datafile="RUN082_V2700_Emax_value.result"
+EXTRACT.HOTSPOT name=V2700_Emax_x regions=* fields="electric field" axis=x max datafile="RUN082_V2700_Emax_x.result"
+EXTRACT.HOTSPOT name=V2700_Emax_y regions=* fields="electric field" axis=y max datafile="RUN082_V2700_Emax_y.result"
+EXTRACT.HOTSPOT name=V2700_ImpactMax regions=* fields="impact gen rate" value max datafile="RUN082_V2700_ImpactMax_value.result"
+EXTRACT.HOTSPOT name=V2700_ImpactMax_x regions=* fields="impact gen rate" axis=x max datafile="RUN082_V2700_ImpactMax_x.result"
+EXTRACT.HOTSPOT name=V2700_ImpactMax_y regions=* fields="impact gen rate" axis=y max datafile="RUN082_V2700_ImpactMax_y.result"
+EXTRACT.HOTSPOT name=V2700_Tmax regions=* fields="lattice temperature" value max datafile="RUN082_V2700_Tmax_value.result"
+EXTRACT.HOTSPOT name=V2700_Tmax_x regions=* fields="lattice temperature" axis=x max datafile="RUN082_V2700_Tmax_x.result"
+EXTRACT.HOTSPOT name=V2700_Tmax_y regions=* fields="lattice temperature" axis=y max datafile="RUN082_V2700_Tmax_y.result"
+EXTRACT.HOTSPOT name=V2700_JouleMax regions=* fields="joule heat power" value max datafile="RUN082_V2700_JouleMax_value.result"
+EXTRACT.HOTSPOT name=V2700_JouleMax_x regions=* fields="joule heat power" axis=x max datafile="RUN082_V2700_JouleMax_x.result"
+EXTRACT.HOTSPOT name=V2700_JouleMax_y regions=* fields="joule heat power" axis=y max datafile="RUN082_V2700_JouleMax_y.result"
+EXTRACT.HOTSPOT name=V2700_Jmax regions=* fields="total current density" value max datafile="RUN082_V2700_Jmax_value.result"
+EXTRACT.HOTSPOT name=V2700_Jmax_x regions=* fields="total current density" axis=x max datafile="RUN082_V2700_Jmax_x.result"
+EXTRACT.HOTSPOT name=V2700_Jmax_y regions=* fields="total current density" axis=y max datafile="RUN082_V2700_Jmax_y.result"
+
+extract.profile axis=x y.val=-0.419 fields=* regions=* csvfile="RUN082_V2700_y_m0p419_all.csv"
+extract.profile axis=x y.val=-0.010 fields=* regions=* csvfile="RUN082_V2700_y_m0p010_all.csv"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="RUN082_V2700_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="RUN082_V2700_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="RUN082_V2700_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile="RUN082_V2700_x_11_all.csv"
+extract.profile axis=y x.val=29.0 fields=* regions=* csvfile="RUN082_V2700_x_29_all.csv"
+
+load in="/root/DECKBUILD/runs/RUN082_wang-static-et/RUN082_Wang2026_LGD20p0_FP11_subFe_staticET_final.str"
+
+EXTRACT.HOTSPOT name=Vlast_Emax regions=* fields="electric field" value max datafile="RUN082_Vlast_Emax_value.result"
+EXTRACT.HOTSPOT name=Vlast_Emax_x regions=* fields="electric field" axis=x max datafile="RUN082_Vlast_Emax_x.result"
+EXTRACT.HOTSPOT name=Vlast_Emax_y regions=* fields="electric field" axis=y max datafile="RUN082_Vlast_Emax_y.result"
+EXTRACT.HOTSPOT name=Vlast_ImpactMax regions=* fields="impact gen rate" value max datafile="RUN082_Vlast_ImpactMax_value.result"
+EXTRACT.HOTSPOT name=Vlast_ImpactMax_x regions=* fields="impact gen rate" axis=x max datafile="RUN082_Vlast_ImpactMax_x.result"
+EXTRACT.HOTSPOT name=Vlast_ImpactMax_y regions=* fields="impact gen rate" axis=y max datafile="RUN082_Vlast_ImpactMax_y.result"
+EXTRACT.HOTSPOT name=Vlast_Tmax regions=* fields="lattice temperature" value max datafile="RUN082_Vlast_Tmax_value.result"
+EXTRACT.HOTSPOT name=Vlast_Tmax_x regions=* fields="lattice temperature" axis=x max datafile="RUN082_Vlast_Tmax_x.result"
+EXTRACT.HOTSPOT name=Vlast_Tmax_y regions=* fields="lattice temperature" axis=y max datafile="RUN082_Vlast_Tmax_y.result"
+EXTRACT.HOTSPOT name=Vlast_JouleMax regions=* fields="joule heat power" value max datafile="RUN082_Vlast_JouleMax_value.result"
+EXTRACT.HOTSPOT name=Vlast_JouleMax_x regions=* fields="joule heat power" axis=x max datafile="RUN082_Vlast_JouleMax_x.result"
+EXTRACT.HOTSPOT name=Vlast_JouleMax_y regions=* fields="joule heat power" axis=y max datafile="RUN082_Vlast_JouleMax_y.result"
+EXTRACT.HOTSPOT name=Vlast_Jmax regions=* fields="total current density" value max datafile="RUN082_Vlast_Jmax_value.result"
+EXTRACT.HOTSPOT name=Vlast_Jmax_x regions=* fields="total current density" axis=x max datafile="RUN082_Vlast_Jmax_x.result"
+EXTRACT.HOTSPOT name=Vlast_Jmax_y regions=* fields="total current density" axis=y max datafile="RUN082_Vlast_Jmax_y.result"
+
+extract.profile axis=x y.val=-0.419 fields=* regions=* csvfile="RUN082_Vlast_y_m0p419_all.csv"
+extract.profile axis=x y.val=-0.010 fields=* regions=* csvfile="RUN082_Vlast_y_m0p010_all.csv"
+extract.profile axis=x y.val=0.010 fields=* regions=* csvfile="RUN082_Vlast_y_p0p010_all.csv"
+extract.profile axis=x y.val=0.200 fields=* regions=* csvfile="RUN082_Vlast_y_p0p200_all.csv"
+extract.profile axis=x y.val=0.400 fields=* regions=* csvfile="RUN082_Vlast_y_p0p400_all.csv"
+extract.profile axis=y x.val=11.0 fields=* regions=* csvfile="RUN082_Vlast_x_11_all.csv"
+extract.profile axis=y x.val=29.0 fields=* regions=* csvfile="RUN082_Vlast_x_29_all.csv"
+
+quit

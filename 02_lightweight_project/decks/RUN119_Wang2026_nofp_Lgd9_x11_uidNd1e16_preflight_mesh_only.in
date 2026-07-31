@@ -1,0 +1,114 @@
+# RUN119 DevEdit-only preflight for the UID donor 2x sensitivity arm.
+#
+# Purpose:
+#   Build the exact RUN096/RUN119 geometry and mesh with only nd_uid changed
+#   from 5.0e15 to 1.0e16 cm^-3.  The resulting ASCII STR is compared against
+#   the byte-identical RUN093/RUN096 baseline by node coordinates and triangle
+#   connectivity.  This deck quits before GO ATLAS.
+#
+# Authorization:
+#   User authorized this DevEdit-only mesh gate on 2026-07-31.  No bias ramp,
+#   particle strike, physical model, or ATLAS solve is permitted in this deck.
+
+set x_dev       = 20.0
+set x_src_r     = 2.0
+set x_src_imp_r = 3.0
+set x_gate_l    = 5.0
+set x_gate_r    = 9.0
+set x_drn_imp_l = 17.0
+set x_drn_l     = 18.0
+
+set y_sio2_top  = -0.42
+set y_hfo2_top  = -0.02
+set y_surface   = 0.00
+set y_channel_b = 0.15
+set y_buffer_b  = 0.35
+set y_sub_b     = 5.35
+
+set nd_channel  = 5.0e16
+set nd_uid      = 1.0e16
+set nd_sd       = 1.0e19
+set nd_sub      = 1.5e15
+
+set xion        = 11.0
+set ion_radius  = 0.05
+set ion_roi_l   = $xion-3*$ion_radius
+set ion_roi_r   = $xion+3*$ion_radius
+set ion_dx      = 0.012
+set ion_dy_epi  = 0.012
+set ion_dy_sub  = 0.10
+
+go devedit
+
+work.area x1=0.0 y1=$y_sio2_top x2=$x_dev y2=$y_sub_b
+
+region id=1 name=passivation material=SiO2 \
+       points="0,$y_sio2_top $x_dev,$y_sio2_top \
+               $x_dev,$y_hfo2_top 0,$y_hfo2_top 0,$y_sio2_top"
+region id=2 name=gate_oxide material=HfO2 \
+       points="0,$y_hfo2_top $x_dev,$y_hfo2_top \
+               $x_dev,$y_surface 0,$y_surface 0,$y_hfo2_top"
+
+region id=3 name=source_implant material="UD1(BetaGa2O3)" \
+       points="0,$y_surface $x_src_imp_r,$y_surface \
+               $x_src_imp_r,$y_channel_b 0,$y_channel_b 0,$y_surface"
+region id=4 name=channel material="UD1(BetaGa2O3)" \
+       points="$x_src_imp_r,$y_surface $x_drn_imp_l,$y_surface \
+               $x_drn_imp_l,$y_channel_b $x_src_imp_r,$y_channel_b \
+               $x_src_imp_r,$y_surface"
+region id=5 name=drain_implant material="UD1(BetaGa2O3)" \
+       points="$x_drn_imp_l,$y_surface $x_dev,$y_surface \
+               $x_dev,$y_channel_b $x_drn_imp_l,$y_channel_b \
+               $x_drn_imp_l,$y_surface"
+region id=6 name=uid_buffer material="UD1(BetaGa2O3)" \
+       points="0,$y_channel_b $x_dev,$y_channel_b \
+               $x_dev,$y_buffer_b 0,$y_buffer_b 0,$y_channel_b"
+region id=7 name=substrate material="UD1(BetaGa2O3)" \
+       points="0,$y_buffer_b $x_dev,$y_buffer_b \
+               $x_dev,$y_sub_b 0,$y_sub_b 0,$y_buffer_b"
+
+# True zero-area contacts.  There is intentionally no gate_fp line-region.
+region id=8 name=source material=Aluminum elec.id=1 \
+       points="0,$y_surface $x_src_r,$y_surface"
+region id=9 name=drain material=Aluminum elec.id=2 \
+       points="$x_drn_l,$y_surface $x_dev,$y_surface"
+region id=10 name=gate material=Aluminum elec.id=3 \
+       points="$x_gate_l,$y_hfo2_top $x_gate_r,$y_hfo2_top"
+
+impurity id=1 region.id=3 imp=Donors peak.value=$nd_sd \
+         ref.value=1.0e12 comb.func=Multiply
+impurity id=2 region.id=4 imp=Donors peak.value=$nd_channel \
+         ref.value=1.0e12 comb.func=Multiply
+impurity id=3 region.id=5 imp=Donors peak.value=$nd_channel \
+         ref.value=1.0e12 comb.func=Multiply
+impurity id=4 region.id=6 imp=Donors peak.value=$nd_uid \
+         ref.value=1.0e12 comb.func=Multiply
+impurity id=5 region.id=7 imp=Donors peak.value=$nd_sub \
+         ref.value=1.0e12 comb.func=Multiply
+
+base.mesh height=0.60 width=0.90
+bound.cond !apply max.slope=30 max.ratio=50 rnd.unit=0.001 \
+           line.straightening=0 align.points when=automatic
+imp.refine min.spacing=0.020
+constr.mesh max.angle=90 max.ratio=40 \
+            max.height=0.60 max.width=0.60 \
+            min.height=0.001 min.width=0.001
+
+constr.mesh reg=1 max.height=0.075
+constr.mesh reg=2 max.height=0.005
+constr.mesh reg=3 max.height=0.022
+constr.mesh reg=4 max.height=0.022
+constr.mesh reg=5 max.height=0.022
+constr.mesh reg=6 max.height=0.045
+constr.mesh reg=7 max.height=0.60
+
+constr.mesh x1=$ion_roi_l y1=$y_surface x2=$ion_roi_r y2=$y_buffer_b \
+            max.height=$ion_dy_epi max.width=$ion_dx
+constr.mesh x1=$ion_roi_l y1=$y_buffer_b x2=$ion_roi_r y2=$y_sub_b \
+            max.height=$ion_dy_sub max.width=$ion_dx
+
+mesh mode=MeshBuild
+structure outfile="RUN119_Wang2026_nofp_Lgd9_x11_uidNd1e16_preflight_mesh.str"
+
+# Hard stop: this is a geometry/mesh preflight, never an ATLAS run.
+quit

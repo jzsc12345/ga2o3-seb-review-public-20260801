@@ -1,0 +1,241 @@
+{
+ "entries": {
+  "env::许可证问题（先查 SFLM_SERVERS 与 sflm 进程）": {
+   "category": "env",
+   "name": "许可证问题（先查 SFLM_SERVERS 与 sflm 进程）",
+   "count": 119,
+   "first_seen": "2026-07-26 23:28",
+   "last_seen": "2026-07-26 23:28",
+   "cases": [
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "\n                  BLAZE BUNDLE                    : not licensed\n\n                  TFT BUNDLE                      : not licensed\n\n                  ORGANIC BUNDLE                  : not licensed\n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "\n                  TFT BUNDLE                      : not licensed\n\n                  ORGANIC BUNDLE                  : not licensed\n\n                  DEVICE3D BUNDLE                 : not licensed\n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "\n                  ORGANIC BUNDLE                  : not licensed\n\n                  DEVICE3D BUNDLE                 : not licensed\n\n                  TFT3D BUNDLE                    : not licensed\n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "\n                  DEVICE3D BUNDLE                 : not licensed\n\n                  TFT3D BUNDLE                    : not licensed\n\n               ======================================================\n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "                           Sun Jul 26 23:10:53 2026\n\n                            Executing on host: tcad\n                     Current SFLM Server: localhost:3162/\n\n\n"
+    }
+   ]
+  },
+  "mesh::网格元素无归属 region（电极≠region 坑）": {
+   "category": "mesh",
+   "name": "网格元素无归属 region（电极≠region 坑）",
+   "count": 9,
+   "first_seen": "2026-07-26 23:28",
+   "last_seen": "2026-07-26 23:28",
+   "cases": [
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n7.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "ATLAS> # `electrode` statements are boundary conditions, NOT regions, so if the\nATLAS> # oxide stopped at Ymetal_bot the mesh band that holds the electrode heads\nATLAS> # (y -0.77..-0.72) would belong to no region at all and ATLAS aborts with\nATLAS> # \"Error: No region defined for element ...\". The metal heads simply sit\nATLAS> # embedded in the passivation.\nATLAS> region num = 4 name = fieldox material = SiO2 x.min = 0 x.max = 30.5 y.min = -0.77 y.max = -0.32\nATLAS> "
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n8.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "ATLAS> # `electrode` statements are boundary conditions, NOT regions, so if the\nATLAS> # oxide stopped at Ymetal_bot the mesh band that holds the electrode heads\nATLAS> # (y -0.77..-0.72) would belong to no region at all and ATLAS aborts with\nATLAS> # \"Error: No region defined for element ...\". The metal heads simply sit\nATLAS> # embedded in the passivation.\nATLAS> region num = 4 name = fieldox material = SiO2 x.min = 0 x.max = 30.5 y.min = -0.77 y.max = -0.32\nATLAS> "
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n9.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "ATLAS> # `electrode` statements are boundary conditions, NOT regions, so if the\nATLAS> # oxide stopped at Ymetal_bot the mesh band that holds the electrode heads\nATLAS> # (y -0.77..-0.72) would belong to no region at all and ATLAS aborts with\nATLAS> # \"Error: No region defined for element ...\". The metal heads simply sit\nATLAS> # embedded in the passivation.\nATLAS> region num = 4 name = fieldox material = SiO2 x.min = 0 x.max = 30.5 y.min = -0.77 y.max = -0.32\nATLAS> "
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n3.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "ATLAS> # `electrode` statements are boundary conditions, NOT regions, so if the\nATLAS> # oxide stopped at Ymetal_bot the mesh band that holds the electrode heads\nATLAS> # (y -0.77..-0.72) would belong to no region at all and ATLAS aborts with\nATLAS> # \"Error: No region defined for element ...\". The metal heads simply sit\nATLAS> # embedded in the passivation.\nATLAS> region num = 4 name = fieldox material = SiO2 x.min = 0 x.max = 30.5 y.min = -0.77 y.max = -0.32\nATLAS> "
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n4.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "ATLAS> # `electrode` statements are boundary conditions, NOT regions, so if the\nATLAS> # oxide stopped at Ymetal_bot the mesh band that holds the electrode heads\nATLAS> # (y -0.77..-0.72) would belong to no region at all and ATLAS aborts with\nATLAS> # \"Error: No region defined for element ...\". The metal heads simply sit\nATLAS> # embedded in the passivation.\nATLAS> region num = 4 name = fieldox material = SiO2 x.min = 0 x.max = 30.5 y.min = -0.77 y.max = -0.32\nATLAS> "
+    }
+   ]
+  },
+  "mesh::电极被裁剪（坐标与网格线不齐）": {
+   "category": "mesh",
+   "name": "电极被裁剪（坐标与网格线不齐）",
+   "count": 18,
+   "first_seen": "2026-07-26 23:28",
+   "last_seen": "2026-07-26 23:28",
+   "cases": [
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n9.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": " x  2.811e+01   2.892e+01 \n y -3.200e-01  -3.000e-01 \n\nWarning:  Electrode shortened in X-direction.\n\n\nATLAS> electrode name = drain x.min = 27.5 x.max = 29.5 y.min = -0.77 y.max = -0.72"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n3.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": " x  1.615e+00   2.385e+00 \n y -3.200e-01  -3.000e-01 \n\nWarning:  Electrode shortened in X-direction.\n\n\nATLAS> electrode name = source x.min = 1 x.max = 3 y.min = -0.77 y.max = -0.72"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n3.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": " x  2.811e+01   2.892e+01 \n y -3.200e-01  -3.000e-01 \n\nWarning:  Electrode shortened in X-direction.\n\n\nATLAS> electrode name = drain x.min = 27.5 x.max = 29.5 y.min = -0.77 y.max = -0.72"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n4.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": " x  1.615e+00   2.385e+00 \n y -3.200e-01  -3.000e-01 \n\nWarning:  Electrode shortened in X-direction.\n\n\nATLAS> electrode name = source x.min = 1 x.max = 3 y.min = -0.77 y.max = -0.72"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n4.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": " x  2.811e+01   2.892e+01 \n y -3.200e-01  -3.000e-01 \n\nWarning:  Electrode shortened in X-direction.\n\n\nATLAS> electrode name = drain x.min = 27.5 x.max = 29.5 y.min = -0.77 y.max = -0.72"
+    }
+   ]
+  },
+  "newton::晶格温度越限（撞 min.temp/max.temp 钳位）": {
+   "category": "newton",
+   "name": "晶格温度越限（撞 min.temp/max.temp 钳位）",
+   "count": 2540,
+   "first_seen": "2026-07-26 23:28",
+   "last_seen": "2026-07-26 23:28",
+   "cases": [
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "   1       N   1.969  5.803 -24.6*  0.906 -15.17 -2.777 -32.5*  13.22\n   2       N   2.000  4.749 -24.9* -0.209 -15.48 -3.105 -32.8*  12.75\n  \n Warning: Updated temperatures exceeding limits.\n\nTemperature solution summary (K):\n           Minimum       Maximum"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "   1       N   1.673 -0.001 -24.3*  0.596 -15.49 -2.826 -42.8*  12.79\n   2       N   1.265  2.318 -24.5* -0.425 -15.27 -3.246 -44.6*  12.75\n  \n Warning: Updated temperatures exceeding limits.\n\nTemperature solution summary (K):\n           Minimum       Maximum"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "   1       N   1.673 -0.001 -24.3*  0.596 -15.49 -2.826 -42.8*  12.79\n   2       N   1.265  2.231 -24.4* -0.425 -15.27 -3.246 -44.6*  12.75\n  \n Warning: Updated temperatures exceeding limits.\n\nTemperature solution summary (K):\n           Minimum       Maximum"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "   5       N   2.000  2.088  3.526 -0.080 -14.70 -0.689 -1.767  14.81\n   6       N   2.000  5.121  6.289  1.071 -13.36  0.797  0.448  17.63\n  \n Warning: Updated temperatures exceeding limits.\n\nTemperature solution summary (K):\n           Minimum       Maximum"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "   8       N   2.000  1.821  2.860  0.403 -14.51 -0.580 -0.887  15.73\n   9       N   2.000  1.712  2.304  0.179 -14.89 -1.132 -0.874  15.47\n  \n Warning: Updated temperatures exceeding limits.\n\nTemperature solution summary (K):\n           Minimum       Maximum"
+    }
+   ]
+  },
+  "newton::偏压折半（DC 爬压不收敛）": {
+   "category": "newton",
+   "name": "偏压折半（DC 爬压不收敛）",
+   "count": 2580,
+   "first_seen": "2026-07-26 23:28",
+   "last_seen": "2026-07-26 23:28",
+   "cases": [
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "  \n  \n \nWarning: Convergence problem.  Taking smaller bias\nstep(s).  Bias step reduced 3 times.\n \n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "  \n  \n \nWarning: Convergence problem.  Taking smaller bias\nstep(s).  Bias step reduced 2 times.\n \n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "  \n  \n \nWarning: Convergence problem.  Taking smaller bias\nstep(s).  Bias step reduced 1 times.\n \n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "  \n  \n \nWarning: Convergence problem.  Taking smaller bias\nstep(s).  Bias step reduced 2 times.\n \n"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SMOKE_GUI__work__n6.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "  \n  \n \nWarning: Convergence problem.  Taking smaller bias\nstep(s).  Bias step reduced 1 times.\n \n"
+    }
+   ]
+  },
+  "syntax::ATLAS 编号错误（看上下文行）": {
+   "category": "syntax",
+   "name": "ATLAS 编号错误（看上下文行）",
+   "count": 2,
+   "first_seen": "2026-07-26 23:28",
+   "last_seen": "2026-07-26 23:28",
+   "cases": [
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n11.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "ATLAS> # the step then relaxes decade by decade.\nATLAS> log outf = n11_seb.log\nATLAS> solve tstart = 0.0 tstep = 1e-12 tstop = 3e-11\n ** ERROR #  3 **\n * Invalid parameter specification *\n ==> tstart\nATLAS> "
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n12.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "ATLAS> # the step then relaxes decade by decade.\nATLAS> log outf = n12_seb.log\nATLAS> solve tstart = 0.0 tstep = 1e-12 tstop = 3e-11\n ** ERROR #  3 **\n * Invalid parameter specification *\n ==> tstart\nATLAS> "
+    }
+   ]
+  },
+  "env::非零退出（综合症状，看前文定因）": {
+   "category": "env",
+   "name": "非零退出（综合症状，看前文定因）",
+   "count": 2,
+   "first_seen": "2026-07-26 23:28",
+   "last_seen": "2026-07-26 23:28",
+   "cases": [
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n11.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "*** monitor string \"ERROR #\" detected while executing line number:62 ***\n\n\n*** simulator exits with code 2"
+    },
+    {
+     "file": "D:\\SILVACO_LOCAL\\outputs\\reports\\_remote_logs\\root__SilvacoVDoE__codex__SEB_TEMP_DIAG__work__n12.out",
+     "label": "",
+     "when": "2026-07-26 23:28",
+     "context": "*** monitor string \"ERROR #\" detected while executing line number:62 ***\n\n\n*** simulator exits with code 2"
+    }
+   ]
+  }
+ }
+}

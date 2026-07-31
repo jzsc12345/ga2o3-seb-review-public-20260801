@@ -1,0 +1,31 @@
+{
+  "outputSlides": [
+    {"outputSlide": 1, "sourceSlide": 1, "narrativeRole": "title", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 2, "sourceSlide": 2, "narrativeRole": "one-page dashboard", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 3, "sourceSlide": 4, "narrativeRole": "runner and visible-monitor forensic", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 4, "sourceSlide": 13, "narrativeRole": "cutoff harness architecture", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 5, "sourceSlide": 7, "narrativeRole": "geometry mesh and charge alignment", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 6, "sourceSlide": 5, "narrativeRole": "frozen RUN096 baseline", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 7, "sourceSlide": 5, "narrativeRole": "systematic OFAT gap", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 8, "sourceSlide": 7, "narrativeRole": "persistent current path topology", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 9, "sourceSlide": 5, "narrativeRole": "substrate and UID redistribution", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 10, "sourceSlide": 12, "narrativeRole": "static admission walls", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 11, "sourceSlide": 12, "narrativeRole": "historical achievements and invalid claims", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 12, "sourceSlide": 13, "narrativeRole": "Wang context matrix and missing figures", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 13, "sourceSlide": 18, "narrativeRole": "eight-week plan and decision", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 14, "sourceSlide": 19, "narrativeRole": "conclusion", "reuseMode": "duplicate-slide", "editTargets": []}
+  ],
+  "omittedSourceSlides": [
+    {"sourceSlide": 3, "reason": "research positioning is folded into the dashboard"},
+    {"sourceSlide": 6, "reason": "fingerprint frame duplicates single-figure frames"},
+    {"sourceSlide": 8, "reason": "source table content is domain-specific and not reused"},
+    {"sourceSlide": 9, "reason": "variant matrix is replaced by a verified RUN evidence table"},
+    {"sourceSlide": 10, "reason": "trajectory family frame is represented by current-path topology"},
+    {"sourceSlide": 11, "reason": "calibration frame is covered on the historical-result slide"},
+    {"sourceSlide": 14, "reason": "boundary statement is distributed across result slides"},
+    {"sourceSlide": 15, "reason": "mechanical stress is out of this SEB fitting report scope"},
+    {"sourceSlide": 16, "reason": "gate leakage risk is not the current main blocker"},
+    {"sourceSlide": 17, "reason": "method validation is represented by the evidence hierarchy"}
+  ]
+}
+

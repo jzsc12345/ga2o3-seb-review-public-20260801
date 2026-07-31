@@ -1,0 +1,28 @@
+Source: D:\WeChat Files\xwechat_files\wxid_ca4cb6da21e422_59df\msg\file\2026-07\组会汇报_MIS-HEMT_HPM损伤机理进展_20260711.pptx
+Source SHA-256: 5943DD1264D5FF02E7B9302EA27ED8E5A29F90AB173144F13FE2CB8A00ED0893
+Slides inspected: 19/19
+Canvas: 1280 x 720 (16:9)
+
+Reusable frames:
+- Slide 1: dark navy title page.
+- Slide 2: four-metric dashboard plus three full-width rows.
+- Slide 4: four-step method list with right-side decision card.
+- Slides 5/6/10/11: one large figure plus right-side technical interpretation.
+- Slide 7: two spatial images plus a right-side result card.
+- Slide 12: two-image comparison.
+- Slide 13: three parallel decision cards.
+- Slide 14: three evidence rows plus a right boundary statement.
+- Slide 18: three next-step cards.
+- Slide 19: dark conclusion page.
+
+Brand and spacing rules:
+- Primary navy near #0F172A; emphasis orange near #F26C32; blue and green for alternative branches.
+- White/light-gray content pages, generous outer margin, 28–32 pt Chinese titles.
+- Main content usually starts near x=52, y=144; rounded cards use light borders and 8–12 px visual radius.
+- Conclusions are written as evidence → interpretation → boundary, not as decorative slogans.
+
+Insertion contract:
+- Starter deck duplicates source frames in output order.
+- Original source elements remain unchanged beneath an opaque page overlay; new content uses the same palette and spacing.
+- Every external or project-local image is accompanied by a [Sources] block in speaker notes.
+- No source slide is treated as semiconductor evidence; it is only a visual template.

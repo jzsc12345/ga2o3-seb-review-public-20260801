@@ -1,0 +1,4 @@
+﻿time_label,time_ns,RUN096_Id_A_per_um,RUN109_Id_A_per_um,Id_ratio_RUN109_over_RUN096,RUN096_bottleneck_Acm-2,RUN109_bottleneck_Acm-2,bottleneck_ratio_RUN109_over_RUN096,RUN096_bottleneck_zone,RUN109_bottleneck_zone,RUN096_bottleneck_x_um,RUN096_bottleneck_y_um,RUN109_bottleneck_x_um,RUN109_bottleneck_y_um,RUN096_path_max_depth_um,RUN109_path_max_depth_um,RUN096_substrate_fraction,RUN109_substrate_fraction
+t50ns,50.0,5.453764043e-06,5.491708556e-06,1.006957490771663,584.340384,623.890635,1.0676835832041347,gate/UID-transition,gate/UID-transition,8.38,0.1525,8.38,0.1525,0.205,0.21,0.0,0.0
+t100ns,100.0,2.251180402e-06,2.238200858e-06,0.9942343385770112,213.765163,224.077556,1.048241691280632,gate/UID-transition,gate/UID-transition,8.24,0.1525,8.24,0.1525,0.215,0.22,0.0,0.0
+t500ns,500.0,6.572656656e-07,6.383882264e-07,0.9712788295692164,50.589326,51.5092698,1.0181845435141792,gate/UID-transition,gate/UID-transition,8.12,0.1525,8.12,0.1525,0.225,0.225,0.0,0.0

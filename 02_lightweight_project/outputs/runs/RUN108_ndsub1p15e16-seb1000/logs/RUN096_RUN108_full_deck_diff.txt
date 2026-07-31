@@ -1,0 +1,153 @@
+diff --git "a/decks\\RUN096_Wang2026_nofp_Lgd9_x11_hfo2hc_SEB_1000V_Et0p8_long.in" "b/decks\\RUN108_Wang2026_nofp_Lgd9_x11_subNd1p15e16_SEB_1000V_Et0p8_long.in"
+index 83028e0..411839f 100644
+--- "a/decks\\RUN096_Wang2026_nofp_Lgd9_x11_hfo2hc_SEB_1000V_Et0p8_long.in"
++++ "b/decks\\RUN108_Wang2026_nofp_Lgd9_x11_subNd1p15e16_SEB_1000V_Et0p8_long.in"
+@@ -1,10 +1,11 @@
+ # =============================================================================
+-# RUN096 -- HfO2 heat-capacity-only arm from completed RUN095
++# RUN108 -- Nd_sub charge-balance arm from frozen RUN096
+ #
+ # Goal:
+-#   Quantify only the missing HfO2 heat-capacity model after RUN095 closed the
+-#   HEAT.FULL root-cause branch. Geometry, electrical physics, source, thermal
+-#   boundaries, heat-source equation and time schedule are frozen from RUN095.
++#   Test whether Fe-overcompensation starves the persistent deep electron path.
++#   Relative to frozen RUN096, only the n-type substrate background donor
++#   concentration changes from 1.5e15 to 1.15e16 cm^-3. Geometry, Fe trap,
++#   electrical/thermal models, source, solver and time schedule remain frozen.
+ #   Integrate PHOTOGEN and require the generated charge to agree with
+ #   0.4529 pC/um * 5.35 um = 2.423015 pC within 5 percent.
+ #
+@@ -65,7 +66,7 @@ set y_sub_b     = 5.35
+ set nd_channel  = 5.0e16
+ set nd_uid      = 5.0e15
+ set nd_sd       = 1.0e19
+-set nd_sub      = 1.5e15
++set nd_sub      = 1.15e16
+ set nt_fe       = 2.0e18
+ set et_fe       = 0.8
+ set sig_fe      = 5.0e-15
+@@ -173,13 +174,13 @@ constr.mesh x1=$ion_roi_l y1=$y_buffer_b x2=$ion_roi_r y2=$y_sub_b \
+             max.height=$ion_dy_sub max.width=$ion_dx
+ 
+ mesh mode=MeshBuild
+-structure outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_mesh.str"
++structure outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_mesh.str"
+ 
+ # -----------------------------------------------------------------------------
+ # Stage 2: frozen RUN047 equations with a low-field transfer sweep
+ # -----------------------------------------------------------------------------
+ go atlas simflags="-V 5.40.0.R -P 4"
+-mesh infile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_mesh.str"
++mesh infile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_mesh.str"
+ 
+ doping gauss n.type conc=$nd_sd char=1.0 lat.char=1.0 \
+        x.min=$x_drn_l y.min=$y_surface y.max=$y_channel_b
+@@ -312,12 +313,12 @@ output e.field impact flowlines e.mobility h.mobility band.param \
+ 
+ solve init
+ solve vgate=0 name=gate
+-log outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_static.log"
++log outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_static.log"
+ solve vdrain=0.1 name=drain
+ solve name=drain vstep=0.5 vfinal=10 previous
+ solve name=drain vstep=5.0 vfinal=$target_vds previous \
+       compliance=1.6e-5 cname=drain
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_isothermal.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_isothermal.str"
+ log off
+ 
+ # Turn on the complete thermal equation in the same ATLAS process, preserving
+@@ -333,7 +334,7 @@ probe name=Tbottom lat.temp x=10.0 y=$y_sub_b
+ method block newton trap maxtraps=10 climit=1e-4 itlimit=50 max.temp=5000
+ 
+ solve previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_prestrike.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_prestrike.str"
+ 
+ singleeventupset entrypoint="$xion,$y_surface" exitpoint="$xion,$y_sub_b" \
+                  radialgauss b.density=$qline pcunits radius=$ion_radius \
+@@ -341,64 +342,63 @@ singleeventupset entrypoint="$xion,$y_surface" exitpoint="$xion,$y_sub_b" \
+ probe integrated photogen name="GSEU_all" \
+       x.min=0 x.max=$x_dev y.min=$y_sio2_top y.max=$y_sub_b
+ 
+-log outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_transient.log"
++log outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_transient.log"
+ solve tstop=2e-12 dt=2e-13 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t2ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t2ps.str"
+ solve tstop=6e-12 dt=1e-13 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t6ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t6ps.str"
+ solve tstop=9.8e-12 dt=1e-13 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t9p8ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t9p8ps.str"
+ solve tstop=14e-12 dt=1e-13 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t14ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t14ps.str"
+ solve tstop=20e-12 dt=2e-13 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t20ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t20ps.str"
+ 
+ # Long recovery window. The sequence through 1 us is inherited from the
+ # previously verified RUN038 long-tail schedule; 10/100 us extend it to
+ # the Wang-paper recovery horizon without changing the source or physics.
+ solve tstop=30e-12 dt=1e-12 previous
+ solve tstop=50e-12 dt=1e-12 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t50ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t50ps.str"
+ solve tstop=100e-12 dt=1e-11 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ps.str"
+ solve tstop=400e-12 dt=1e-11 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t400ps.str"
+ solve tstop=1e-9 dt=1e-11 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1ns.str"
+ solve tstop=2e-9 dt=1e-9 previous
+ solve tstop=3e-9 dt=1e-9 previous
+ solve tstop=4e-9 dt=1e-9 previous
+ solve tstop=7e-9 dt=1e-9 previous
+ solve tstop=9e-9 dt=1e-9 previous
+ solve tstop=10e-9 dt=1e-9 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t10ns.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t10ns.str"
+ solve tstop=20e-9 dt=1e-8 previous
+ solve tstop=30e-9 dt=1e-8 previous
+ solve tstop=40e-9 dt=1e-8 previous
+ solve tstop=50e-9 dt=1e-8 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t50ns.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t50ns.str"
+ solve tstop=100e-9 dt=1e-8 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ns.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ns.str"
+ solve tstop=500e-9 dt=1e-8 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t500ns.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t500ns.str"
+ solve tstop=1e-6 dt=1e-8 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1us.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t1us.str"
+ solve tstop=2e-6 dt=1e-7 previous
+ solve tstop=5e-6 dt=2e-7 previous
+ solve tstop=10e-6 dt=5e-7 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t10us.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t10us.str"
+ solve tstop=20e-6 dt=1e-6 previous
+ solve tstop=50e-6 dt=2e-6 previous
+ solve tstop=100e-6 dt=5e-6 previous
+-save outfile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str"
++save outfile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100us.str"
+ log off
+ 
+-extract init infile="RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_transient.log"
++extract init infile="RUN108_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_transient.log"
+ # 2-D area integral has units cm^-1; multiply by 1e-4 cm for a 1 um width.
+-extract name="AreaTimeInt_cmInv_RUN096" area from curve(time, probe."GSEU_all")
++extract name="AreaTimeInt_cmInv_RUN108" area from curve(time, probe."GSEU_all")
+ 
+ quit
+ 
+ 
+ 
+-

@@ -1,0 +1,289 @@
+﻿time,run,profile,field,peak_abs_or_value,x_um,y_um
+100ps,RUN092,surface,electric field,1843806.87,9.0,
+100ps,RUN092,surface,impact gen rate,6.83465034e+22,9.125,
+100ps,RUN092,surface,electron conc,1.81960132e+19,11.0087891,
+100ps,RUN092,surface,hole conc,1.82846713e+19,11.0087891,
+100ps,RUN092,surface,total current density,180345.717,13.184375,
+100ps,RUN092,surface,joule heat power,153433719000.0,10.25,
+100ps,RUN092,surface,lattice temperature,302.684786,10.7833333,
+100ps,RUN092,surface,acceptor trap ionized density #1,0.0,3.55271368e-15,
+100ps,RUN094,surface,electric field,4982971.64,9.0,
+100ps,RUN094,surface,impact gen rate,3.55380427e+28,9.125,
+100ps,RUN094,surface,electron conc,2.09739507e+19,11.0048829,
+100ps,RUN094,surface,hole conc,2.09956488e+19,11.0048829,
+100ps,RUN094,surface,total current density,782516.551,12.2458333,
+100ps,RUN094,surface,joule heat power,1364478710000.0,14.921875,
+100ps,RUN094,surface,lattice temperature,328.334062,15.03125,
+100ps,RUN094,surface,acceptor trap ionized density #1,0.0,-1.77635684e-15,
+100ps,RUN092,uid_sub,electric field,880404.518,9.125,
+100ps,RUN092,uid_sub,impact gen rate,8.03938537e+18,9.75,
+100ps,RUN092,uid_sub,electron conc,2.81740969e+18,11.0,
+100ps,RUN092,uid_sub,hole conc,4.34905034e+18,11.0,
+100ps,RUN092,uid_sub,total current density,42517.3685,11.0,
+100ps,RUN092,uid_sub,joule heat power,3998150530.0,10.375,
+100ps,RUN092,uid_sub,lattice temperature,300.216037,11.0175781,
+100ps,RUN092,uid_sub,acceptor trap ionized density #1,2e+18,27.8046875,
+100ps,RUN094,uid_sub,electric field,2179791.3,9.25,
+100ps,RUN094,uid_sub,impact gen rate,1.20508536e+26,9.375,
+100ps,RUN094,uid_sub,electron conc,2.29446538e+18,11.0048829,
+100ps,RUN094,uid_sub,hole conc,3.86289515e+18,10.9980469,
+100ps,RUN094,uid_sub,total current density,285954.788,11.0117188,
+100ps,RUN094,uid_sub,joule heat power,102262087000.0,9.375,
+100ps,RUN094,uid_sub,lattice temperature,300.633424,16.125,
+100ps,RUN094,uid_sub,acceptor trap ionized density #1,2e+18,16.78125,
+100ps,RUN092,track,electric field,6937137.82,,-0.42
+100ps,RUN092,track,impact gen rate,0.0,,-0.42
+100ps,RUN092,track,electron conc,2.0958055e+19,,0.103125
+100ps,RUN092,track,hole conc,2.83405555e+19,,3.55271368e-15
+100ps,RUN092,track,total current density,42932.9392,,0.4160938
+100ps,RUN092,track,joule heat power,1350016170.0,,0.34375
+100ps,RUN092,track,lattice temperature,300.688153,,0.009375
+100ps,RUN092,track,acceptor trap ionized density #1,1.57153725e+18,,0.35
+100ps,RUN094,track,electric field,405245.801,,-0.37
+100ps,RUN094,track,impact gen rate,0.0,,-0.42
+100ps,RUN094,track,electron conc,2.12163514e+19,,0.075
+100ps,RUN094,track,hole conc,2.21921648e+19,,0.0
+100ps,RUN094,track,total current density,248139.898,,0.35
+100ps,RUN094,track,joule heat power,16281128500.0,,0.4349773
+100ps,RUN094,track,lattice temperature,300.333419,,0.4821875
+100ps,RUN094,track,acceptor trap ionized density #1,1.54949675e+18,,0.35
+400ps,RUN092,surface,electric field,2632044.32,9.0,
+400ps,RUN092,surface,impact gen rate,2.93496514e+26,9.125,
+400ps,RUN092,surface,electron conc,7.34430633e+18,11.0527344,
+400ps,RUN092,surface,hole conc,7.49245039e+18,11.0527344,
+400ps,RUN092,surface,total current density,266772.066,9.0,
+400ps,RUN092,surface,joule heat power,741746148000.0,9.125,
+400ps,RUN092,surface,lattice temperature,317.887841,9.125,
+400ps,RUN092,surface,acceptor trap ionized density #1,0.0,3.55271368e-15,
+400ps,RUN094,surface,electric field,4137580.78,9.0,
+400ps,RUN094,surface,impact gen rate,1.09066765e+28,9.125,
+400ps,RUN094,surface,electron conc,1.20026874e+19,11.0185547,
+400ps,RUN094,surface,hole conc,1.20242904e+19,11.0185547,
+400ps,RUN094,surface,total current density,889805.956,12.0270833,
+400ps,RUN094,surface,joule heat power,1528478400000.0,14.9802083,
+400ps,RUN094,surface,lattice temperature,382.037456,15.0895833,
+400ps,RUN094,surface,acceptor trap ionized density #1,0.0,-1.77635684e-15,
+400ps,RUN092,uid_sub,electric field,1142489.46,9.125,
+400ps,RUN092,uid_sub,impact gen rate,2.23780141e+21,9.0,
+400ps,RUN092,uid_sub,electron conc,4.9657767e+17,31.0,
+400ps,RUN092,uid_sub,hole conc,7.59926237e+17,11.0175781,
+400ps,RUN092,uid_sub,total current density,12531.8582,10.9765625,
+400ps,RUN092,uid_sub,joule heat power,3760110370.0,9.375,
+400ps,RUN092,uid_sub,lattice temperature,300.368834,10.75,
+400ps,RUN092,uid_sub,acceptor trap ionized density #1,2e+18,27.8046875,
+400ps,RUN094,uid_sub,electric field,2119608.53,15.6875,
+400ps,RUN094,uid_sub,impact gen rate,3.41896071e+24,9.5,
+400ps,RUN094,uid_sub,electron conc,4.96989941e+17,18.0,
+400ps,RUN094,uid_sub,hole conc,2.23755631e+17,11.0185547,
+400ps,RUN094,uid_sub,total current density,36692.8201,10.984375,
+400ps,RUN094,uid_sub,joule heat power,55989398300.0,9.375,
+400ps,RUN094,uid_sub,lattice temperature,307.739831,9.375,
+400ps,RUN094,uid_sub,acceptor trap ionized density #1,2e+18,16.78125,
+400ps,RUN092,track,electric field,8139704.74,,-0.42
+400ps,RUN092,track,impact gen rate,0.0,,-0.42
+400ps,RUN092,track,electron conc,1.16625193e+19,,0.13125
+400ps,RUN092,track,hole conc,1.65821525e+19,,3.55271368e-15
+400ps,RUN092,track,total current density,121391.476,,3.55271368e-15
+400ps,RUN092,track,joule heat power,17828186100.0,,-3.55271368e-15
+400ps,RUN092,track,lattice temperature,300.857552,,-3.55271368e-15
+400ps,RUN092,track,acceptor trap ionized density #1,6.98878752e+17,,0.35
+400ps,RUN094,track,electric field,773288.561,,0.35
+400ps,RUN094,track,impact gen rate,5.06899134e+19,,0.34375
+400ps,RUN094,track,electron conc,1.21515001e+19,,0.075
+400ps,RUN094,track,hole conc,1.31046212e+19,,0.0
+400ps,RUN094,track,total current density,100093.829,,0.05625
+400ps,RUN094,track,joule heat power,31692102900.0,,0.289285675
+400ps,RUN094,track,lattice temperature,302.30274,,0.4160938
+400ps,RUN094,track,acceptor trap ionized density #1,1.51199962e+17,,1.0770313
+1ns,RUN092,surface,electric field,2458898.17,9.0,
+1ns,RUN092,surface,impact gen rate,1.57788846e+26,9.125,
+1ns,RUN092,surface,electron conc,1.81215683e+18,30.9416667,
+1ns,RUN092,surface,hole conc,1.26230118e+18,11.1945313,
+1ns,RUN092,surface,total current density,275899.866,8.94166667,
+1ns,RUN092,surface,joule heat power,656816914000.0,9.125,
+1ns,RUN092,surface,lattice temperature,335.126742,9.125,
+1ns,RUN092,surface,acceptor trap ionized density #1,0.0,3.55271368e-15,
+1ns,RUN094,surface,electric field,2331792.31,15.6364583,
+1ns,RUN094,surface,impact gen rate,1.68203442e+23,15.5270833,
+1ns,RUN094,surface,electron conc,1.81720761e+18,18.0,
+1ns,RUN094,surface,hole conc,1.49453224e+18,8.875,
+1ns,RUN094,surface,total current density,264119.883,8.0,
+1ns,RUN094,surface,joule heat power,25225717700.0,7.94166667,
+1ns,RUN094,surface,lattice temperature,372.942683,15.359375,
+1ns,RUN094,surface,acceptor trap ionized density #1,0.0,-1.77635684e-15,
+1ns,RUN092,uid_sub,electric field,1050686.41,9.125,
+1ns,RUN092,uid_sub,impact gen rate,4.58694644e+20,9.25,
+1ns,RUN092,uid_sub,electron conc,4.96583199e+17,29.0,
+1ns,RUN092,uid_sub,hole conc,1.45331573e+17,11.0527344,
+1ns,RUN092,uid_sub,total current density,9181.62289,10.9921875,
+1ns,RUN092,uid_sub,joule heat power,3368846050.0,9.375,
+1ns,RUN092,uid_sub,lattice temperature,300.969793,9.25,
+1ns,RUN092,uid_sub,acceptor trap ionized density #1,2e+18,27.8046875,
+1ns,RUN094,uid_sub,electric field,2457970.19,15.6875,
+1ns,RUN094,uid_sub,impact gen rate,1.27150435e+21,12.953125,
+1ns,RUN094,uid_sub,electron conc,4.9749e+17,18.0,
+1ns,RUN094,uid_sub,hole conc,6.54405769e+16,9.25,
+1ns,RUN094,uid_sub,total current density,2144.18627,9.25,
+1ns,RUN094,uid_sub,joule heat power,2374808980.0,9.25,
+1ns,RUN094,uid_sub,lattice temperature,311.061044,9.25,
+1ns,RUN094,uid_sub,acceptor trap ionized density #1,2e+18,16.78125,
+1ns,RUN092,track,electric field,8095505.13,,-0.42
+1ns,RUN092,track,impact gen rate,447595853000000.0,,0.009375
+1ns,RUN092,track,electron conc,3.43779769e+18,,0.175
+1ns,RUN092,track,hole conc,1.1313127e+19,,3.55271368e-15
+1ns,RUN092,track,total current density,301146.434,,3.55271368e-15
+1ns,RUN092,track,joule heat power,140427739000.0,,-3.55271368e-15
+1ns,RUN092,track,lattice temperature,302.421706,,-3.55271368e-15
+1ns,RUN092,track,acceptor trap ionized density #1,6.17886907e+16,,0.35
+1ns,RUN094,track,electric field,659421.99,,-0.42
+1ns,RUN094,track,impact gen rate,473209050000000.0,,0.35
+1ns,RUN094,track,electron conc,14075558100000.0,,0.0
+1ns,RUN094,track,hole conc,4.05568748e+16,,5.35
+1ns,RUN094,track,total current density,1032.22061,,0.9448438
+1ns,RUN094,track,joule heat power,382022284.0,,0.87875
+1ns,RUN094,track,lattice temperature,303.720557,,0.333035675
+1ns,RUN094,track,acceptor trap ionized density #1,7.97950904e+16,,1.4924773
+10ns,RUN092,surface,electric field,686036.765,15.890625,
+10ns,RUN092,surface,impact gen rate,4.21416584e+17,15.9947917,
+10ns,RUN092,surface,electron conc,1.81246054e+18,29.0666667,
+10ns,RUN092,surface,hole conc,9.97610707e+17,7.625,
+10ns,RUN092,surface,total current density,11841.0854,6.56666667,
+10ns,RUN092,surface,joule heat power,4559626700.0,13.04375,
+10ns,RUN092,surface,lattice temperature,305.800248,9.25,
+10ns,RUN092,surface,acceptor trap ionized density #1,0.0,3.55271368e-15,
+10ns,RUN094,surface,electric field,2492700.98,15.6875,
+10ns,RUN094,surface,impact gen rate,3.52931065e+26,15.6364583,
+10ns,RUN094,surface,electron conc,1.81347528e+18,18.0666667,
+10ns,RUN094,surface,hole conc,2.827299e+18,5.0,
+10ns,RUN094,surface,total current density,38252.9929,15.5270833,
+10ns,RUN094,surface,joule heat power,114008973000.0,15.5270833,
+10ns,RUN094,surface,lattice temperature,331.258846,15.46875,
+10ns,RUN094,surface,acceptor trap ionized density #1,0.0,-1.77635684e-15,
+10ns,RUN092,uid_sub,electric field,701359.079,15.890625,
+10ns,RUN092,uid_sub,impact gen rate,57190247900.0,12.828125,
+10ns,RUN092,uid_sub,electron conc,4.96719878e+17,29.0,
+10ns,RUN092,uid_sub,hole conc,1.10339362e+16,4.875,
+10ns,RUN092,uid_sub,total current density,117.261128,28.5,
+10ns,RUN092,uid_sub,joule heat power,2368396.85,9.125,
+10ns,RUN092,uid_sub,lattice temperature,304.131646,9.25,
+10ns,RUN092,uid_sub,acceptor trap ionized density #1,2e+18,27.8046875,
+10ns,RUN094,uid_sub,electric field,2619639.18,15.6875,
+10ns,RUN094,uid_sub,impact gen rate,7.38210396e+22,13.828125,
+10ns,RUN094,uid_sub,electron conc,4.97612228e+17,18.0,
+10ns,RUN094,uid_sub,hole conc,2.62329165e+16,8.375,
+10ns,RUN094,uid_sub,total current density,699.024148,17.625,
+10ns,RUN094,uid_sub,joule heat power,460990460.0,12.515625,
+10ns,RUN094,uid_sub,lattice temperature,314.941431,15.46875,
+10ns,RUN094,uid_sub,acceptor trap ionized density #1,2e+18,16.78125,
+10ns,RUN092,track,electric field,1889384.35,,-0.42
+10ns,RUN092,track,impact gen rate,0.0,,-0.42
+10ns,RUN092,track,electron conc,671630867000000.0,,0.18125
+10ns,RUN092,track,hole conc,6804004.79,,3.55271368e-15
+10ns,RUN092,track,total current density,2192.56308,,0.18125
+10ns,RUN092,track,joule heat power,679663306.0,,0.18125
+10ns,RUN092,track,lattice temperature,301.53781,,0.084375
+10ns,RUN092,track,acceptor trap ionized density #1,3.69352346e+16,,1.2092188
+10ns,RUN094,track,electric field,688352.84,,0.34375
+10ns,RUN094,track,impact gen rate,9.48283304e+17,,0.0
+10ns,RUN094,track,electron conc,4.33770976e+16,,0.0
+10ns,RUN094,track,hole conc,2273017410000000.0,,0.9448438
+10ns,RUN094,track,total current density,90569.897,,0.0
+10ns,RUN094,track,joule heat power,88155082500.0,,0.0
+10ns,RUN094,track,lattice temperature,305.939477,,0.0
+10ns,RUN094,track,acceptor trap ionized density #1,7.69664748e+16,,2.0023438
+1us,RUN092,surface,electric field,688617.249,15.9947917,
+1us,RUN092,surface,impact gen rate,9.59077841e+16,15.9947917,
+1us,RUN092,surface,electron conc,1.81952689e+18,29.0,
+1us,RUN092,surface,hole conc,6.80706253e+17,5.0,
+1us,RUN092,surface,total current density,1251.22822,12.7625,
+1us,RUN092,surface,joule heat power,940775417.0,13.04375,
+1us,RUN092,surface,lattice temperature,304.098595,17.453125,
+1us,RUN092,surface,acceptor trap ionized density #1,0.0,3.55271368e-15,
+1us,RUN094,surface,electric field,2322881.05,15.6364583,
+1us,RUN094,surface,impact gen rate,1.28096125e+25,15.6364583,
+1us,RUN094,surface,electron conc,1.86921475e+18,18.0,
+1us,RUN094,surface,hole conc,7.23986615e+17,5.0,
+1us,RUN094,surface,total current density,2409.58106,15.5270833,
+1us,RUN094,surface,joule heat power,6698676020.0,15.5270833,
+1us,RUN094,surface,lattice temperature,314.506519,14.59375,
+1us,RUN094,surface,acceptor trap ionized density #1,0.0,-1.77635684e-15,
+1us,RUN092,uid_sub,electric field,704100.619,15.890625,
+1us,RUN092,uid_sub,impact gen rate,21021379.1,14.234375,
+1us,RUN092,uid_sub,electron conc,5.00232404e+17,29.0,
+1us,RUN092,uid_sub,hole conc,421146772000000.0,5.0,
+1us,RUN092,uid_sub,total current density,24.7170716,28.5,
+1us,RUN092,uid_sub,joule heat power,8343.69988,27.8046875,
+1us,RUN092,uid_sub,lattice temperature,303.820712,17.453125,
+1us,RUN092,uid_sub,acceptor trap ionized density #1,2e+18,27.8046875,
+1us,RUN094,uid_sub,electric field,2454168.04,15.6875,
+1us,RUN094,uid_sub,impact gen rate,1.14253061e+21,14.046875,
+1us,RUN094,uid_sub,electron conc,5.25256006e+17,18.0,
+1us,RUN094,uid_sub,hole conc,4047771140000000.0,8.0,
+1us,RUN094,uid_sub,total current density,44.1865919,17.375,
+1us,RUN094,uid_sub,joule heat power,13649371.8,12.515625,
+1us,RUN094,uid_sub,lattice temperature,313.209467,14.375,
+1us,RUN094,uid_sub,acceptor trap ionized density #1,2e+18,16.78125,
+1us,RUN092,track,electric field,1785402.45,,-0.42
+1us,RUN092,track,impact gen rate,0.0,,-0.42
+1us,RUN092,track,electron conc,218354245000000.0,,0.140625
+1us,RUN092,track,hole conc,5172120.04,,1.2753125
+1us,RUN092,track,total current density,700.306577,,0.140625
+1us,RUN092,track,joule heat power,219506230.0,,0.140625
+1us,RUN092,track,lattice temperature,302.161027,,0.01875
+1us,RUN092,track,acceptor trap ionized density #1,3.69360972e+16,,1.2092188
+1us,RUN094,track,electric field,884084.588,,0.34375
+1us,RUN094,track,impact gen rate,6.89708221e+19,,0.0
+1us,RUN094,track,electron conc,2313074740000000.0,,0.0
+1us,RUN094,track,hole conc,35552926500000.0,,0.7465625
+1us,RUN094,track,total current density,4829.57623,,0.0
+1us,RUN094,track,joule heat power,6342755650.0,,0.0
+1us,RUN094,track,lattice temperature,309.535915,,-0.42
+1us,RUN094,track,acceptor trap ionized density #1,6.2304983e+16,,2.7354688
+100us,RUN092,surface,electric field,688844.594,15.890625,
+100us,RUN092,surface,impact gen rate,2.79904141e+16,15.9947917,
+100us,RUN092,surface,electron conc,2.04538528e+18,29.0,
+100us,RUN092,surface,hole conc,3.97482681e+17,5.125,
+100us,RUN092,surface,total current density,363.007562,12.7625,
+100us,RUN092,surface,joule heat power,271707774.0,13.04375,
+100us,RUN092,surface,lattice temperature,324.118701,20.7734375,
+100us,RUN092,surface,acceptor trap ionized density #1,0.0,3.55271368e-15,
+100us,RUN094,surface,electric field,2149310.46,15.578125,
+100us,RUN094,surface,impact gen rate,2.66422361e+24,15.5270833,
+100us,RUN094,surface,electron conc,2.58926672e+18,18.0,
+100us,RUN094,surface,hole conc,5.09997507e+17,5.125,
+100us,RUN094,surface,total current density,957.408142,10.848112,
+100us,RUN094,surface,joule heat power,2385401940.0,15.5270833,
+100us,RUN094,surface,lattice temperature,378.862562,14.921875,
+100us,RUN094,surface,acceptor trap ionized density #1,0.0,-1.77635684e-15,
+100us,RUN092,uid_sub,electric field,704356.918,15.890625,
+100us,RUN092,uid_sub,impact gen rate,7821098.51,14.515625,
+100us,RUN092,uid_sub,electron conc,6.14130959e+17,29.0,
+100us,RUN092,uid_sub,hole conc,1266770640000.0,5.125,
+100us,RUN092,uid_sub,total current density,7.6534434,28.5,
+100us,RUN092,uid_sub,joule heat power,2791.43216,27.8046875,
+100us,RUN092,uid_sub,lattice temperature,324.046748,20.7734375,
+100us,RUN092,uid_sub,acceptor trap ionized density #1,2e+18,27.8046875,
+100us,RUN094,uid_sub,electric field,2284879.08,15.6875,
+100us,RUN094,uid_sub,impact gen rate,9.7102767e+19,14.046875,
+100us,RUN094,uid_sub,electron conc,8.98349952e+17,18.0,
+100us,RUN094,uid_sub,hole conc,1261517900000000.0,8.0,
+100us,RUN094,uid_sub,total current density,19.7627543,17.375,
+100us,RUN094,uid_sub,joule heat power,3037562.43,11.859375,
+100us,RUN094,uid_sub,lattice temperature,378.383098,14.8125,
+100us,RUN094,uid_sub,acceptor trap ionized density #1,2e+18,16.890625,
+100us,RUN092,track,electric field,1779232.05,,-0.42
+100us,RUN092,track,impact gen rate,0.0,,-0.42
+100us,RUN092,track,electron conc,63239170400000.0,,0.13125
+100us,RUN092,track,hole conc,1542111.74,,1.2753125
+100us,RUN092,track,total current density,201.61483,,0.140625
+100us,RUN092,track,joule heat power,63282733.7,,0.140625
+100us,RUN092,track,lattice temperature,322.663159,,0.103125
+100us,RUN092,track,acceptor trap ionized density #1,3.69361525e+16,,1.2092188
+100us,RUN094,track,electric field,1077186.0,,0.35
+100us,RUN094,track,impact gen rate,8.77997839e+20,,0.0
+100us,RUN094,track,electron conc,760119053000000.0,,0.0
+100us,RUN094,track,hole conc,7073480740000.0,,0.5482813
+100us,RUN094,track,total current density,1589.68228,,0.0
+100us,RUN094,track,joule heat power,2536235010.0,,0.0
+100us,RUN094,track,lattice temperature,376.722984,,0.0
+100us,RUN094,track,acceptor trap ionized density #1,5.31153065e+16,,3.9976563

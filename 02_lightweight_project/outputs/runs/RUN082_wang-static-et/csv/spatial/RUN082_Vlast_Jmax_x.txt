@@ -1,0 +1,1 @@
+Vlast_Jmax_x=27.4141 for max value 1.37824e-05 a/cm^2 at 27.4141 0.05625
