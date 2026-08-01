@@ -8,11 +8,18 @@ TECHNICAL_REVIEW=PASS
 AGENT_SEAL=SEALED
 USER_SEAL=SEALED
 BLOCKER_COUNT=0
+FINAL_USER_ACCEPTANCE=RECORDED
+GITHUB_DUAL_SYNC=AUTHORIZED
 ```
 
 用户当前授权 `USR-SEAL-003` 的全部条件已经满足：规则语义 16/16、候选闭包无遗漏、根入口可发现、
 源目录布局通过，并且 PENDING 状态下的锁、包清单与八项统一只读验证均通过。封印时间为
 `2026-08-01T03:21:32.5101211Z`；最终锁与包清单随后按本文件内容重算并复验。
+
+用户随后于 `2026-08-01T04:49:00.902Z` 以 `USR-SEAL-004` 明确接受封印并授权 GitHub 双仓库
+同步，又于 `2026-08-01T04:52:24.115Z` 以 `USR-SEAL-005` 正式裁决本次 Rulebook 封印与双仓库
+安全同步完成并予以接受。两条确认均绑定同一 canonical payload digest；`USR-SEAL-005` 是本版
+最终接受事件，不改变既有封印对象或科研边界。
 
 ## 封印对象与边界
 
@@ -62,8 +69,9 @@ UNKNOWN_SOURCE_CLAIM_COUNT=0
 
 - 根与 Harness 两个失效的旧 Rulebook 指针已经替换为现存 README/Rulebook/provenance/lock。
 - 根与 Harness 入口均可直接发现 Rulebook、precedence、active plans 和统一只读验证器。
-- 用户授权链保留三个事件：早期条件授权 → 后出的 PENDING 覆盖 → 当前“零 blocker 后封印同步”
-  条件授权。有效事件是 `USR-SEAL-003`，绑定 canonical payload digest
+- 用户授权链保留五个事件：早期条件授权 → 后出的 PENDING 覆盖 → “零 blocker 后封印同步”
+  条件授权 → 简短正式接受 → 带核对结论与边界的最终裁决。封印授权事件仍是 `USR-SEAL-003`，
+  最终接受事件是 `USR-SEAL-005`；两者绑定同一 canonical payload digest
   `0006C0C09EEEEEDB1D18292D76F8789E2EAAF86F3035523657F6FDEE6E71AC25`。
 - 授权事件由 Codex 记录但不由 Codex签署；用户原消息 ID、turn ID、UTC、原始记录 SHA 和短原文
   保存在 `USER_SEAL_AUTHORIZATION.jsonl`。
@@ -92,6 +100,7 @@ SEALED 状态的锁、review 与 manifest 仍须通过同一套最终复验；�
 
 ## 明确不授权
 
+本次正式接受只授权把已验证的净化私有/公开表面以 fast-forward 方式同步到指定 GitHub 双仓库。
 本封印不证明材料参数正确、不表示 Wang 2026 已拟合，也不授权 SSH、VM、ATLAS、DeckBuild、
 Victory*、许可证操作、RUN121、任何新仿真、deck 物理改动、删除、历史重写、force push、受限全文
 上传或秘密/原始个人数据发布。GitHub 同步只使用独立的白名单净化历史。

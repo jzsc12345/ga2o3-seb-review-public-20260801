@@ -2,13 +2,13 @@
 
 The Rulebook, rules lock, seal review, candidate universe/ledger, precedence, conflicts, and
 superseded rules are published byte-identically from source commit
-`9838eac0a5e5acb465b55b6f2a823218ba0e11c8`.
+`60341892ad856eccc627c8685c3ae638da2cfd8e`.
 
 The following lock-referenced evidence remains private:
 
 - the portable source index;
 - the message evidence index;
-- the three-event structured user-seal authorization ledger.
+- the five-event structured user-seal authorization ledger.
 
 Their hashes remain in the lock and private repository. No raw session body or message/turn
 identifier is published. Because those evidence files are intentionally absent, the public copy is

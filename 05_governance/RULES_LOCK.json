@@ -17,10 +17,17 @@
   "agent_seal": "SEALED",
   "user_seal": "SEALED",
   "sealed_at": "2026-08-01T03:21:32.5101211Z",
+  "final_accepted_at": "2026-08-01T04:52:24.115Z",
   "seal_basis": "USR-SEAL-003 conditions fulfilled after independent 16/16 semantic review, closed 25-item candidate inventory, root discovery, source-layout validation, and zero-error pre-seal mechanical validation",
-  "seal_scope": "The enumerated compiled release inventory only; grants no remote, simulation, deletion, physics-change, history-rewrite, or force-push authority",
+  "seal_scope": "The enumerated compiled release inventory only; USR-SEAL-005 grants only fast-forward synchronization to the two named sanitized GitHub targets and grants no simulation, deletion, physics-change, history-rewrite, or force-push authority",
   "authorization_event_id": "USR-SEAL-003",
-  "authorization_file_sha256": "C1570D9CB46312CF212B6C9FA1834928F29EDFEB6483F738F4C9075FD525BED3",
+  "final_acceptance_event_id": "USR-SEAL-005",
+  "final_acceptance_state": "SEALED_AND_GITHUB_DUAL_SYNC_ACCEPTED",
+  "github_sync_targets": [
+    "github.com/jzsc12345/silvaco-ga2o3-seb",
+    "github.com/jzsc12345/ga2o3-seb-review-public-20260801"
+  ],
+  "authorization_file_sha256": "78F32E2DB72DA036C4097BCAFF5569B31346EBE7607F6662B07C1F102EE41E53",
   "canonical_payload_digest": "0006C0C09EEEEEDB1D18292D76F8789E2EAAF86F3035523657F6FDEE6E71AC25",
   "compiler_provenance": "Codex-generated post-cutoff compilation; individual author categories are recorded without overclaim",
   "files": {
@@ -36,7 +43,7 @@
     "CANDIDATE_UNIVERSE.json": "309DD6C30AA8303C0BE263542076B8FD361C50318905DB2E08FD43C2B4F3B5BF",
     "CANDIDATE_LEDGER.csv": "4F3C7ABC47BFF98B351C0DA6A3C9A3D9520FF2E8CB2891D1FBF27C23953A66ED",
     "CANONICAL_PAYLOAD.json": "68EFA6B76E29A19385E5CDE7709F1B21BDC571AE7ABFB5FDE4ABF847738C99CC",
-    "USER_SEAL_AUTHORIZATION.jsonl": "C1570D9CB46312CF212B6C9FA1834928F29EDFEB6483F738F4C9075FD525BED3",
-    "SEAL_REVIEW.md": "691765789DA8BE3D5527DFFFFF9EBA496026137AA443538B3AA4E637B702F5C0"
+    "USER_SEAL_AUTHORIZATION.jsonl": "78F32E2DB72DA036C4097BCAFF5569B31346EBE7607F6662B07C1F102EE41E53",
+    "SEAL_REVIEW.md": "A47D71DBD7903EC09F070BCFC1FF66750DD29F35A40F5210B052F08E839DF4E1"
   }
 }

@@ -1,8 +1,8 @@
 # β-Ga₂O₃ SEB public sanitized review surface
 
 This repository is an intentionally incomplete, allowlisted review surface. The current HEAD is
-derived from local source commit `9838eac0a5e5acb465b55b6f2a823218ba0e11c8` and the private
-Case-B review commit `4cd8eb54db5d1c27e19603d2d16c766c5b8a34bb`.
+derived from local source commit `60341892ad856eccc627c8685c3ae638da2cfd8e` and the private
+Case-B review commit `7b869f91ac3096891d9ada60e3b98e2c6d8faa01`.
 
 Start with:
 
@@ -24,5 +24,6 @@ The minimum research evidence is six artifacts:
 6. [RUN122 parent-slot matrix](02_lightweight_project/evidence/RUN122/RUN122_regional_parent_slot_matrix.csv)
 
 The public history is not rewritten. Earlier commits remain historical review material; only the
-current HEAD is asserted to pass the current sanitization gate. This repository grants no
-simulation, remote-access, physics-change, deletion, history-rewrite, or force-push authority.
+current HEAD is asserted to pass the current sanitization gate. Final user acceptance authorizes
+only fast-forward publication of this sanitized surface; it grants no simulation, compute-host
+access, physics-change, deletion, history-rewrite, or force-push authority.
