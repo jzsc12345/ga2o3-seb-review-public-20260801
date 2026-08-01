@@ -1,0 +1,5 @@
+field,label,logarithmic,actual_min,actual_max,display_min,display_max
+efield,Electric-field magnitude,True,0.00299499255,3631813.33,-2.523604253574474,6.560123518308757
+temperature,Lattice temperature,False,300.0,324.73472,300.0,324.73472
+current,Total current density,True,2.76748475e-15,21636.0122,-9.664822782342231,4.335177217657769
+impact,Impact generation rate,True,7.48744685e-21,8.04984305e+24,10.905787412891666,24.905787412891666
