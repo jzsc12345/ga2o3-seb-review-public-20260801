@@ -2,7 +2,7 @@
 
 This repository is an intentionally incomplete, allowlisted review surface. The current HEAD is
 derived from local source commit `9838eac0a5e5acb465b55b6f2a823218ba0e11c8` and the private
-Case-B review commit `4af82a2aa06e005441c98c691fc5a4e3944536ef`.
+Case-B review commit `4cd8eb54db5d1c27e19603d2d16c766c5b8a34bb`.
 
 Start with:
 
