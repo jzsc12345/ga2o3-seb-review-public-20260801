@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "universe_id": "COMPILED_RULE_ARTIFACT_SET_V1",
+  "cutoff_utc": "2026-07-27T01:20:00Z",
+  "definition": "The finite release inventory explicitly enumerated as CR-001 through CR-016 in RULEBOOK.md and SR-001 through SR-009 in SUPERSEDED_RULES.md.",
+  "claim_boundary": "This universe closes the compiled release inventory only. It is not an exhaustive extraction of every normative proposition in all pre-cutoff messages or Git blobs.",
+  "membership_sources": [
+    {
+      "path": "RULEBOOK.md",
+      "id_pattern": "CR-001..CR-016",
+      "expected_count": 16,
+      "disposition": "ACCEPTED"
+    },
+    {
+      "path": "SUPERSEDED_RULES.md",
+      "id_pattern": "SR-001..SR-009",
+      "expected_count": 9,
+      "disposition": "SUPERSEDED"
+    }
+  ],
+  "excluded_from_count": [
+    "UNRESOLVED_CANDIDATES.md contains provenance and admission issues rather than workflow-rule candidates.",
+    "SRC-001 and SRC-004 are evidence corpora and are not claimed to have been exhaustively mined by this release.",
+    "Post-cutoff Codex proposals require a separate candidate universe and user disposition."
+  ],
+  "counts": {
+    "total": 25,
+    "accepted": 16,
+    "rejected": 0,
+    "superseded": 9,
+    "unresolved": 0,
+    "merged": 0,
+    "unaccounted": 0
+  }
+}

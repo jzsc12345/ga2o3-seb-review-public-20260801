@@ -1,0 +1,11 @@
+*.pdf
+*.zip
+*.str
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+__pycache__/
+*.pyc

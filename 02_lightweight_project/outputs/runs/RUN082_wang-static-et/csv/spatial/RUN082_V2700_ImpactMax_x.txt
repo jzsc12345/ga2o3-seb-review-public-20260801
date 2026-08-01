@@ -1,1 +1,0 @@
-V2700_ImpactMax_x=26.2422 for max value 2.39579e+16 /cm^3s at 26.2422 0

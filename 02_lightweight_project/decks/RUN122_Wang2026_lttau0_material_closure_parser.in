@@ -1,0 +1,177 @@
+# =============================================================================
+# RUN122 -- RUN120 parent-slot closure, parser only
+#
+# Scope:
+#   Reuse the frozen RUN096 mesh and RUN120 parser harness.  The only material
+#   change is explicit LT.TAUN=LT.TAUP=0 in Ga2O3 regions 3-7, which removes
+#   the inherited GaN +1.42 SRH-lifetime temperature exponent.
+#
+# Evidence label:
+#   LT.TAU=0 is a constant-lifetime minimum assumption used for parent-material
+#   isolation.  It is not claimed as a measured beta-Ga2O3 exponent.
+#
+# Explicit exclusions:
+#   no voltage ramp, no LAT.TEMP solve, no SINGLEEVENTUPSET, no transient,
+#   no LOG/SAVE/EXTRACT and no ARICH change.  Stop after MODELS PRINT+solve init.
+# =============================================================================
+
+set x_dev       = 20.0
+set x_drn_l     = 18.0
+set y_surface   = 0.00
+set y_channel_b = 0.15
+set y_sub_b     = 5.35
+
+set nd_sd       = 1.0e19
+set nt_fe       = 2.0e18
+set et_fe       = 0.8
+set sig_fe      = 5.0e-15
+
+set eg_g        = 4.85
+set chi_g       = 4.00
+set eps_g       = 10.2
+set nc_g        = 3.718e18
+set nv_g        = 6.44e20
+set mun_g       = 118.0
+set mup_g       = 1.3
+set tau_g       = 1.2e-8
+set lt_tau_g    = 0.0
+set kappa_g     = 0.27
+set heatcap_g   = 3.332
+set alpha_top   = 1000.0
+set alpha_bot   = 3.0
+
+set wf_source   = 4.00
+set wf_drain    = 4.00
+set wf_gate     = 5.78
+
+go atlas simflags="-V 5.40.0.R -P 4"
+
+mesh infile="./restricted_inputs/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_mesh.str"
+
+doping gauss n.type conc=$nd_sd char=1.0 lat.char=1.0 \
+       x.min=$x_drn_l y.min=$y_surface y.max=$y_channel_b
+
+material region=3 user.group=semiconductor user.default=GaN \
+         affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
+         permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
+         taun0=$tau_g taup0=$tau_g lt.taun=$lt_tau_g lt.taup=$lt_tau_g \
+         edb=0.06 gcb=2.0 eab=1.0 gvb=4.0 \
+         augn=2.8e-31 augp=9.9e-32 \
+         tcon.const tc.const=$kappa_g \
+         hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0
+material region=4 user.group=semiconductor user.default=GaN \
+         affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
+         permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
+         taun0=$tau_g taup0=$tau_g lt.taun=$lt_tau_g lt.taup=$lt_tau_g \
+         edb=0.06 gcb=2.0 eab=1.0 gvb=4.0 \
+         augn=2.8e-31 augp=9.9e-32 \
+         tcon.const tc.const=$kappa_g \
+         hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0
+material region=5 user.group=semiconductor user.default=GaN \
+         affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
+         permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
+         taun0=$tau_g taup0=$tau_g lt.taun=$lt_tau_g lt.taup=$lt_tau_g \
+         edb=0.06 gcb=2.0 eab=1.0 gvb=4.0 \
+         augn=2.8e-31 augp=9.9e-32 \
+         tcon.const tc.const=$kappa_g \
+         hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0
+material region=6 user.group=semiconductor user.default=GaN \
+         affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
+         permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
+         taun0=$tau_g taup0=$tau_g lt.taun=$lt_tau_g lt.taup=$lt_tau_g \
+         edb=0.06 gcb=2.0 eab=1.0 gvb=4.0 \
+         augn=2.8e-31 augp=9.9e-32 \
+         tcon.const tc.const=$kappa_g \
+         hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0
+material region=7 user.group=semiconductor user.default=GaN \
+         affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
+         permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
+         taun0=$tau_g taup0=$tau_g lt.taun=$lt_tau_g lt.taup=$lt_tau_g \
+         edb=0.06 gcb=2.0 eab=1.0 gvb=4.0 \
+         augn=2.8e-31 augp=9.9e-32 \
+         tcon.const tc.const=$kappa_g \
+         hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0
+
+material region=1 permittivity=3.9 \
+         tcon.const tc.const=0.014
+material region=2 permittivity=25.0 \
+         tcon.const tc.const=0.023 \
+         hc.std hc.a=4.0 hc.b=4.5e-4 hc.c=0.0 hc.d=-1.1e4
+
+mobility region=3 mu1n.caug=10 mu2n.caug=$mun_g \
+         ncritn.caug=2e17 deltan.caug=1.0 \
+         alphan.caug=0 betan.caug=0 gamman.caug=0 \
+         mu1p.caug=1e-6 mu2p.caug=$mup_g \
+         ncritp.caug=1e17 deltap.caug=1.0 \
+         alphap.caug=0 betap.caug=0 gammap.caug=0 \
+         vsatn=2.0e7 vsatp=2.0e7 betan=7.52 betap=7.52
+mobility region=4 mu1n.caug=10 mu2n.caug=$mun_g \
+         ncritn.caug=2e17 deltan.caug=1.0 \
+         alphan.caug=0 betan.caug=0 gamman.caug=0 \
+         mu1p.caug=1e-6 mu2p.caug=$mup_g \
+         ncritp.caug=1e17 deltap.caug=1.0 \
+         alphap.caug=0 betap.caug=0 gammap.caug=0 \
+         vsatn=2.0e7 vsatp=2.0e7 betan=7.52 betap=7.52
+mobility region=5 mu1n.caug=10 mu2n.caug=$mun_g \
+         ncritn.caug=2e17 deltan.caug=1.0 \
+         alphan.caug=0 betan.caug=0 gamman.caug=0 \
+         mu1p.caug=1e-6 mu2p.caug=$mup_g \
+         ncritp.caug=1e17 deltap.caug=1.0 \
+         alphap.caug=0 betap.caug=0 gammap.caug=0 \
+         vsatn=2.0e7 vsatp=2.0e7 betan=7.52 betap=7.52
+mobility region=6 mu1n.caug=10 mu2n.caug=$mun_g \
+         ncritn.caug=2e17 deltan.caug=1.0 \
+         alphan.caug=0 betan.caug=0 gamman.caug=0 \
+         mu1p.caug=1e-6 mu2p.caug=$mup_g \
+         ncritp.caug=1e17 deltap.caug=1.0 \
+         alphap.caug=0 betap.caug=0 gammap.caug=0 \
+         vsatn=2.0e7 vsatp=2.0e7 betan=7.52 betap=7.52
+mobility region=7 mu1n.caug=10 mu2n.caug=$mun_g \
+         ncritn.caug=2e17 deltan.caug=1.0 \
+         alphan.caug=0 betan.caug=0 gamman.caug=0 \
+         mu1p.caug=1e-6 mu2p.caug=$mup_g \
+         ncritp.caug=1e17 deltap.caug=1.0 \
+         alphap.caug=0 betap.caug=0 gammap.caug=0 \
+         vsatn=2.0e7 vsatp=2.0e7 betan=7.52 betap=7.52
+
+impact region=3 selb an1=2.16e6 an2=2.16e6 bn1=1.77e7 bn2=1.77e7 \
+       ap1=2.16e6 ap2=2.16e6 bp1=1.77e7 bp2=1.77e7 \
+       betan=1.0 betap=1.0 egran=4.0e5
+impact region=4 selb an1=2.16e6 an2=2.16e6 bn1=1.77e7 bn2=1.77e7 \
+       ap1=2.16e6 ap2=2.16e6 bp1=1.77e7 bp2=1.77e7 \
+       betan=1.0 betap=1.0 egran=4.0e5
+impact region=5 selb an1=2.16e6 an2=2.16e6 bn1=1.77e7 bn2=1.77e7 \
+       ap1=2.16e6 ap2=2.16e6 bp1=1.77e7 bp2=1.77e7 \
+       betan=1.0 betap=1.0 egran=4.0e5
+impact region=6 selb an1=2.16e6 an2=2.16e6 bn1=1.77e7 bn2=1.77e7 \
+       ap1=2.16e6 ap2=2.16e6 bp1=1.77e7 bp2=1.77e7 \
+       betan=1.0 betap=1.0 egran=4.0e5
+impact region=7 selb an1=2.16e6 an2=2.16e6 bn1=1.77e7 bn2=1.77e7 \
+       ap1=2.16e6 ap2=2.16e6 bp1=1.77e7 bp2=1.77e7 \
+       betan=1.0 betap=1.0 egran=4.0e5
+
+trap region=7 acceptor e.level=$et_fe density=$nt_fe \
+     degen.fac=1 sign=$sig_fe sigp=$sig_fe
+
+contact name=source workfunc=$wf_source
+contact name=drain workfunc=$wf_drain
+contact name=gate workfunc=$wf_gate
+
+thermcontact number=1 elec.number=1 ext.temper=300 alpha=$alpha_top
+thermcontact number=2 elec.number=2 ext.temper=300 alpha=$alpha_top
+thermcontact number=3 x.min=0 x.max=$x_dev \
+       y.min=$y_sub_b y.max=$y_sub_b ext.temper=300 alpha=$alpha_bot
+
+probe name=Field_GateRight field dir=270 x=9.0 y=0.005
+probe name=Field_DrainEdge field dir=270 x=$x_drn_l y=0.005
+probe name=ImpactMax generation max
+probe name=HoleMax p.conc max
+
+models analytic fldmob srh auger fermi incomplete print
+method newton trap maxtraps=10 climit=1e-4 itlimit=50
+output e.field impact flowlines e.mobility h.mobility band.param \
+       l.temper ex.field ey.field photogen \
+       jx.electron jy.electron jx.hole jy.hole jx.total jy.total
+
+solve init
+quit

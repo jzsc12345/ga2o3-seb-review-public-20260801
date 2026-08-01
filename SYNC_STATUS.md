@@ -1,0 +1,17 @@
+# Public sync status
+
+```text
+PUBLIC_OLD_HEAD=20f265396180ecb8b295bd81f05fa5df33610f6d
+SOURCE_LOCAL_HEAD=9838eac0a5e5acb465b55b6f2a823218ba0e11c8
+PRIVATE_REMOTE_HEAD=4af82a2aa06e005441c98c691fc5a4e3944536ef
+USER_SEAL=SEALED
+TECHNICAL_REVIEW=PASS
+RULE_SEMANTIC_PASS=16/16
+CANDIDATE_UNACCOUNTED=0
+CURRENT_HEAD_SANITIZATION=PASS_PRECOMMIT
+PUBLIC_HISTORY_REWRITTEN=NO
+FORCE_PUSH=NO
+```
+
+The final public commit identifier is verified externally after commit and push to avoid a
+self-referential commit field. RUN121 remains unapproved and unrun.

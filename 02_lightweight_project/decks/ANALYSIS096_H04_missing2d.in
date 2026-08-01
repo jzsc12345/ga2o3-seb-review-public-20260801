@@ -1,0 +1,39 @@
+# ANALYSIS096-H04 -- zero-ATLAS spatial closure for frozen RUN096 snapshots.
+# Reads 50/100/500 ns STR files and extracts only the two missing 2-D fields.
+# Existing 2-D electron/current CSVs are reused; they are not re-extracted.
+
+go victoryextract
+option ON.ERROR=-1
+option DIGITS=9
+
+load in=./restricted_inputs/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t50ns.str
+extract.heatmap dx="0.02,0.005" mode=fixed group=sparse \
+    box.pa="0.0,0.0" box.pb="20.0,0.35" regions=* \
+    fields="joule heat power","acceptor trap dos #1","acceptor trap ionized density #1" \
+    csvfile=./generated/RUN096_t50ns_shallow_thermaltrap.csv
+extract.heatmap dx="0.05,0.05" mode=fixed group=sparse \
+    box.pa="0.0,0.35" box.pb="20.0,5.35" regions=* \
+    fields="joule heat power","acceptor trap dos #1","acceptor trap ionized density #1" \
+    csvfile=./generated/RUN096_t50ns_substrate_thermaltrap.csv
+
+load in=./restricted_inputs/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t100ns.str
+extract.heatmap dx="0.02,0.005" mode=fixed group=sparse \
+    box.pa="0.0,0.0" box.pb="20.0,0.35" regions=* \
+    fields="joule heat power","acceptor trap dos #1","acceptor trap ionized density #1" \
+    csvfile=./generated/RUN096_t100ns_shallow_thermaltrap.csv
+extract.heatmap dx="0.05,0.05" mode=fixed group=sparse \
+    box.pa="0.0,0.35" box.pb="20.0,5.35" regions=* \
+    fields="joule heat power","acceptor trap dos #1","acceptor trap ionized density #1" \
+    csvfile=./generated/RUN096_t100ns_substrate_thermaltrap.csv
+
+load in=./restricted_inputs/RUN096_Wang2026_nofp_Lgd9_x11_fulltrack_SEB_1000V_Et0p8_t500ns.str
+extract.heatmap dx="0.02,0.005" mode=fixed group=sparse \
+    box.pa="0.0,0.0" box.pb="20.0,0.35" regions=* \
+    fields="joule heat power","acceptor trap dos #1","acceptor trap ionized density #1" \
+    csvfile=./generated/RUN096_t500ns_shallow_thermaltrap.csv
+extract.heatmap dx="0.05,0.05" mode=fixed group=sparse \
+    box.pa="0.0,0.35" box.pb="20.0,5.35" regions=* \
+    fields="joule heat power","acceptor trap dos #1","acceptor trap ionized density #1" \
+    csvfile=./generated/RUN096_t500ns_substrate_thermaltrap.csv
+
+quit

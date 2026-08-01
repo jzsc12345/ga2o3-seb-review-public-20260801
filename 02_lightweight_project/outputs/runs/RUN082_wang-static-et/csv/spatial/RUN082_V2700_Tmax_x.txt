@@ -1,1 +1,0 @@
-V2700_Tmax_x=31 for max value 300 k at 31 5.35

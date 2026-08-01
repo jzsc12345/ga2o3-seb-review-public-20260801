@@ -1,1 +1,0 @@
-V2700_Emax_x=11 for max value 3.42575e+06 v/cm at 11 -0.42

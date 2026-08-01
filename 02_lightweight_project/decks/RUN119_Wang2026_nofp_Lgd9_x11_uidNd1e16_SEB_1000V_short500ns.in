@@ -10,7 +10,7 @@
 #   isolated under RUN119. No interface charge/trap/barrier is added.
 #
 # Production baseline:
-#   D:/SILVACO_LOCAL/decks/
+#   source workspace deck directory (path removed from review copy)
 #   RUN096_Wang2026_nofp_Lgd9_x11_hfo2hc_SEB_1000V_Et0p8_long.in
 #   SHA-256 786EA68542AA235621A2A2AD13DC81CB86666FD875577F00FF1FBFA5143D7CB5
 #

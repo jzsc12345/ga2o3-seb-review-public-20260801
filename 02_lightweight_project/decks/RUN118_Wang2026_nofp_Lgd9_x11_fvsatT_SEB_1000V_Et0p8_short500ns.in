@@ -194,7 +194,7 @@ material region=3 user.group=semiconductor user.default=GaN \
          augn=2.8e-31 augp=9.9e-32 \
          tcon.const tc.const=$kappa_g \
          hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0 \
-         f.vsatn="/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_ga2o3_vsatn.lib"
+         f.vsatn="./restricted_inputs/RUN118_ga2o3_vsatn.lib"
 material region=4 user.group=semiconductor user.default=GaN \
          affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
          permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
@@ -203,7 +203,7 @@ material region=4 user.group=semiconductor user.default=GaN \
          augn=2.8e-31 augp=9.9e-32 \
          tcon.const tc.const=$kappa_g \
          hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0 \
-         f.vsatn="/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_ga2o3_vsatn.lib"
+         f.vsatn="./restricted_inputs/RUN118_ga2o3_vsatn.lib"
 material region=5 user.group=semiconductor user.default=GaN \
          affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
          permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
@@ -212,7 +212,7 @@ material region=5 user.group=semiconductor user.default=GaN \
          augn=2.8e-31 augp=9.9e-32 \
          tcon.const tc.const=$kappa_g \
          hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0 \
-         f.vsatn="/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_ga2o3_vsatn.lib"
+         f.vsatn="./restricted_inputs/RUN118_ga2o3_vsatn.lib"
 material region=6 user.group=semiconductor user.default=GaN \
          affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
          permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
@@ -221,7 +221,7 @@ material region=6 user.group=semiconductor user.default=GaN \
          augn=2.8e-31 augp=9.9e-32 \
          tcon.const tc.const=$kappa_g \
          hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0 \
-         f.vsatn="/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_ga2o3_vsatn.lib"
+         f.vsatn="./restricted_inputs/RUN118_ga2o3_vsatn.lib"
 material region=7 user.group=semiconductor user.default=GaN \
          affinity=$chi_g eg300=$eg_g egalph=0 egbeta=0 \
          permittivity=$eps_g nc300=$nc_g nv300=$nv_g \
@@ -230,7 +230,7 @@ material region=7 user.group=semiconductor user.default=GaN \
          augn=2.8e-31 augp=9.9e-32 \
          tcon.const tc.const=$kappa_g \
          hc.std hc.a=$heatcap_g hc.b=0 hc.c=0 hc.d=0 \
-         f.vsatn="/root/DECKBUILD/runs/RUN118_wang1000-fvsatt-short500ns/RUN118_ga2o3_vsatn.lib"
+         f.vsatn="./restricted_inputs/RUN118_ga2o3_vsatn.lib"
 
 material region=1 permittivity=3.9 \
          tcon.const tc.const=0.014
@@ -395,6 +395,5 @@ extract init infile="RUN118_Wang2026_nofp_Lgd9_x11_fvsatT_SEB_1000V_Et0p8_transi
 extract name="AreaTimeInt_cmInv_RUN118" area from curve(time, probe."GSEU_all")
 
 quit
-
 
 

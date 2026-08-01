@@ -1,1 +1,0 @@
-Vlast_Tmax=300 for max at 31 5.35 μm

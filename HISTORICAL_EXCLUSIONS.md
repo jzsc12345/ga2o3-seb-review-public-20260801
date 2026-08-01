@@ -1,18 +1,14 @@
-# Historical exclusions from the public review surface
+# Current-HEAD exclusions
 
-The full private archive preserves the pre-cutoff project exactly. Its legacy
-root/deck files are intentionally absent here because several contain the now
-prohibited impact/mobility values `an=2.5e6`, `bn=3.96e7`, or `betan=1.37`.
-They are historical evidence, not production candidates.
+The current public HEAD excludes:
 
-Excluded public prefixes/files:
+- raw session transcripts and message/turn identifiers;
+- PDFs, ZIP archives, simulator structure files, raw logs, terminal transcripts, and EXIT files;
+- browser, VM, license, credential, cookie, and secret material;
+- unredacted governance manifests containing local asset paths;
+- presentation files whose embedded notes contain local paths;
+- files larger than 95 MiB;
+- source Git history from the production workspace.
 
-- `01_claude_pre_cutoff/decks/`
-- `01_claude_pre_cutoff/SEB.in`
-- `01_claude_pre_cutoff/mySEU.c`
-- `01_claude_pre_cutoff/history/`
-- `03_codex_harness/docs/imported/post_cutoff/`
-
-The auditable private snapshot and its hashes remain unchanged. Review active
-simulation code under `02_lightweight_project/decks/` and judge it against
-`REVIEW_ENTRY.md` plus the high-confidence parameter documents.
+Earlier public commits are not rewritten. Their existence must not be interpreted as evidence that
+the current allowlist was retroactively applied to historical commits.

@@ -1,0 +1,13 @@
+metric,value
+accepted_rule_count,16
+semantic_validation_pass,16
+attribution_validation_pass,16
+author_category_USER,5
+author_category_MIXED,6
+author_category_REPOSITORY_DERIVED,5
+post_cutoff_contamination_count,0
+partial_entailment_count,0
+unknown_source_claim_count,0
+candidate_total,25
+candidate_superseded,9
+candidate_unaccounted,0
