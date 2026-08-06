@@ -1,0 +1,7 @@
+severity,stage,observed_text,count,decision
+FATAL,ATLAS_INPUT,"Invalid parameter specification: carr.limit",1,PARSER_FAIL
+FATAL,ATLAS_INPUT,"Invalid parameter specification: damping.factor",1,PARSER_FAIL
+ERROR,STR_IMPORT,"Unknown material #304; using insulator",2228,MATERIAL_MAPPING_FAIL
+ERROR,MATERIAL_ASSIGNMENT,"NiO material statement ignored",1,NIO_THERMAL_FAIL_TO_APPLY
+WARNING,MATERIAL_ASSIGNMENT,"Cannot change default material parameters for GA2O3_BETA",1,RECORD_ONLY_NOT_VALIDATED
+WARNING,MATERIAL_ASSIGNMENT,"Cannot change material group for GA2O3_BETA",1,RECORD_ONLY_NOT_VALIDATED

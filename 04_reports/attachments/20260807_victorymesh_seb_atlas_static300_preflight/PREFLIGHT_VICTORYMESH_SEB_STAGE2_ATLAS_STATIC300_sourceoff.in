@@ -1,0 +1,84 @@
+# USE_FROZEN_VICTORYMESH_STAGE2_STR
+# NO REMESH
+# STATIC_PREFLIGHT_ONLY
+# NO SEU TRANSIENT
+# NO PAIRED TRANSIENT
+# NO AUTOMATIC_EXPANSION_OF_AUTHORIZATION
+# LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
+#
+# Structure input is the frozen Victory Mesh Stage-2 conformal STR:
+# /root/DECKBUILD/preflight/VICTORYMESH_SEB_STAGE2_CONFORMAL_X10P25_20260807/
+# VM_SEB_STAGE2_conformal_track_x10p25.str
+#
+# The shared physics, METHOD, source-off bias ramp, thermcontacts, probes, and
+# OUTPUT statements below are mechanically retained from the frozen Arm-A
+# static-preflight candidate.  This deck performs no remesh and no transient.
+
+go atlas simflags="-V 5.40.0.R -P 4"
+
+mesh infile="/root/DECKBUILD/preflight/VICTORYMESH_SEB_STAGE2_CONFORMAL_X10P25_20260807/VM_SEB_STAGE2_conformal_track_x10p25.str"
+
+MATERIAL material=Ga2O3 user.default=GaN user.group=semiconductor \
+         affinity=4.0 eg300=4.8 nc300=3.72e18 nv300=3.72e18 permittivity=10 \
+         mun=300 mup=50 tcon.const tc.const=0.27
+MATERIAL region=10 mun=50
+
+MATERIAL material=Al2O3 tcon.const tc.const=0.33
+
+material material=NiO user.group=semiconductor user.default=GaN \
+         affinity=2.0 eg300=3.92 permittivity=11.9 tcon.const tc.const=2.27
+
+interface qf=-9e12 x.min=2 x.max=4 y.min=-0.02 y.max=0.02
+
+models analytic fldmob srh fermi incomplete bgn print lat.temp
+mobility material=Ga2O3 vsatn=2.42e7 betan=1.37 betap=1.09 \
+         mu1n.caug=10 mu2n.caug=300 ncritn.caug=2e17 tmun=2.0 tmup=0.8
+
+impact material=Ga2O3 selb an1=2.5e6 bn1=3.96e7 an2=2.5e6 \
+       bn2=3.96e7 betan=1.37 egran=8e6
+
+thermcontact number=1 elec.num=1 x.min=0.0 x.max=0.5 \
+             y.min=-0.18 y.max=0.0 ext.temper=300
+thermcontact number=2 elec.num=2 x.min=14.5 x.max=15.0 \
+             y.min=-0.18 y.max=0.0 ext.temper=300
+
+PROBE NAME=Gateedge_Field_Y FIELD dir=270 x=6 y=(-0.17+0.05+0.00015)
+PROBE NAME=Gateedge_Field_X FIELD dir=180 x=6 y=(-0.17+0.05+0.00015)
+PROBE NAME=Oxide_Field_Y FIELD dir=270 x=(6+0.25) y=0.002514
+PROBE NAME=Oxide_Field_X FIELD dir=180 x=(6+0.25) y=0.002514
+
+METHOD newton trap maxtrap=30 climit=1e-4 \
+  weak=1 itlimit=50 \
+  carr.limit=1e18 damping.factor=0.8
+
+OUTPUT con.band val.band FLOWLINES EX.VELO EY.VELO e.line e.mobility \
+       h.mobility band.param band.temp
+
+# Establish VGS=0 and preserve the frozen gate-state OUTF/LOAD semantics.
+solve init
+solve prev
+solve vgate=0 vfinal=0 name=gate \
+  outf=VM_SEB_STAGE2_ATLAS_vg0_state.str onefile
+load infile=VM_SEB_STAGE2_ATLAS_vg0_state.str
+
+# Frozen source-off static ramp.
+solve vdrain=0.01
+solve vdrain=0.1
+solve vdrain=0.5
+solve vdrain=1 vstep=1 vfinal=10 name=drain
+solve vstep=5 vfinal=50 name=drain
+solve vstep=10 vfinal=200 name=drain
+save outf=VM_SEB_STAGE2_ATLAS_static_200V.str
+solve vstep=15 vfinal=300 name=drain
+save outf=VM_SEB_STAGE2_ATLAS_static_300V_sourceoff.str
+
+# Five requested accepted source-off records at the same VGS/VDS state.
+log outf=VM_SEB_STAGE2_ATLAS_static_300V_sourceoff_baseline.log
+solve previous
+solve previous
+solve previous
+solve previous
+solve previous
+log off
+
+quit
