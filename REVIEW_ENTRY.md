@@ -1,31 +1,22 @@
-# Audit entry and non-negotiable checks
+# Public review entry
 
-Please treat simulator evidence as higher priority than later handoff prose.
+Review the current HEAD for six questions:
 
-## Required checks
+1. Does the sealed compiled Rulebook still close its declared 25-item inventory as 16 accepted
+   plus 9 superseded, with zero unaccounted candidates?
+2. Are the Rulebook, lock, and seal-review bytes still identical to the sealed canonical files?
+3. Does the [RUN121 timeline boundary](02_lightweight_project/evidence/RUN121/RUN121_TIMELINE_BOUNDARY.md)
+   clearly distinguish the historical seal from the later bounded execution authorization?
+4. Do the parent/candidate decks, full diff, and preflight contract establish that RUN121 changed
+   only the paired Z/[001] impact group in regions 3–7 while keeping the named frozen fields fixed?
+5. Do the 1000 V static gate, source-charge gate, accepted 500 ns endpoint, numerical comparison,
+   topology method, and solver-rejection disclosure support only the claims made in the
+   [RUN121 result report](02_lightweight_project/evidence/RUN121/RUN121_RESULT.md)?
+6. Does the current public tree contain no raw transcript, restricted binary, raw heatmap grid,
+   secret, absolute local path, message identifier, broken link, or oversized file?
 
-1. Ga2O3 material/model values must be traceable to the high-confidence tables,
-   atlas.key, the official manuals, examples, or a cited paper. Missing values
-   must be labelled unverified rather than silently inherited from GaN.
-2. The forbidden impact set `an=2.5e6`, `bn=3.96e7`, `betan=1.37` must not enter
-   a production deck.
-3. The substrate must not be represented as shallow p-type `2e6 cm^-3` merely to
-   force high resistance. The intended semi-insulating mechanism is n-type
-   background plus a Fe deep acceptor, with occupancy and transport verified.
-4. DevEdit source/gate/drain/field-plate contacts must remain zero-area line
-   contacts. Check endpoint nodes and `common=gate` binding without restoring
-   vertical x-mesh columns.
-5. A Wang Fig.4 claim requires the four physical stages under the same final
-   geometry and bias: prompt e-h separation, hole accumulation/compensation,
-   persistent electron path, and sustained current/thermal feedback.
-6. A failed static admission gate is not a transient result. RUN119 must remain
-   labelled `STATIC_GATE_FAIL / NO_VALID_TRANSIENT`.
-7. Current project status is not a successful Wang2026 reproduction. RUN096 is
-   the frozen 1000 V baseline; its late current decays and its peak temperature
-   is far below the paper target.
-
-## Requested reviewer output
-
-Return findings ordered by severity, cite exact repository paths and line
-numbers, separate verified evidence from inference, and propose no more than
-three falsifiable next experiments.
+The public lock and seal artifacts remain byte-identical historical publication artifacts; they
+were not edited to retroactively authorize RUN121. Compact seal-authorization and message-evidence
+ledgers remain private. The later RUN121 authorization is represented here only by a sanitized
+scope statement; raw authorization text and restricted runtime evidence are not public, as
+explained in [the governance scope](05_governance/PUBLIC_SCOPE.md).

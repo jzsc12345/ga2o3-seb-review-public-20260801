@@ -1,7 +1,0 @@
-﻿run,time_label,time_ns,endpoint_case,path_direction,edge_count,minimum_endpoint_projection_Acm-2,nonpositive_edge_count,all_edges_same_sign_positive
-RUN096,t50ns,50.0,x2-x18_channel-edge,drain-to-source,188,189.65565,0,True
-RUN096,t100ns,100.0,x2-x18_channel-edge,drain-to-source,187,62.8017656,0,True
-RUN096,t500ns,500.0,x2-x18_channel-edge,drain-to-source,187,13.6063851,0,True
-RUN118,t50ns,50.0,x2-x18_channel-edge,drain-to-source,188,190.256054,0,True
-RUN118,t100ns,100.0,x2-x18_channel-edge,drain-to-source,187,62.8096234,0,True
-RUN118,t500ns,500.0,x2-x18_channel-edge,drain-to-source,187,13.6085593,0,True

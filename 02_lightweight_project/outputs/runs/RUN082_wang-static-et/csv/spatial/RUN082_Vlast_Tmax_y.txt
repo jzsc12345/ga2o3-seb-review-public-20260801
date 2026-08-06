@@ -1,1 +1,0 @@
-Vlast_Tmax_y=5.35 for max value 300 k at 31 5.35

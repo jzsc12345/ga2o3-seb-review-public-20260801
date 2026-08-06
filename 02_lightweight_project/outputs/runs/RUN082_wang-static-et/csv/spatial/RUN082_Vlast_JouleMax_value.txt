@@ -1,1 +1,0 @@
-Vlast_JouleMax=0 for max at 31 5.35 μm

@@ -1,1 +1,0 @@
-Vlast_Emax_x=11 for max value 3.43802e+06 v/cm at 11 -0.42

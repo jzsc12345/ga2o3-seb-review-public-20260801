@@ -1,0 +1,6 @@
+region,material,epsilon,Eg_eV,Chi_eV,Nc_cm-3,Nv_cm-3,taun0_s,taup0_s,LT_TAUN_inherited,LT_TAUP_inherited,AUGN_cm6s,AUGP_cm6s,Gc,Gv,Ed_eV,Ea_eV,mu2n_cm2Vs,mu2p_cm2Vs,VSATN_cmps,VSATP_cmps,FLDMOB_beta_n,FLDMOB_beta_p,SELB_AN1_cm-1,SELB_BN1_Vcm,SELB_betan,EGRAN_Vcm,SRH_flag,AUGER_flag,INCOMPLETE_flag,IMPACT_flag,FERMI_flag,BGN_flag,kappa_declared_WcmK,heatcap_declared_Jcm3K,thermal_runtime_status
+3,BetaGa2O3,10.2,4.85,4.0,3.718e18,6.44e20,1.2e-8,1.2e-8,1.42,1.42,2.8e-31,9.9e-32,2,4,0.06,1.0,118,1.3,2.0e7,2.0e7,7.52,7.52,2.16e6,1.77e7,1.0,4.0e5,T,T,T,T,T,F,0.27,3.332,PARSER_ECHO_ONLY
+4,BetaGa2O3,10.2,4.85,4.0,3.718e18,6.44e20,1.2e-8,1.2e-8,1.42,1.42,2.8e-31,9.9e-32,2,4,0.06,1.0,118,1.3,2.0e7,2.0e7,7.52,7.52,2.16e6,1.77e7,1.0,4.0e5,T,T,T,T,T,F,0.27,3.332,PARSER_ECHO_ONLY
+5,BetaGa2O3,10.2,4.85,4.0,3.718e18,6.44e20,1.2e-8,1.2e-8,1.42,1.42,2.8e-31,9.9e-32,2,4,0.06,1.0,118,1.3,2.0e7,2.0e7,7.52,7.52,2.16e6,1.77e7,1.0,4.0e5,T,T,T,T,T,F,0.27,3.332,PARSER_ECHO_ONLY
+6,BetaGa2O3,10.2,4.85,4.0,3.718e18,6.44e20,1.2e-8,1.2e-8,1.42,1.42,2.8e-31,9.9e-32,2,4,0.06,1.0,118,1.3,2.0e7,2.0e7,7.52,7.52,2.16e6,1.77e7,1.0,4.0e5,T,T,T,T,T,F,0.27,3.332,PARSER_ECHO_ONLY
+7,BetaGa2O3,10.2,4.85,4.0,3.718e18,6.44e20,1.2e-8,1.2e-8,1.42,1.42,2.8e-31,9.9e-32,2,4,0.06,1.0,118,1.3,2.0e7,2.0e7,7.52,7.52,2.16e6,1.77e7,1.0,4.0e5,T,T,T,T,T,F,0.27,3.332,PARSER_ECHO_ONLY

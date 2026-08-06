@@ -1,0 +1,29 @@
+# Public sync status
+
+```text
+PUBLIC_OLD_HEAD=92894d2043a14389fb6380e6e1a2d6bc710156e1
+SOURCE_LOCAL_BASE_HEAD=60341892ad856eccc627c8685c3ae638da2cfd8e
+PRIVATE_REMOTE_HEAD=6b008a723a11c9c99a49ca2ef25af87ddcdd4194
+USER_SEAL=SEALED
+FINAL_USER_ACCEPTANCE_EVENT=USR-SEAL-005
+GITHUB_DUAL_SYNC_ACCEPTED=YES
+TECHNICAL_REVIEW=PASS
+RULE_SEMANTIC_PASS=16/16
+CANDIDATE_UNACCOUNTED=0
+RUN121_AUTHORITY=POST_SEAL_BOUNDED_DIRECT_USER_INSTRUCTION
+RUN121_SCOPE=Z_[001]_IMPACT_ONLY_1000V_TO_500NS
+RUN121_STATIC_GATE=PASS
+RUN121_SOURCE_GATE=PASS
+RUN121_LAST_ACCEPTED_TIME_NS=500
+RUN121_ATLAS_ERROR_COUNT=0
+RUN121_NATURAL_FINISH=YES
+CURRENT_TREE_SANITIZATION=PASS
+PUBLIC_REMOTE_PUSH=COMPLETE
+PUBLIC_HISTORY_REWRITTEN=NO
+FORCE_PUSH=NO
+```
+
+The final public commit identifier is verified externally after commit and push to avoid a
+self-referential commit field. The seal itself did not authorize RUN121; a later direct instruction
+authorized only the scope recorded above. Historical unapproved/unrun statements remain unchanged
+inside the older snapshot artifacts and must be read at their original dates.
