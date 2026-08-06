@@ -1,0 +1,14 @@
+runtime_region,material_printed,type_printed,semantic_identity,material_gate
+1,Silicon,semiconductor,substrate_Ga2O3,FAIL_GA2O3_BINDING
+2,Silicon,semiconductor,uid_Ga2O3,FAIL_GA2O3_BINDING
+3,Silicon,semiconductor,channel_Ga2O3,FAIL_GA2O3_BINDING
+4,SiO2,insulator,oxide_component_A,PASS
+5,SiO2,insulator,oxide_component_B,PASS
+6,Silicon,semiconductor,source_nplus_Ga2O3,FAIL_GA2O3_BINDING
+7,Silicon,semiconductor,n_d_Ga2O3,FAIL_GA2O3_BINDING
+8,Al2O3,insulator,barrier,PASS
+9,SiO2,insulator,p_minus_NiO_code304,FAIL_NIO_BINDING
+10,SiO2,insulator,p_plus_NiO_code304,FAIL_NIO_BINDING
+11,Nickel,metal,source,PASS
+12,Nickel,metal,drain,PASS
+13,Nickel,metal,gate,PASS

@@ -1,0 +1,13 @@
+source_statement,selector_kind,original_target,stage2_runtime_effect,rev1_action,rationale
+"impurity ... region.id=1/2/3/5/6/8/9",DevEdit region.id,"semantic regions before remesh","not active after frozen STR import",NO_ACTIVE_COPY,"doping is already embedded in frozen STR"
+"constr.mesh region=1..12",DevEdit region,"semantic regions before remesh","not active after frozen STR import",NO_ACTIVE_COPY,"mesh is frozen and Victory Mesh is not rerun"
+"MATERIAL region=10 mun=50",ATLAS runtime region,"semantic region 10 = source Nickel","runtime region 10 = p+ NiO",REMOVE,"original card targeted metal and has no defensible semiconductor intent"
+"MATERIAL material=Ga2O3 ...",material name,"Ga2O3 semantic material","maps to imported GA2O3_BETA",KEEP_WITHOUT_USER_GROUP_DEFAULT,"preserve explicit physical parameters without changing built-in group/default"
+"MATERIAL material=Al2O3 ...",material name,"barrier Al2O3","runtime region 8 Al2O3",KEEP,"material-name selector is not shifted by numeric renumbering"
+"MATERIAL material=NiO ...",material name,"p-/p+ NiO","ignored because code 304 has no usable ATLAS material name",REPLACE_WITH_REGION_9_AND_10,"bind the two known runtime records explicitly"
+"interface ... coordinates",coordinate selector,"Ga2O3/NiO interface window","same coordinates after remesh",KEEP,"not region-number-sensitive"
+"mobility material=Ga2O3 ...",material name,"all Ga2O3 regions","imported GA2O3_BETA family",KEEP,"not numeric-region-sensitive"
+"impact material=Ga2O3 ...",material name,"all Ga2O3 regions","imported GA2O3_BETA family",KEEP,"not numeric-region-sensitive"
+"thermcontact ... elec.num=1",electrode id,"source electrode","runtime region 11 / electrode 1",KEEP,"electrode id is preserved and is not a region number"
+"thermcontact ... elec.num=2",electrode id,"drain electrode","runtime region 12 / electrode 2",KEEP,"electrode id is preserved and is not a region number"
+"commented defects/trap region=9/10",inactive numeric region,"historical comments","no runtime effect",KEEP_INACTIVE_ONLY,"must not be activated or remapped in this smoke"

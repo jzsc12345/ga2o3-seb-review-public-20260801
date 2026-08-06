@@ -1,0 +1,14 @@
+runtime_region,semantic_region,semantic_name,material_code,material,role,electrode_id,decision
+1,1,substrate,50,GA2O3_BETA,semiconductor,,FROZEN
+2,2,uid,50,GA2O3_BETA,semiconductor,,FROZEN
+3,3,channel,50,GA2O3_BETA,semiconductor,,FROZEN
+4,4,oxide_component_A,1,SiO2,insulator,,FROZEN_SPLIT_COMPONENT
+5,4,oxide_component_B,1,SiO2,insulator,,FROZEN_SPLIT_COMPONENT
+6,5,source_nplus,50,GA2O3_BETA,semiconductor,,FROZEN_RENUMBERED
+7,6,n_d,50,GA2O3_BETA,semiconductor,,FROZEN_RENUMBERED
+8,7,barrier,229,Al2O3,insulator,,FROZEN_RENUMBERED
+9,8,p_minus,304,NiO,semiconductor,,REV1_REGION_BIND_REQUIRED
+10,9,p_plus,304,NiO,semiconductor,,REV1_REGION_BIND_REQUIRED
+11,10,source,77,Nickel,metal,1,FROZEN_RENUMBERED
+12,11,drain,77,Nickel,metal,2,FROZEN_RENUMBERED
+13,12,gate,77,Nickel,metal,3,FROZEN_RENUMBERED

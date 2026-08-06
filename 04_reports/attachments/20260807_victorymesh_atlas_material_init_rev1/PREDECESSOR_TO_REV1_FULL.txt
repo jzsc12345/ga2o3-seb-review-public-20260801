@@ -1,0 +1,106 @@
+diff --git a/decks/PREFLIGHT_VICTORYMESH_SEB_STAGE2_ATLAS_STATIC300_sourceoff.in b/decks/PREFLIGHT_VICTORYMESH_SEB_STAGE2_ATLAS_MATERIAL_INIT_REV1.in
+--- a/decks/PREFLIGHT_VICTORYMESH_SEB_STAGE2_ATLAS_STATIC300_sourceoff.in
++++ b/decks/PREFLIGHT_VICTORYMESH_SEB_STAGE2_ATLAS_MATERIAL_INIT_REV1.in
+@@ -1,32 +1,39 @@
++# VICTORYMESH_STAGE2_ATLAS_MATERIAL_INIT_REV1
++# MATERIAL_AND_SOLVE_INIT_ONLY
+ # USE_FROZEN_VICTORYMESH_STAGE2_STR
+-# NO REMESH
+-# STATIC_PREFLIGHT_ONLY
+-# NO SEU TRANSIENT
+-# NO PAIRED TRANSIENT
+-# NO AUTOMATIC_EXPANSION_OF_AUTHORIZATION
+ # LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
+-#
+-# Structure input is the frozen Victory Mesh Stage-2 conformal STR:
+-# /root/DECKBUILD/preflight/VICTORYMESH_SEB_STAGE2_CONFORMAL_X10P25_20260807/
+-# VM_SEB_STAGE2_conformal_track_x10p25.str
+-#
+-# The shared physics, METHOD, source-off bias ramp, thermcontacts, probes, and
+-# OUTPUT statements below are mechanically retained from the frozen Arm-A
+-# static-preflight candidate.  This deck performs no remesh and no transient.
++# NO REMESH / NO DEVEDIT / NO VICTORYMESH
++# NO STATIC_BIAS / NO 300V / NO SEU TRANSIENT / NO PAIRED TRANSIENT
++# ONE_EXECUTION_ONLY / NO_AUTO_FIX / NO_FALLBACK
+ 
+ go atlas simflags="-V 5.40.0.R -P 4"
+ 
+ mesh infile="/root/DECKBUILD/preflight/VICTORYMESH_SEB_STAGE2_CONFORMAL_X10P25_20260807/VM_SEB_STAGE2_conformal_track_x10p25.str"
+ 
+-MATERIAL material=Ga2O3 user.default=GaN user.group=semiconductor \
+-         affinity=4.0 eg300=4.8 nc300=3.72e18 nv300=3.72e18 permittivity=10 \
+-         mun=300 mup=50 tcon.const tc.const=0.27
+-MATERIAL region=10 mun=50
++# Runtime regions 1/2/3/6/7 are already recognized as GA2O3_BETA.
++# Preserve the explicit bv.in parameter overrides without attempting to
++# change the imported built-in material's USER.DEFAULT or USER.GROUP.
++MATERIAL material=Ga2O3 \
++         affinity=4.0 eg300=4.8 nc300=3.72e18 nv300=3.72e18 \
++         permittivity=10 mun=300 mup=50 tcon.const tc.const=0.27
+ 
+ MATERIAL material=Al2O3 tcon.const tc.const=0.33
+ 
+-material material=NiO user.group=semiconductor user.default=GaN \
+-         affinity=2.0 eg300=3.92 permittivity=11.9 tcon.const tc.const=2.27
++# Victory Mesh material code 304 is runtime p-/p+ NiO.  Bind by runtime
++# region because ATLAS 5.40.0.R does not retain a usable NiO material name.
++# Both regions share the original active NiO material definition; their
++# distinct acceptor concentrations remain in the frozen STR.
++MATERIAL region=9 user.group=semiconductor user.default=GaN \
++         affinity=2.0 eg300=3.92 permittivity=11.9 \
++         tcon.const tc.const=2.27
++MATERIAL region=10 user.group=semiconductor user.default=GaN \
++         affinity=2.0 eg300=3.92 permittivity=11.9 \
++         tcon.const tc.const=2.27
++
++# The inherited "MATERIAL region=10 mun=50" is intentionally absent.
++# In original bv.in region 10 was source Nickel; after remesh runtime 10 is
++# p+ NiO.  The old card was therefore a stale metal-region override and has
++# no defensible semiconductor target.
+ 
+ interface qf=-9e12 x.min=2 x.max=4 y.min=-0.02 y.max=0.02
+ 
+@@ -47,38 +54,14 @@ PROBE NAME=Gateedge_Field_X FIELD dir=180 x=6 y=(-0.17+0.05+0.00015)
+ PROBE NAME=Oxide_Field_Y FIELD dir=270 x=(6+0.25) y=0.002514
+ PROBE NAME=Oxide_Field_X FIELD dir=180 x=(6+0.25) y=0.002514
+ 
+-METHOD newton trap maxtrap=30 climit=1e-4 \
+-  weak=1 itlimit=50 \
+-  carr.limit=1e18 damping.factor=0.8
++# ATLAS 5.40.0.R atlas.key and manual canonical names only.
++# MAXTRAPS=10 is the documented maximum; no guessed replacement is used for
++# the rejected CARR.LIMIT or DAMPING.FACTOR tokens.
++METHOD newton trap maxtraps=10 climit=1e-4 weak=1 itlimit=50
+ 
+ OUTPUT con.band val.band FLOWLINES EX.VELO EY.VELO e.line e.mobility \
+        h.mobility band.param band.temp
+ 
+-# Establish VGS=0 and preserve the frozen gate-state OUTF/LOAD semantics.
+ solve init
+-solve prev
+-solve vgate=0 vfinal=0 name=gate \
+-  outf=VM_SEB_STAGE2_ATLAS_vg0_state.str onefile
+-load infile=VM_SEB_STAGE2_ATLAS_vg0_state.str
+-
+-# Frozen source-off static ramp.
+-solve vdrain=0.01
+-solve vdrain=0.1
+-solve vdrain=0.5
+-solve vdrain=1 vstep=1 vfinal=10 name=drain
+-solve vstep=5 vfinal=50 name=drain
+-solve vstep=10 vfinal=200 name=drain
+-save outf=VM_SEB_STAGE2_ATLAS_static_200V.str
+-solve vstep=15 vfinal=300 name=drain
+-save outf=VM_SEB_STAGE2_ATLAS_static_300V_sourceoff.str
+-
+-# Five requested accepted source-off records at the same VGS/VDS state.
+-log outf=VM_SEB_STAGE2_ATLAS_static_300V_sourceoff_baseline.log
+-solve previous
+-solve previous
+-solve previous
+-solve previous
+-solve previous
+-log off
+-
++save outf=VM_SEB_STAGE2_ATLAS_material_init_rev1_equilibrium.str
+ quit

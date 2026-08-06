@@ -1,0 +1,12 @@
+warning_or_event,count,classification
+Unknown material #304,2228,HARD_FAIL_CUSTOM_MATERIAL_IMPORT
+Using insulator,2228,HARD_FAIL_CUSTOM_MATERIAL_IMPORT
+Cannot change default material parameters for material SiO2,2,HARD_FAIL_NIO_RECLASSIFICATION
+Ignoring default material parameters specification,2,HARD_FAIL_NIO_RECLASSIFICATION
+Cannot change material group,2,HARD_FAIL_NIO_RECLASSIFICATION
+Ignoring material group specification,2,HARD_FAIL_NIO_RECLASSIFICATION
+Contact number -999 out of range,1,OUTPUT_WARNING_OPEN_GATE
+Cannot trap,0,PASS
+ERROR#,0,PASS
+MASTER format file written,1,SOLVE_INIT_OUTPUT_CREATED
+ATLAS finished,1,PROCESS_COMPLETED

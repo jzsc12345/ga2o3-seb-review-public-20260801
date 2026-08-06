@@ -1,0 +1,67 @@
+# VICTORYMESH_STAGE2_ATLAS_MATERIAL_INIT_REV1
+# MATERIAL_AND_SOLVE_INIT_ONLY
+# USE_FROZEN_VICTORYMESH_STAGE2_STR
+# LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
+# NO REMESH / NO DEVEDIT / NO VICTORYMESH
+# NO STATIC_BIAS / NO 300V / NO SEU TRANSIENT / NO PAIRED TRANSIENT
+# ONE_EXECUTION_ONLY / NO_AUTO_FIX / NO_FALLBACK
+
+go atlas simflags="-V 5.40.0.R -P 4"
+
+mesh infile="/root/DECKBUILD/preflight/VICTORYMESH_SEB_STAGE2_CONFORMAL_X10P25_20260807/VM_SEB_STAGE2_conformal_track_x10p25.str"
+
+# Runtime regions 1/2/3/6/7 are already recognized as GA2O3_BETA.
+# Preserve the explicit bv.in parameter overrides without attempting to
+# change the imported built-in material's USER.DEFAULT or USER.GROUP.
+MATERIAL material=Ga2O3 \
+         affinity=4.0 eg300=4.8 nc300=3.72e18 nv300=3.72e18 \
+         permittivity=10 mun=300 mup=50 tcon.const tc.const=0.27
+
+MATERIAL material=Al2O3 tcon.const tc.const=0.33
+
+# Victory Mesh material code 304 is runtime p-/p+ NiO.  Bind by runtime
+# region because ATLAS 5.40.0.R does not retain a usable NiO material name.
+# Both regions share the original active NiO material definition; their
+# distinct acceptor concentrations remain in the frozen STR.
+MATERIAL region=9 user.group=semiconductor user.default=GaN \
+         affinity=2.0 eg300=3.92 permittivity=11.9 \
+         tcon.const tc.const=2.27
+MATERIAL region=10 user.group=semiconductor user.default=GaN \
+         affinity=2.0 eg300=3.92 permittivity=11.9 \
+         tcon.const tc.const=2.27
+
+# The inherited "MATERIAL region=10 mun=50" is intentionally absent.
+# In original bv.in region 10 was source Nickel; after remesh runtime 10 is
+# p+ NiO.  The old card was therefore a stale metal-region override and has
+# no defensible semiconductor target.
+
+interface qf=-9e12 x.min=2 x.max=4 y.min=-0.02 y.max=0.02
+
+models analytic fldmob srh fermi incomplete bgn print lat.temp
+mobility material=Ga2O3 vsatn=2.42e7 betan=1.37 betap=1.09 \
+         mu1n.caug=10 mu2n.caug=300 ncritn.caug=2e17 tmun=2.0 tmup=0.8
+
+impact material=Ga2O3 selb an1=2.5e6 bn1=3.96e7 an2=2.5e6 \
+       bn2=3.96e7 betan=1.37 egran=8e6
+
+thermcontact number=1 elec.num=1 x.min=0.0 x.max=0.5 \
+             y.min=-0.18 y.max=0.0 ext.temper=300
+thermcontact number=2 elec.num=2 x.min=14.5 x.max=15.0 \
+             y.min=-0.18 y.max=0.0 ext.temper=300
+
+PROBE NAME=Gateedge_Field_Y FIELD dir=270 x=6 y=(-0.17+0.05+0.00015)
+PROBE NAME=Gateedge_Field_X FIELD dir=180 x=6 y=(-0.17+0.05+0.00015)
+PROBE NAME=Oxide_Field_Y FIELD dir=270 x=(6+0.25) y=0.002514
+PROBE NAME=Oxide_Field_X FIELD dir=180 x=(6+0.25) y=0.002514
+
+# ATLAS 5.40.0.R atlas.key and manual canonical names only.
+# MAXTRAPS=10 is the documented maximum; no guessed replacement is used for
+# the rejected CARR.LIMIT or DAMPING.FACTOR tokens.
+METHOD newton trap maxtraps=10 climit=1e-4 weak=1 itlimit=50
+
+OUTPUT con.band val.band FLOWLINES EX.VELO EY.VELO e.line e.mobility \
+       h.mobility band.param band.temp
+
+solve init
+save outf=VM_SEB_STAGE2_ATLAS_material_init_rev1_equilibrium.str
+quit
