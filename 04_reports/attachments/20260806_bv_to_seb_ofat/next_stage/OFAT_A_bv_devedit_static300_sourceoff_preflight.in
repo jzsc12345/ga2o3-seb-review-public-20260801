@@ -1,0 +1,378 @@
+
+# Candidate identity: OFAT Arm A / DevEdit route
+# Provenance: derived from bv_SEB_x10p25_300V.in; original attachment is unchanged.
+# Status: CANDIDATE_PREFLIGHT_ARM / NOT_RUNTIME_VALIDATED
+# Label: LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
+# Scope: parser/mesh/300 V source-off static preflight only.
+# NO SEU TRANSIENT / NO PAIRED TRANSIENT / NO AUTOMATIC EXPANSION OF AUTHORIZATION
+set arm=A
+
+# === ROUTE-SPECIFIC STRUCTURE AND MESH BLOCK: ARM A START ===
+#go DevEdit
+go devedit
+
+# ================= SEB CONTROL BLOCK =================
+# Normal-incidence strike in the gate-drain drift region.
+# xion=10.25 um is the midpoint between the gate edge (x=6.0 um)
+# and the drain-side metal edge (x=14.5 um).
+# IMPORTANT: xion must equal x0 in mySEU_bv.c.
+set xion=10.25
+
+# Future ion-source geometry contract only; no source is active in this deck.
+# r=0.05 um; xion +/- 3r = 10.10..10.40 um; y=0..0.60 um.
+# =====================================================
+#version=2.8.26.R # file written Mon Jan 12 2026 13:04:28 GMT+8 (CST)
+
+
+work.area x1=0 y1=-0.2 x2=15 y2=0.6
+# devedit 2.8.26.R (Tue Jan 26 05:23:40 PST 2016)
+# libMeshBuild 1.24.23 (Tue Jan 26 05:22:55 PST 2016)
+# libSSS 2.8.14 (Tue Jan 19 16:38:10 PST 2016)
+# libSVC_Misc 1.28.13 (Tue Jan 19 16:37:06 PST 2016)
+# libsflm 7.10.1 (Tue May 19 19:52:32 PDT 2015)
+# libSDB 1.12.36 (Wed Jan 13 04:01:54 PST 2016)
+# libGeometry 1.30.16 (Tue May 19 19:51:51 PDT 2015)
+# libCardDeck 1.32.22 (Fri Jan 22 18:42:45 PST 2016)
+# libDW_Set 1.28.13 (Tue Jan 19 16:36:26 PST 2016)
+# libSvcFile 1.14.19 (Tue May 19 19:51:56 PDT 2015)
+# libsstl 1.10.11 (Tue May 19 19:51:57 PDT 2015)
+# libDW_Misc 1.40.20 (Tue Jan 19 16:14:10 PST 2016)
+# libQSilCore 1.2.8 (Wed May 13 18:39:12 PDT 2015)
+# libDW_crypt 3.0.0 (Mon May 18 04:43:00 PDT 2015)
+# libDW_Version 3.8.0 (Fri Oct  3 16:08:41 PDT 2014)
+region reg=1 name=substrate mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="0,0.4 15,0.4 15,0.6 0,0.6"
+#
+impurity id=1 region.id=1 imp=Acceptors \
+	peak.value=2000000 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=1 default
+
+region reg=2 name=uid mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="0,0.2 15,0.2 15,0.4 0,0.4"
+#
+impurity id=1 region.id=2 imp=Donors \
+	peak.value=1.5e+15 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=2 default
+
+region reg=3 name=channel mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="14,0.15 15,0.15 15,0.2 0,0.2 0,0.15 1,0.15 1,0 14,0"
+#
+impurity id=1 region.id=3 imp=Donors \
+	peak.value=1e+17 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=3 default
+
+region reg=4 name=oxide mat=SiO2 color=0xff pattern=0x2 \
+	polygon="4,-0.17 6,-0.17 14.5,-0.17 14.5,-0.02 4,-0.02 4,-0.07 4,-0.12" \
+	polygon="2,-0.12 2,-0.07 2,-0.02 0.5,-0.02 0.5,-0.17 1.5,-0.17 2,-0.17"
+#
+constr.mesh region=4 default
+
+region reg=5 mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="0,0 0.5,0 1,0 1,0.15 0,0.15"
+#
+impurity id=1 region.id=5 imp=Donors \
+	peak.value=5e+19 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=5 default
+
+region reg=6 name=N_D mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="15,0 15,0.15 14,0.15 14,0 14.5,0"
+#
+impurity id=1 region.id=6 imp=Donors \
+	peak.value=5e+19 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=6 default
+
+region reg=7 name=barrier mat=Al2O3 color=0xcc9426 pattern=0x6 \
+	polygon="14.5,0 14,0 1,0 0.5,0 0.5,-0.02 2,-0.02 4,-0.02 14.5,-0.02"
+#
+constr.mesh region=7 default
+
+region reg=8 name=P- mat="UD2(NiO)" color=0x7a3d99 pattern=0x4 \
+	polygon="2,-0.07 4,-0.07 4,-0.02 2,-0.02"
+#
+impurity id=1 region.id=8 imp=Acceptors \
+	peak.value=1.3e+18 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=8 default
+
+region reg=9 name=P+ mat="UD2(NiO)" color=0x7a3d99 pattern=0x4 \
+	polygon="2,-0.12 4,-0.12 4,-0.07 2,-0.07"
+#
+impurity id=1 region.id=9 imp=Acceptors \
+	peak.value=3e+19 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=9 default
+
+region reg=10 name=source mat=Nickel elec.id=1 work.func=0 color=0xffff96 pattern=0xe \
+	polygon="0,-0.18 0.5,-0.18 0.5,-0.17 0.5,-0.02 0.5,0 0,0"
+#
+constr.mesh region=10 default
+
+region reg=11 name=drain mat=Nickel elec.id=2 work.func=0 color=0xffff96 pattern=0xe \
+	polygon="15,0 14.5,0 14.5,-0.02 14.5,-0.17 14.5,-0.18 15,-0.18"
+#
+constr.mesh region=11 default
+
+region reg=12 name=gate mat=Nickel elec.id=3 work.func=0 color=0xffff96 pattern=0xe \
+	polygon="6,-0.2 6,-0.17 4,-0.17 4,-0.12 2,-0.12 2,-0.17 1.5,-0.17 1.5,-0.2"
+#
+constr.mesh region=12 default
+
+
+# Set Meshing Parameters
+#
+base.mesh height=10 width=10
+#
+bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.points when=automatic
+#
+imp.refine min.spacing=0.02
+#
+constr.mesh max.angle=90 max.ratio=300 max.height=1000 \
+	max.width=1000 min.height=0.0001 min.width=0.0001
+#
+constr.mesh type=Semiconductor default
+#
+constr.mesh type=Insulator default
+#
+constr.mesh type=Metal default
+#
+constr.mesh type=Other default
+#
+constr.mesh region=1 default
+#
+constr.mesh region=2 default
+#
+constr.mesh region=3 default
+#
+constr.mesh region=4 default
+#
+constr.mesh region=5 default
+#
+constr.mesh region=6 default
+#
+constr.mesh region=7 default
+#
+constr.mesh region=8 default
+#
+constr.mesh region=9 default
+#
+constr.mesh region=10 default
+#
+constr.mesh region=11 default
+#
+constr.mesh region=12 default
+Mesh Mode=MeshBuild
+refine mode=y x1=0.27 y1=0.3024 x2=14.96 y2=0.468
+refine mode=y x1=0.19 y1=0.4699 x2=0.21 y2=0.4718
+refine mode=unrefine x1=0.34 y1=0.4249 x2=0.92 y2=0.4823
+refine mode=y x1=0.09 y1=0.0431 x2=14.94 y2=0.0785
+refine mode=y x1=0.31 y1=0.045 x2=14.81 y2=0.0967
+refine mode=y x1=0.39 y1=0.2594 x2=14.74 y2=0.5436
+refine mode=x x1=4.59 y1=-0.1263 x2=13.57 y2=0.5742
+refine mode=x x1=4.36 y1=-0.1397 x2=13.54 y2=0.5666
+refine mode=x x1=2.25 y1=-0.1875 x2=3.69 y2=0.5809
+refine mode=x x1=2.47 y1=-0.2 x2=2.48 y2=-0.2
+refine mode=x x1=2.63 y1=-0.1933 x2=3.6 y2=0.5704
+refine mode=x x1=1.79 y1=-0.1923 x2=5.87 y2=0.578
+refine mode=x x1=2.04 y1=-0.1923 x2=3.9 y2=0.5819
+refine mode=y x1=14.17 y1=-0.1425 x2=14.79 y2=0.5857
+refine mode=x x1=0.3 y1=-0.1406 x2=0.66 y2=0.5905
+refine mode=x x1=6.32 y1=-0.1311 x2=13.33 y2=0.5857
+refine mode=x x1=4.18 y1=-0.1377 x2=13.89 y2=0.5819
+refine mode=x x1=14.19 y1=-0.1483 x2=14.77 y2=0.5771
+refine mode=y x1=4.08 y1=-0.1578 x2=14.93 y2=-0.1464
+refine mode=y x1=0.19 y1=-0.1569 x2=14.93 y2=-0.1368
+refine mode=y x1=-0.13 y1=-0.1492 x2=1.85 y2=-0.1416
+refine mode=y x1=4.05 y1=-0.1588 x2=15.11 y2=-0.1349
+refine mode=y x1=0.09 y1=-0.0899 x2=14.91 y2=-0.0382
+refine mode=y x1=0.13 y1=-0.111 x2=14.93 y2=-0.0306
+refine mode=y x1=4.97 y1=-0.1665 x2=6.84 y2=-0.0889
+refine mode=y x1=0.39 y1=0.1838 x2=14.94 y2=0.2364
+refine mode=y x1=0.07 y1=0.1876 x2=14.9 y2=0.2154
+refine mode=y x1=-0.03 y1=0.3733 x2=14.92 y2=0.4364
+refine mode=y x1=0.2 y1=0.3828 x2=14.85 y2=0.4077
+refine mode=y x1=0.14 y1=-0.0124 x2=14.86 y2=0.0297
+refine mode=y x1=-0.03 y1=-0.0086 x2=14.91 y2=0.0345
+refine mode=y x1=0.22 y1=0.0546 x2=13.78 y2=0.1388
+refine mode=y x1=0.21 y1=0.2364 x2=13.2 y2=0.2804
+refine mode=y x1=0.17 y1=0.2623 x2=13.89 y2=0.3398
+refine mode=y x1=13.54 y1=0.2316 x2=13.95 y2=0.2938
+refine mode=y x1=14.3 y1=0.2651 x2=14.97 y2=0.2823
+refine mode=y x1=0.25 y1=0.3589 x2=13.49 y2=0.4383
+refine mode=y x1=0.21 y1=0.4728 x2=13.54 y2=0.5742
+refine mode=y x1=0.14 y1=0.5589 x2=14.9 y2=0.5886
+refine mode=y x1=0.14 y1=0.0029 x2=13.92 y2=0.0144
+refine mode=y x1=14.16 y1=0.4163 x2=14.99 y2=0.4211
+refine mode=y x1=0.09 y1=0.4316 x2=0.16 y2=0.446
+refine mode=y x1=0 y1=0.3838 x2=0.16 y2=0.4201
+refine mode=y x1=0.09 y1=0.1847 x2=0.11 y2=0.2125
+refine mode=y x1=0.16 y1=0.0288 x2=13.66 y2=0.0345
+refine mode=y x1=0.03 y1=0.0182 x2=13.77 y2=0.0221
+
+# Explicit two-axis track-mesh contract. Runtime STR must still prove actual dx/dy.
+# r/3 = 0.016667 um; use the slightly tighter 0.016 um target.
+constr.mesh x1=10.10 y1=0.0 x2=10.40 y2=0.6 \
+  max.width=0.016 max.height=0.016
+
+base.mesh height=10 width=10
+
+bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+
+
+structure outf=OFAT_A_bv_devedit_mesh_x10p25.str
+
+# === ROUTE-SPECIFIC STRUCTURE AND MESH BLOCK: ARM A END ===
+
+go atlas
+#simflags="-128"
+
+mesh inf=OFAT_A_bv_devedit_mesh_x10p25.str
+
+# === SHARED STATIC PHYSICS AND BIAS BLOCK START ===
+
+
+MATERIAL material=Ga2O3 user.default=GaN user.group=semiconductor \
+         affinity=4.0 eg300=4.8 nc300=3.72e18 nv300=3.72e18 permittivity=10 \
+        mun=300 mup=50  tcon.const tc.const=0.27
+MATERIAL region=10 mun=50
+
+
+
+MATERIAL material=Al2O3 tcon.const tc.const=0.33
+#taun0=1e-7 taup0=1e-7 augn=2.8e-31 augp=9.9e-32
+# taun0=1e-7 taup0=1e-7 augn=2.8e-31 augp=9.9e-32
+#mun=145 mup=20
+
+material material=NiO user.group=semiconductor user.default=GaN \
+                                 affinity=2.0 eg300=3.92  permittivity=11.9 tcon.const  tc.const=2.27
+
+#mun=0.6 mup=0.87
+#nc300=3.7e19 nv300=3.7e19
+#material material=NiO user.group=semiconductor user.default=ZnO \
+                                    affinity=1.8 eg300=3.92 permittivity=11.9 tcon.const  tc.const=2.27
+
+
+
+
+#INTERFACE qf=-1e12 X.MIN=0 X.MAX=5 Y.MIN=0.019 Y.MAX=0.021
+#interface qf=-1e12 X.MIN=-1 X.MAX=1 Y.MIN=-0.02 Y.MAX=0.02
+#defects  region=9 ntd=1e17 wtd=0.8
+#defects  region=10 ntd=1e20 wtd=0.8
+#DOPING trap donor midgap concentration=2e12 sign=1e-15 sigp=1e-15 \
+   degeneracy.factor=1 uniform x.min=$Lmin  x.max=$Lmax  y.min=-0.02 y.max=0
+#
+ # r cvt consrh conmob fnord
+#doping trap e.level=4.0 acceptor  conc=1e17 uniform region=9  sign=1e-15 sigp=1e-15 degen=2
+#doping trap e.level=4.0 acceptor  conc=5e12 uniform region=10 sign=1e-15 sigp=1e-15 degen=2
+interface qf=-9e12 x.min=2 x.max=4 y.min=-0.02 y.max=0.02
+
+models analytic fldmob srh fermi incomplete bgn print lat.temp
+#conmob auger  lat.temp
+#mobility material=Ga2O3 vsatn=2e7 betan=1  mu1n.caug=20 mu2n.caug=$mu2n mu1p.caug=1 mu2p.caug=1 ncritn.caug=1e18
+mobility material=Ga2O3 vsatn=2.42e7 betan=1.37 betap=1.09 \
+			mu1n.caug=10 mu2n.caug=300 ncritn.caug=2e17 tmun=2.0 tmup=0.8
+# deltan.caug=0.8   gamman.caug=0  alphan.caug=0  betan.caug=0
+#mobility material=NiO  vsatp=2e7 betap=1 mu1n.caug=0.6 mu2n.caug=0.6 mu1p.caug=0.87 mu2p.caug=0.87 ncritn.caug=1e18  deltan.caug=0.8   gamman.caug=0  alphan.caug=0  betan.caug=0
+
+
+#IMPACT  selb an1=7.9e5   an2=7.9e5 bn1=3.96e7  bn2=3.96e7 \
+             ap1=2.92e7  ap2=2.92e7  bp1=2.92e7  bp2=2.92e7 betan=1 betap=1
+#impact selb an1=2.16e6 an2=2.16e6 bn1=1.77e7 bn2=1.77e7 \
+          ap1=5.756e6 ap2=5.75e6 bp1=1.77e7 bp2=1.77e7 betan=1  betap=1 egran=8e6
+#material=Ga2O3
+impact material=Ga2O3 selb an1=2.5e6  bn1=3.96e7 an2=2.5e6  bn2=3.96e7  betan=1.37 egran=8e6
+
+# Self-heating boundary conditions mapped to the present source/drain electrodes.
+thermcontact number=1 elec.num=1 x.min=0.0  x.max=0.5  y.min=-0.18 y.max=0.0 ext.temper=300
+thermcontact number=2 elec.num=2 x.min=14.5 x.max=15.0 y.min=-0.18 y.max=0.0 ext.temper=300
+
+# SOURCE-OFF HARD GATE: no SINGLEEVENTUPSET statement is active in this deck.
+#thermcontact num=1 x.min=0 x.max=15 y.min=0.6 y.max=0.6 \
+             alpha=200 ext.temp=300
+#thermcontact num=2  name=drain  ext.temper=300
+#thermcontact num=3  name=source  ext.temper=300
+#CONTACT name=gate workf=5.23
+#CONTACT name=drain workf=0
+#CONTACT name=source workf=0
+#TRAP region=9 density=1e17 donor e.level=0.60 sign=1e-15 sigp=1e-15
+#TRAP region=10 density=1e20 acceptor e.level=0.80 sign=1e-15 sigp=1e-15
+
+###PROBE NAME=Gateedge_Field FIELD dir=270 x=0.7495  y=0.00008
+#PROBE NAME=FPedge_Field   FIELD dir=270 x=$Lfprmax y=(0+0.02)
+###PROBE NAME=Oxide_Field    FIELD dir=270 x=0.7477 y=-0.00015
+
+
+PROBE NAME=Gateedge_Field_Y FIELD dir=270 x=6  y= (-0.17+0.05+0.00015)
+PROBE NAME=Gateedge_Field_X FIELD dir=180 x=6  y= (-0.17+0.05+0.00015)
+
+PROBE NAME=Oxide_Field_Y    FIELD dir=270 x=(6+0.25) y=0.002514
+PROBE NAME=Oxide_Field_X    FIELD dir=180 x=(6+0.25) y=0.002514
+
+#mobility region=6  mu1n.caug=20 mu2n.caug=25 mu1p.caug=1 mu2p.caug=1
+
+#method block newton climit=1e-10 maxtraps=8 itlimit=50 \
+		ir.tol=1.e-45 ix.tol=1.e-45 \
+		cx.tol=1.e-20 cr.tol=1.e-28 \
+		px.tol=1.e-20 pr.tol=1.e-35
+#METHOD newton
+#method climit=1e-20 maxtraps=30 itlimit=30 \
+       ir.tol=1.e-35 ix.tol=1.e-35 \
+       px.tol=1.e-22 pr.tol=1.e-43 \
+       cx.tol=1.e-22 cr.tol=1.e-35
+METHOD newton trap maxtrap=30 climit=1e-4 \
+  weak=1 itlimit=50
+ # autostep=1e-2  \
+      carr.limit=1e18   damping.factor=0.8
+
+
+OUTPUT con.band val.band FLOWLINES EX.VELO EY.VELO e.line e.mobility h.mobility band.param band.temp
+
+
+#  Wf'$workf'_C'$Cchannel'_W'$Cwell'_U'$Cuid'_S'$Csub'
+#  Lgs'$Lgs'_FPr'$FPr'
+#### SOURCE-OFF STATIC PREFLIGHT SEQUENCE ####
+
+# Establish VGS=0 and preserve the original gate-state OUTF/LOAD semantics.
+solve init
+solve prev
+solve vgate=0 vfinal=0 name=gate \
+  outf=OFAT_$arm_gate_vg0_state.str onefile
+load infile=OFAT_$arm_gate_vg0_state.str
+
+# Reuse the convergent BV ramp only up to the selected SEB bias.
+solve vdrain=0.01
+solve vdrain=0.1
+solve vdrain=0.5
+solve vdrain=1 vstep=1 vfinal=10 name=drain
+solve vstep=5 vfinal=50 name=drain
+solve vstep=10 vfinal=200 name=drain
+save outf=OFAT_$arm_static_200V.str
+solve vstep=15 vfinal=300 name=drain
+
+save outf=OFAT_$arm_static_300V_sourceoff.str
+
+# Five repeated accepted source-off records at the same VGS/VDS state.
+# Runtime evidence must prove that all five were accepted and remained at 300 V.
+log outf=OFAT_$arm_static_300V_sourceoff_baseline.log
+solve previous
+solve previous
+solve previous
+solve previous
+solve previous
+log off
+
+# Future transient output contract (comments only; not executable in this stage):
+# accepted terminal-current records at 10, 20, 50 and 100 us;
+# identical STR fields/times in Arms A and B; plotting occurs outside the runner.
+# No floor/KCL/trend/charge-integration/classification logic belongs in this deck.
+
+# Static comparison points to extract from the accepted 300 V STR:
+# gate lower edge (4.0,-0.12), thick-gate FP end (6.0,-0.17),
+# and future strike center (10.25,0.30): potential and |E|.
+
+# === SHARED STATIC PHYSICS AND BIAS BLOCK END ===
+quit
