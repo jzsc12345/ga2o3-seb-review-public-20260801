@@ -85,7 +85,9 @@
 - 五个 x refinement 窗口按名义坐标嵌套且未越出 `x=0–15 µm`；
 - 瞬态目标从 4 ps 递增到 100 µs；
 - BV 高压扫描被替换为 300 V 静态母态与 SEU 瞬态；
-- 12 个 region 边界、厚 Nickel source/drain/阶梯 gate、`elec.id=1/2/3`、active impurity、mobility、impact 和 active interface charge 保持不变；
+- 12 个 region 边界、厚 Nickel source/drain/阶梯 gate、`elec.id=1/2/3` 保持不变；
+- 原始掺杂种类、浓度与区域，active interface charge `qf=-9e12`，Ga₂O₃ mobility，以及 SELB
+  `an1/an2=2.5e6`、`bn1/bn2=3.96e7`、`betan=1.37` 保持不变；
 - 原始 gate 是一个连续的厚 Nickel `gate` 电极，没有独立 `gate_fp`；候选仍保持这个单电极拓扑；
 - 两个文件都没有启用 active trap，相关 trap 仅为注释；只能说“trap 注释保持不变”；
 - `auger`、`lat.temp`、两个 `thermcontact` 和 `singleeventupset F.SEU` 是候选中的显式新增项。
@@ -364,7 +366,15 @@ err_KCL = |ΔId + ΔIs + ΔIg| / max(|ΔId|, |ΔIs|, |ΔIg|)
 
 ## 8. 四种 current-only 一级结果
 
-每一臂只能给出以下四类之一。若等价门失败，则实验标为 `OFAT_INVALID`，不进入这四类。
+每一臂只能给出以下四类之一。若等价门失败，则实验标为 `OFAT_INVALID`，不进入这四类。一级裁决
+顺序固定为：
+
+```text
+配置或等价合同失败 → OFAT_INVALID
+合法配置上的求解失败 → NUMERICAL_TERMINATION
+正常到达 100 µs 但趋势仍未决 → INSUFFICIENT_TIME_WINDOW
+完整满足衰减或持续门 → SET_LIKE_CURRENT_RESPONSE / CURRENT_DEFINED_SEB_CANDIDATE
+```
 
 为避免“仍在下降”和“已经形成平台”靠主观看图裁决，先定义晚窗口幅度：
 
@@ -552,7 +562,11 @@ RECOVERED_TO_FLOOR =
 
 ### 13.1 技术上是否能只改变 mesh-generation route
 
-**条件可行。** BV-derived DevEdit 几何的边界均为水平/垂直线段，因此 direct ATLAS 有机会用矩形 region 的组合表达；但其中存在凹多边形、一个 region 的多段 polygon、厚 Nickel 金属和电极—热接触耦合。B 臂可能需要把一个语义 region 拆成多个矩形。只有在拆分后仍能证明材料、接触长度、电极等势、热边界和掺杂分布完全等价，才能认定“只改变 mesh-generation route”。
+**`CONDITIONAL_NOT_DEMONSTRATED`。** BV-derived DevEdit 几何的边界均为水平/垂直线段，因此 direct
+ATLAS 原则上可能用不重叠矩形组合表达；但当前尚未证明这种转写可同时保留凹多边形、多段 oxide、厚
+Nickel 金属、真实接触长度、单一 stepped-gate 等势语义、三类材料接口和电极—热接触耦合。B 臂可能
+需要把一个语义 region 拆成多个矩形；只有在拆分后仍能证明材料、接触长度、电极等势、热边界和掺杂
+分布完全等价，才能认定“只改变 mesh-generation route”。
 
 如果 direct ATLAS 只能把厚金属改成零厚度 line electrode，或只能改变 oxide/Al₂O₃/NiO 的边界拓扑，则本 OFAT 不可行，不能用“尽量接近”代替。
 
@@ -575,6 +589,27 @@ RECOVERED_TO_FLOOR =
 13. 发射前完整 diff，证明 shared physics body 没有漂移。
 
 patch 来源完整性已经关闭，不再列为缺口。以上缺口需要未来单独授权“本地候选编制 + parser/mesh/300 V 静态 preflight”后分阶段关闭；该授权仍不包含成对 SEB 瞬态。本计划本身不创建候选 deck 或 RUN。
+
+### 13.3 最新网页裁决的 14 项修订状态
+
+下表只定义未来待办；本轮没有修改或运行任何 deck/C 源。
+
+| # | 文档裁决 | 当前状态 |
+|---:|---|---|
+| 1 | 关闭原件—patch—候选的来源门 | **CLOSED**：patch 可完整应用于本轮原件，结果与候选一致 |
+| 2 | 冻结唯一静态母态序列，A/B 同 gate 初始化、`vstep=15`、save/load、solver | **NEXT-STAGE TODO** |
+| 3 | 删除 Auger，或显式给出依据与参数并另行核签 | **NEXT-STAGE TODO；默认删除** |
+| 4 | 删除 `max.temp=50000`，或作为共享 solver 变更另行核签 | **NEXT-STAGE TODO；默认删除** |
+| 5 | 真正 source-off/strict-zero 下生成至少 5 个 accepted baseline 点 | **NEXT-STAGE TODO** |
+| 6 | 冻结最大 Δx/Δy，并由 STR 验收中心 spacing 和全 y 连续性 | **NEXT-STAGE TODO** |
+| 7 | 关闭 accepted 300 V、thermcontact、region 10、NiO 热参数 runtime 门 | **NEXT-STAGE TODO** |
+| 8 | deck/计划统一 accepted/STR 时刻 10/20/50/100 µs | **NEXT-STAGE TODO** |
+| 9 | 加入恢复到 floor 以下的 SET 分支 | **PLAN CLOSED；DECK TODO** |
+| 10 | 统一为四段带符号电荷积分 | **PLAN CLOSED；DECK/POSTPROCESS TODO** |
+| 11 | direct twin 保留厚 Nickel、真实接触长度、单一 stepped gate | **CONDITIONAL_NOT_DEMONSTRATED；禁止本轮编制** |
+| 12 | 用户书面批准 benchmark-only exception | **OPEN / USER DECISION REQUIRED** |
+| 13 | `tonyplot` 移出执行链，三段 wall time 分开统计 | **PLAN CLOSED；DECK/RUNNER TODO** |
+| 14 | 重新生成唯一入口并同步索引/技术结论 | **本次文档提交完成后 CLOSED** |
 
 ## 14. 未来计划审查包的最小交付（本轮不执行）
 
@@ -602,8 +637,11 @@ patch 来源完整性已经关闭，不再列为缺口。以上缺口需要未�
 - 创建 RUN 编号或输出目录；
 - 发射、监控、续跑、改参；
 - branch/worktree；
-- hashing；
-- push 或其他外部发布。
+- 文件内容 hashing；
+- 除本轮用户明确授权的四文件文档范围提交以外的 push 或其他外部发布。
+
+本轮唯一外部动作是将本计划、最新网页裁决报告、唯一交接入口/附件索引和 `lessons.md` 做 scoped
+commit 并推送到既有 `main`。该文档发布授权不产生任何仿真执行权。
 
 ## Final recommendation
 

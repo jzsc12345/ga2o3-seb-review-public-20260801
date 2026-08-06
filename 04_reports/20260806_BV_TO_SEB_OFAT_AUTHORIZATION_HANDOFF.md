@@ -47,14 +47,19 @@ REVIEW_VERDICT = REVISE
 CONTROLLED_LINEAGE_MASTER = original bv.in
 ZIP_DECK = CANDIDATE_PARENT / NOT_RUNTIME_VALIDATED
 CONTROLLED_EXECUTION_PARENT = NONE
-DIRECT_MESH_TWIN = mechanically derived from normalized candidate only
+CONVERSION_FIDELITY = PARTIAL_PASS / REVISE
+DEVEDIT_RUNTIME_READINESS = NOT_READY
+DIRECT_MESH_EQUIVALENCE_FEASIBILITY = CONDITIONAL_NOT_DEMONSTRATED
+BENCHMARK_EXCEPTION_REQUIRED = YES
 COMPARISON_READY = NO
 FINAL_RECOMMENDATION = REVISE_BEFORE_COMPARISON
 ```
 
 已经关闭的事实门：patch 可应用于本轮原始 `bv.in`，结果与 ZIP 候选一致；原器件是一个连续的厚
 Nickel gate，没有独立 `gate_fp`；几何、12 个 region、厚 Nickel 电极、active impurity、mobility、
-impact 与 active interface charge 在转换中保持。两份 deck 均未启用 active trap，只能说 trap 注释未变。
+active interface charge `qf=-9e12`、Ga₂O₃ mobility 与原 SELB
+`2.5e6/3.96e7/betan=1.37` 在转换中保持。两份 deck 均未启用 active trap，只能说“没有新增或启用
+陷阱”，不能说保留了已启用的 trap 模型。原件—patch—候选的来源门已经关闭，不再列为缺口。
 
 ## 4. 仍未关闭的阻塞项
 
@@ -63,9 +68,10 @@ impact 与 active interface charge 在转换中保持。两份 deck 均未启用
 候选相对原始 `bv.in` 还新增/改变：
 
 1. 新增 `auger`，但没有显式 Auger 参数；
-2. 新增 `max.temp=50000`；
-3. 200→300 V 从 `vstep=15` 改为 `vstep=10`；
-4. 移除了原始 gate 状态的 `outf/load` 流。
+2. 新增 SEB 电热所需的 `lat.temp`，因此物理正文不再与 BV 母版逐字相同；
+3. 新增 `max.temp=50000`；
+4. 200→300 V 从 `vstep=15` 改为 `vstep=10`；
+5. 移除了原始 gate 状态的 `outf/load` 流，并替换了输出字段/文件流程。
 
 修订计划建议：恢复原始静态序列；移除新增 `auger` 和 `max.temp=50000`；A/B 共享同一份规范物理正文。
 
@@ -141,25 +147,34 @@ LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
 
 ## 7. 请网页端回答的精确问题
 
-1. 候选规范化是否完整吸收最新网页审查的 12 条强制修订？
-2. 下一授权是否只限“本地候选编制 + parser/mesh/300 V 静态 preflight”，且明确不含 SEB 瞬态？
-3. 是否应恢复 `vstep=15` 与等价 `outf/load`，并删除新增 `auger`/`max.temp=50000`？
-4. source-off 五点 baseline 合同是否充分；应使用哪一种可实测的 ATLAS source 启停语法？
-5. direct ATLAS twin 能否保留厚 Nickel source/drain/阶梯 gate、单一 `elec.id=3` 和真实接触长度？
-6. 是否批准 legacy `benchmark-only exception`？若拒绝，本 OFAT 是否直接判不可执行？
-7. region 10 `mun=50` 或 NiO 热参数 runtime 语义异常时，是否必须停下另开父本修订？
-8. 原 ZIP 与拆出文本成员是否足以独立复核；还需要补充哪些原始证据？
+以下问题只用于检查本次文档是否忠实落实既有裁决；已经裁定的技术事实不再重新征求选择：
+
+1. 计划 §13.3 是否逐项覆盖并正确标注最新 14 项强制修订的 `CLOSED / NEXT-STAGE TODO / OPEN` 状态？
+2. 候选规范化合同是否正确冻结：恢复原 `vstep=15`、等价 gate-state `outf/load` 和同一 solver，默认删除
+   新增 `auger`/`max.temp=50000`；且明确这些尚未执行？
+3. source-off 五点 baseline 与 accepted 300 V、thermcontact、region 10、NiO 热参数 runtime 门的先后顺序
+   是否完整，且没有被文本核对冒充为运行验证？
+4. direct-mesh 可行性是否正确保持为 `CONDITIONAL_NOT_DEMONSTRATED`，并在厚 Nickel、实际接触长度、
+   单一 stepped gate、接口或热边界改变时直接判 `OFAT_INVALID`？
+5. “恢复到 floor 以下”的 SET 分支、四段带符号电荷积分和
+   `OFAT_INVALID → NUMERICAL_TERMINATION → INSUFFICIENT_TIME_WINDOW → current-only classification`
+   优先级是否一致？
+6. legacy `benchmark-only exception` 是否仍被明确保留为用户另行书面决定，而不是由本次修订自动批准？
+7. 下一阶段可能申请的范围是否严格止于“本地候选编制 + parser-only + 两路线结构/网格检查 +
+   300 V 静态等价预检”，且明确不含 SEU 瞬态？
+8. 附件索引、相对链接和最新网页裁决是否足以从本唯一入口独立复核？
 
 ## 8. 建议网页端回复格式
 
 ```text
 REVIEW_VERDICT: ACCEPT | REVISE
-CANDIDATE_PREPARATION_SCOPE: ACCEPT | REVISE
-STATIC_SEQUENCE: ACCEPT | REVISE
-SOURCE_OFF_BASELINE: ACCEPT | REVISE
-DIRECT_MESH_EQUIVALENCE: FEASIBLE | CONDITIONAL | NOT_FEASIBLE
-BENCHMARK_ONLY_EXCEPTION: APPROVE | REJECT | USER_DECISION_REQUIRED
-RUNTIME_GATE_ORDER: ACCEPT | REVISE
+DOCUMENT_REVISION_COMPLETENESS: PASS | REVISE
+CANDIDATE_NORMALIZATION_CONTRACT: PASS | REVISE
+SOURCE_OFF_AND_RUNTIME_GATES: PASS | REVISE
+DIRECT_MESH_EQUIVALENCE: CONDITIONAL_NOT_DEMONSTRATED | OFAT_INVALID | REVISE
+CURRENT_ONLY_CRITERION: PASS | REVISE
+BENCHMARK_ONLY_EXCEPTION: USER_DECISION_REQUIRED | APPROVE | REJECT
+NEXT_AUTHORIZATION_SCOPE: PASS | REVISE
 ATTACHMENT_COMPLETENESS: PASS | REVISE
 MANDATORY_REVISIONS:
 1. ...
@@ -169,8 +184,15 @@ NEXT_AUTHORIZATION:
 
 ## 9. 本次公开提交的精确范围
 
-只提交以下 10 个文件：本入口、修订计划、原始 `bv.in`、原始 ZIP、ZIP 四个文本成员、最新网页裁决、
-`lessons.md`。不提交、不暂存、不清理任何无关文件。
+只提交以下 4 个文档文件：
+
+1. `03_codex_harness/docs/exec-plans/active/20260806_devedit_vs_direct_atlas_mesh_current_only_ofat_plan_review.md`；
+2. `04_reports/20260806_BV_TO_SEB_OFAT_AUTHORIZATION_HANDOFF.md`；
+3. `04_reports/attachments/20260806_bv_to_seb_ofat/LATEST_WEB_REVIEW_VERDICT_20260806.md`；
+4. `lessons.md`。
+
+第 5 节列出的原始 `bv.in`、ZIP、候选 deck、patch、C 源和转换说明继续作为已提交附件被引用，本轮不改其
+字节、不重新提交、不删除。除上述四个文档外，不提交、不暂存、不清理任何文件。
 
 ## 10. 授权和禁止边界
 

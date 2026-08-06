@@ -1,91 +1,148 @@
-# Latest web-side independent review verdict — BV→SEB conversion package
+# Latest web-side formal re-review — BV→SEB conversion and mesh-route OFAT
 
-> Source: user-pasted web-side independent review
+> Source: user-pasted formal web-side re-review
 >
 > Date received: 2026-08-06
 >
-> Role: governing review input for this handoff; it does not itself authorize execution
+> Authority: governs the documentation revision only; it does not authorize execution
 
-## Verdict
+## Formal verdict
 
 ```text
 REVIEW_VERDICT: REVISE
 CONTROLLED_LINEAGE_MASTER: original bv.in
 ZIP_DECK: CANDIDATE_PARENT / NOT_RUNTIME_VALIDATED
-DEVEDIT_RUNTIME_READINESS: NOT READY
-DIRECT_MESH_EQUIVALENCE_FEASIBILITY: CONDITIONAL
+CONVERSION_FIDELITY: PARTIAL_PASS / REVISE
+DEVEDIT_RUNTIME_READINESS: NOT_READY
+DIRECT_MESH_EQUIVALENCE_FEASIBILITY: CONDITIONAL_NOT_DEMONSTRATED
 BENCHMARK_EXCEPTION_REQUIRED: YES
-NEXT_AUTHORIZATION: REVISE_BEFORE_COMPARISON
+FINAL_RECOMMENDATION: REVISE_BEFORE_COMPARISON
 ```
 
-The original `bv.in` is the only master for structure, regions, doping, mobility and impact lineage. The ZIP candidate
-cannot be promoted to a controlled execution parent before runtime gates close. The patch provenance gate is closed:
-the patch applies to the original uploaded this round and produces the candidate in the ZIP.
+The original `bv.in` is the only structure/physics lineage master. `RUN238` is excluded. The historical direct-mesh
+`seb_2` may supply runtime and late-window references only; it must not supply material, doping, impact, thermal or solver
+parameters. The patch applies to the uploaded original `bv.in` and produces the ZIP candidate, so the
+original—patch—candidate provenance gate is closed and must not reappear as an open gap.
 
-## Conversion-fidelity decision
+## Conversion fidelity
 
-`CONVERSION_FIDELITY: PARTIAL PASS`.
+Direct comparison confirms that the conversion preserves:
 
-Preserved items include geometry, 12 region boundaries, thick Nickel source/drain/gate, electrode names and IDs, active
-impurities, mobility, impact coefficients and active interface charge. The original gate is one continuous thick Nickel
-`gate`; there is no separate `gate_fp`. Neither deck activates traps, so only trap comments—not an active trap model—are
-preserved.
+- every original geometry and region boundary;
+- the actual thick Nickel source, drain and stepped-gate polygons;
+- `source/drain/gate` and `elec.id=1/2/3`;
+- original doping type, concentration and region;
+- active interface charge `qf=-9e12`;
+- Ga₂O₃ mobility;
+- SELB `an1/an2=2.5e6`, `bn1/bn2=3.96e7`, `betan=1.37`;
+- trap lines in their original commented/inactive state.
 
-Static state and physics were not fully preserved: the candidate adds `auger`, `lat.temp` and `max.temp=50000`, changes
-the 200→300 V step from 15 V to 10 V, and removes the original gate-state `outf/load` flow.
+No active trap exists in either deck. The valid statement is “no trap was added or enabled,” not “an enabled trap model
+was preserved.” The original has one continuous thick Nickel `gate`; it has no separate `gate_fp` electrode.
 
-## Runtime blockers
+The static physics/solver body is not preserved verbatim because the candidate adds `auger`, `lat.temp` and
+`max.temp=50000`, changes the 200→300 V step from 15 V to 10 V, removes the gate-state `outf/load` flow, and replaces
+the output/file flow. `auger`, `max.temp=50000` and the static-ramp changes therefore require removal or an independently
+reviewed justification.
 
-1. Five `refine mode=x` windows do not prove track resolution in both x and y.
-2. `vfinal=300` is a target, not evidence of an accepted 300 V state.
+## Runtime gates that remain open
+
+1. Five `refine mode=x` windows prove only lateral-refinement intent; they do not prove x/y track resolution.
+2. `vfinal=300` is an input target, not an accepted 300 V state.
 3. `thermcontact` to `elec.num` binding is not runtime-verified.
-4. `MATERIAL region=10 mun=50` targets the thick Nickel source region and requires parser/runtime adjudication.
-5. The NiO `tcon.const tc.const=2.27` interpretation is unverified.
-6. The C source is nonzero at `t=0`, and its statement precedes the static ramp; a true source-off baseline is unproved.
-7. Five accepted pre-strike baseline points are absent.
-8. Legacy `Acceptors=2e6` and impact `2.5e6/3.96e7/betan=1.37` conflict with production preflight.
-9. Added `auger` has no explicit parameters and may activate parent-material defaults.
-10. `max.temp=50000` and the ramp-step change are solver changes beyond a pure BV→SEB increment.
-11. Explicit accepted 20 µs and 50 µs points and matching STRs are absent.
-12. Interactive `tonyplot` must be outside the benchmark execution and wall-time path.
+4. `MATERIAL region=10 mun=50` points to the Nickel source region and requires parser/runtime adjudication.
+5. NiO `tcon.const tc.const=2.27` runtime interpretation is unverified.
+6. The C source time factor is `exp(-4)≈0.0183` at `t=0`, not zero.
+7. Five accepted source-off baseline points are absent.
+8. Legacy `Acceptors=2e6` and SELB `2.5e6/3.96e7/betan=1.37` conflict with production preflight.
+9. The static stage is not explicitly proven to have the particle source disabled.
+10. Accepted/STR judging points at 20 µs and 50 µs are not explicitly implemented.
+11. Interactive `tonyplot` must not be inside the non-interactive performance benchmark path.
+12. Added `auger` may activate unfrozen parent-material defaults.
 
-## Current-only criterion revision
+All parser, mesh, static-state and runtime work above remains a future task. This review does not authorize performing it.
 
-The four current-only outcomes can distinguish late decay, persistent late current, insufficient time and numerical
-termination, but the below-noise-floor loophole must be closed:
+## Direct-mesh feasibility
+
+`CONDITIONAL_NOT_DEMONSTRATED` means mechanical transcription appears geometrically possible but is not yet proven to
+preserve all of the following simultaneously:
+
+- thick Nickel source/drain/gate regions;
+- actual source/drain contact lengths;
+- the single continuous stepped-gate equipotential;
+- multi-polygon oxide topology;
+- NiO/Al₂O₃/Ga₂O₃ interfaces;
+- thermal-contact position, area and electrode binding.
+
+The twin must not create `gate_fp`. If direct ATLAS requires zero-thickness line electrodes, different contact lengths,
+different region topology or different thermal boundaries, the comparison is `OFAT_INVALID`.
+
+## Current-only criterion
+
+The declared minimum endpoint for this pairwise comparison is 100 µs, not a universally sufficient SEB time. If the
+response remains undecidable at 100 µs, the only valid result is `INSUFFICIENT_TIME_WINDOW`.
+
+The recovery loophole is closed by the following branch:
 
 ```text
-If baseline-subtracted drain and source currents fall below their declared floors at two consecutive late accepted points,
-a resolvable peak existed earlier, KCL passes, and no recovery occurs from 50 to 100 µs,
-SET_LIKE_CURRENT_RESPONSE may be declared without computing a log-slope below the floor.
+If ΔId and ΔIs fall below their own floors at at least two consecutive late accepted points,
+a resolvable peak existed earlier, KCL-consistent decay persisted before reaching the floors,
+and no secondary recovery occurs from 50 to 100 µs,
+classify SET_LIKE_CURRENT_RESPONSE without requiring a log-slope below the floors.
 ```
 
-Configuration/equivalence failure has priority as `OFAT_INVALID`; solver failure on an otherwise legitimate arm is
-`NUMERICAL_TERMINATION`. The charge-integration segmentation must use one consistent four-segment definition.
+Decision priority is fixed:
 
-## Direct-mesh boundary
+```text
+configuration/equivalence failure → OFAT_INVALID
+solver failure on a legitimate configuration → NUMERICAL_TERMINATION
+normal arrival at 100 µs with unresolved trend → INSUFFICIENT_TIME_WINDOW
+complete decay or persistence gate → corresponding current-only classification
+```
 
-Mechanical transcription is only conditionally feasible. It must preserve thick Nickel source/drain/stepped gate, actual
-contact lengths, single gate `elec.id=3`, oxide topology, Al₂O₃/NiO/Ga₂O₃ interfaces and thermal-contact area/binding.
-Creating `gate_fp`, substituting zero-thickness line electrodes, or changing region/contact topology makes the comparison
-`OFAT_INVALID / CONTROLLED_COMPARISON_NOT_FEASIBLE`.
+Raw three-terminal current pairing, Revision 4 formal spatial Phase 2 and thermal-runaway SEB remain separate. Terminal
+pairing proves only sign/pairing/KCL. Formal spatial Phase 2 still needs three `Jn` connectivity frames in one hold interval
+and cross-section flux closure. Thermal runaway still needs independent late current–impact–temperature positive feedback.
+
+## Benchmark-only exception
+
+A separate written user approval is required before both arms may retain, solely for numerical route comparison:
+
+- substrate `Acceptors=2e6`;
+- SELB `2.5e6 / 3.96e7 / betan=1.37`.
+
+The exception must be labeled `LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB`. It cannot qualify the parameters
+for production, bypass preflight silently, or import historical `seb_2` physics.
 
 ## Mandatory revisions
 
-1. Mark the original-to-ZIP patch provenance gate PASS and remove the obsolete “original file not provided” gap.
-2. Restore or explicitly justify the static sequence; both arms must be identical.
-3. Remove `auger`, or justify it with explicit parameters rather than parent defaults.
-4. Remove or separately justify `max.temp=50000`.
-5. Generate at least five accepted baseline points with the particle source truly off or strictly zero.
-6. Close the x/y mesh gate with measured Δx/Δy, center spacing and full-y track continuity.
-7. Close accepted-300 V, thermcontact binding, region-10 material and NiO thermal runtime gates.
-8. Align accepted times, STR times and fields, explicitly including 20 µs and 50 µs.
-9. Add the below-floor recovered-SET branch and unify four-segment charge integration.
-10. Preserve thick Nickel and a single gate electrode in the direct ATLAS twin.
-11. Obtain a written benchmark-only exception before retaining legacy substrate/impact values through preflight.
-12. Remove `tonyplot` from the benchmark execution path and time generation, ATLAS and plotting separately.
+1. Remove the stale original-file/patch-provenance gap; it is closed.
+2. Freeze one static-state sequence shared by A/B: gate initialization, 15 V ramp step, save/load and solver.
+3. Remove Auger or justify it with explicit parameters and separate approval.
+4. Remove `max.temp=50000` or review it as a shared solver change.
+5. Require at least five accepted baseline points with source truly off/zero.
+6. Freeze maximum Δx/Δy and verify center spacing and full-y continuity from generated STR.
+7. Close accepted-300 V, thermcontact, region-10 and NiO thermal runtime gates.
+8. Align deck/plan accepted and STR times at 10/20/50/100 µs.
+9. Add the below-floor recovered-SET branch.
+10. Use one consistent four-segment signed-charge integration definition.
+11. Preserve thick Nickel, actual contact lengths and one stepped-gate electrode in the direct twin.
+12. Obtain the written benchmark-only exception; do not bypass production preflight.
+13. Move `tonyplot` out of execution and time structure build, static bias and transient separately.
+14. Regenerate the single handoff entry with synchronized attachment index and conclusions.
 
-## Authorization boundary
+## Next authorization boundary
 
-This review does not authorize SSH, simulation, deck modification, new RUNs, parameter adjustment, branch/worktree
-creation or any paired transient launch.
+This re-review authorizes documentation revision and scoped publication only. It does not authorize SSH, simulation, deck
+or C-source edits, direct-twin preparation, new RUNs, parameter changes, branch/worktree creation or any remote operation.
+
+After documentation revision, a future authorization may be requested for this limited sequence only:
+
+```text
+local candidate-deck preparation
++ parser-only check
++ DevEdit/direct-mesh structure and mesh-generation inspection
++ 300 V static-state equivalence preflight
+```
+
+That future preflight must not automatically enter a particle transient.
