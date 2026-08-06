@@ -1,0 +1,60 @@
+--- a/04_reports/attachments/20260806_bv_to_seb_ofat/next_stage/OFAT_B_bv_direct_atlas_static300_sourceoff_preflight.in
++++ b/04_reports/attachments/20260806_bv_to_seb_ofat/stage_packets_20260807/packets/OFAT_B1_atlas_input_structure_mesh_packet.in
+@@ -1,3 +1,13 @@
++# DERIVED_STAGE_PACKET / NOT_RUNTIME_VALIDATED / B1
++# Stage: ATLAS_INPUT_STRUCTURE_MESH_PACKET
++# Source candidate: 04_reports/attachments/20260806_bv_to_seb_ofat/next_stage/OFAT_B_bv_direct_atlas_static300_sourceoff_preflight.in
++# Source fixed commit: 994d83bc444e7a17695f003b65f0d90da25c8023
++# Retained original line ranges: 1-189
++# Deleted later/non-stage ranges: 190-228
++# Added active control lines: quit only
++# LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
++# NO SSH EXECUTION / NO VM UPLOAD / NO DECKBUILD EXECUTION / NO DEVEDIT EXECUTION / NO ATLAS EXECUTION / NO 300V STATIC EXECUTION / NO SEU TRANSIENT / NO PAIRED TRANSIENT / NO AUTO_FIX AFTER FAILURE / NO AUTOMATIC EXPANSION OF AUTHORIZATION
++
+ # Candidate identity: OFAT Arm B / direct ATLAS mesh route
+ # Provenance: mechanical transcription of the original bv.in coordinate contract.
+ # Status: CONDITIONAL_NOT_DEMONSTRATED / NOT_RUNTIME_VALIDATED
+@@ -187,42 +197,5 @@
+ #### SOURCE-OFF STATIC PREFLIGHT SEQUENCE ####
+ 
+ # Establish VGS=0 and preserve the original gate-state OUTF/LOAD semantics.
+-solve init
+-solve prev
+-solve vgate=0 vfinal=0 name=gate \
+-  outf=OFAT_$arm_gate_vg0_state.str onefile
+-load infile=OFAT_$arm_gate_vg0_state.str
+-
+-# Reuse the convergent BV ramp only up to the selected SEB bias.
+-solve vdrain=0.01
+-solve vdrain=0.1
+-solve vdrain=0.5
+-solve vdrain=1 vstep=1 vfinal=10 name=drain
+-solve vstep=5 vfinal=50 name=drain
+-solve vstep=10 vfinal=200 name=drain
+-save outf=OFAT_$arm_static_200V.str
+-solve vstep=15 vfinal=300 name=drain
+-
+-save outf=OFAT_$arm_static_300V_sourceoff.str
+-
+-# Five repeated accepted source-off records at the same VGS/VDS state.
+-# Runtime evidence must prove that all five were accepted and remained at 300 V.
+-log outf=OFAT_$arm_static_300V_sourceoff_baseline.log
+-solve previous
+-solve previous
+-solve previous
+-solve previous
+-solve previous
+-log off
+-
+-# Future transient output contract (comments only; not executable in this stage):
+-# accepted terminal-current records at 10, 20, 50 and 100 us;
+-# identical STR fields/times in Arms A and B; plotting occurs outside the runner.
+-# No floor/KCL/trend/charge-integration/classification logic belongs in this deck.
+-
+-# Static comparison points to extract from the accepted 300 V STR:
+-# gate lower edge (4.0,-0.12), thick-gate FP end (6.0,-0.17),
+-# and future strike center (10.25,0.30): potential and |E|.
+-
+-# === SHARED STATIC PHYSICS AND BIAS BLOCK END ===
++
+ quit

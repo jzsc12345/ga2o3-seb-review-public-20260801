@@ -1,0 +1,167 @@
+# DERIVED_STAGE_PACKET / NOT_RUNTIME_VALIDATED / A3
+# Stage: SOURCE_OFF_300V_STATIC_PACKET
+# Source candidate: 04_reports/attachments/20260806_bv_to_seb_ofat/next_stage/OFAT_A_bv_devedit_static300_sourceoff_preflight.in
+# Source fixed commit: 994d83bc444e7a17695f003b65f0d90da25c8023
+# Retained original line ranges: 1-8;230-378
+# Deleted later/non-stage ranges: 9-229
+# Added active control lines: none
+# LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
+# NO SSH EXECUTION / NO VM UPLOAD / NO DECKBUILD EXECUTION / NO DEVEDIT EXECUTION / NO ATLAS EXECUTION / NO 300V STATIC EXECUTION / NO SEU TRANSIENT / NO PAIRED TRANSIENT / NO AUTO_FIX AFTER FAILURE / NO AUTOMATIC EXPANSION OF AUTHORIZATION
+
+
+# Candidate identity: OFAT Arm A / DevEdit route
+# Provenance: derived from bv_SEB_x10p25_300V.in; original attachment is unchanged.
+# Status: CANDIDATE_PREFLIGHT_ARM / NOT_RUNTIME_VALIDATED
+# Label: LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
+# Scope: parser/mesh/300 V source-off static preflight only.
+# NO SEU TRANSIENT / NO PAIRED TRANSIENT / NO AUTOMATIC EXPANSION OF AUTHORIZATION
+set arm=A
+go atlas
+#simflags="-128"
+
+mesh inf=OFAT_A_bv_devedit_mesh_x10p25.str
+
+# === SHARED STATIC PHYSICS AND BIAS BLOCK START ===
+
+
+MATERIAL material=Ga2O3 user.default=GaN user.group=semiconductor \
+         affinity=4.0 eg300=4.8 nc300=3.72e18 nv300=3.72e18 permittivity=10 \
+        mun=300 mup=50  tcon.const tc.const=0.27
+MATERIAL region=10 mun=50
+
+
+
+MATERIAL material=Al2O3 tcon.const tc.const=0.33
+#taun0=1e-7 taup0=1e-7 augn=2.8e-31 augp=9.9e-32
+# taun0=1e-7 taup0=1e-7 augn=2.8e-31 augp=9.9e-32
+#mun=145 mup=20
+
+material material=NiO user.group=semiconductor user.default=GaN \
+                                 affinity=2.0 eg300=3.92  permittivity=11.9 tcon.const  tc.const=2.27
+
+#mun=0.6 mup=0.87
+#nc300=3.7e19 nv300=3.7e19
+#material material=NiO user.group=semiconductor user.default=ZnO \
+                                    affinity=1.8 eg300=3.92 permittivity=11.9 tcon.const  tc.const=2.27
+
+
+
+
+#INTERFACE qf=-1e12 X.MIN=0 X.MAX=5 Y.MIN=0.019 Y.MAX=0.021
+#interface qf=-1e12 X.MIN=-1 X.MAX=1 Y.MIN=-0.02 Y.MAX=0.02
+#defects  region=9 ntd=1e17 wtd=0.8
+#defects  region=10 ntd=1e20 wtd=0.8
+#DOPING trap donor midgap concentration=2e12 sign=1e-15 sigp=1e-15 \
+   degeneracy.factor=1 uniform x.min=$Lmin  x.max=$Lmax  y.min=-0.02 y.max=0
+#
+ # r cvt consrh conmob fnord
+#doping trap e.level=4.0 acceptor  conc=1e17 uniform region=9  sign=1e-15 sigp=1e-15 degen=2
+#doping trap e.level=4.0 acceptor  conc=5e12 uniform region=10 sign=1e-15 sigp=1e-15 degen=2
+interface qf=-9e12 x.min=2 x.max=4 y.min=-0.02 y.max=0.02
+
+models analytic fldmob srh fermi incomplete bgn print lat.temp
+#conmob auger  lat.temp
+#mobility material=Ga2O3 vsatn=2e7 betan=1  mu1n.caug=20 mu2n.caug=$mu2n mu1p.caug=1 mu2p.caug=1 ncritn.caug=1e18
+mobility material=Ga2O3 vsatn=2.42e7 betan=1.37 betap=1.09 \
+			mu1n.caug=10 mu2n.caug=300 ncritn.caug=2e17 tmun=2.0 tmup=0.8
+# deltan.caug=0.8   gamman.caug=0  alphan.caug=0  betan.caug=0
+#mobility material=NiO  vsatp=2e7 betap=1 mu1n.caug=0.6 mu2n.caug=0.6 mu1p.caug=0.87 mu2p.caug=0.87 ncritn.caug=1e18  deltan.caug=0.8   gamman.caug=0  alphan.caug=0  betan.caug=0
+
+
+#IMPACT  selb an1=7.9e5   an2=7.9e5 bn1=3.96e7  bn2=3.96e7 \
+             ap1=2.92e7  ap2=2.92e7  bp1=2.92e7  bp2=2.92e7 betan=1 betap=1
+#impact selb an1=2.16e6 an2=2.16e6 bn1=1.77e7 bn2=1.77e7 \
+          ap1=5.756e6 ap2=5.75e6 bp1=1.77e7 bp2=1.77e7 betan=1  betap=1 egran=8e6
+#material=Ga2O3
+impact material=Ga2O3 selb an1=2.5e6  bn1=3.96e7 an2=2.5e6  bn2=3.96e7  betan=1.37 egran=8e6
+
+# Self-heating boundary conditions mapped to the present source/drain electrodes.
+thermcontact number=1 elec.num=1 x.min=0.0  x.max=0.5  y.min=-0.18 y.max=0.0 ext.temper=300
+thermcontact number=2 elec.num=2 x.min=14.5 x.max=15.0 y.min=-0.18 y.max=0.0 ext.temper=300
+
+# SOURCE-OFF HARD GATE: no SINGLEEVENTUPSET statement is active in this deck.
+#thermcontact num=1 x.min=0 x.max=15 y.min=0.6 y.max=0.6 \
+             alpha=200 ext.temp=300
+#thermcontact num=2  name=drain  ext.temper=300
+#thermcontact num=3  name=source  ext.temper=300
+#CONTACT name=gate workf=5.23
+#CONTACT name=drain workf=0
+#CONTACT name=source workf=0
+#TRAP region=9 density=1e17 donor e.level=0.60 sign=1e-15 sigp=1e-15
+#TRAP region=10 density=1e20 acceptor e.level=0.80 sign=1e-15 sigp=1e-15
+
+###PROBE NAME=Gateedge_Field FIELD dir=270 x=0.7495  y=0.00008
+#PROBE NAME=FPedge_Field   FIELD dir=270 x=$Lfprmax y=(0+0.02)
+###PROBE NAME=Oxide_Field    FIELD dir=270 x=0.7477 y=-0.00015
+
+
+PROBE NAME=Gateedge_Field_Y FIELD dir=270 x=6  y= (-0.17+0.05+0.00015)
+PROBE NAME=Gateedge_Field_X FIELD dir=180 x=6  y= (-0.17+0.05+0.00015)
+
+PROBE NAME=Oxide_Field_Y    FIELD dir=270 x=(6+0.25) y=0.002514
+PROBE NAME=Oxide_Field_X    FIELD dir=180 x=(6+0.25) y=0.002514
+
+#mobility region=6  mu1n.caug=20 mu2n.caug=25 mu1p.caug=1 mu2p.caug=1
+
+#method block newton climit=1e-10 maxtraps=8 itlimit=50 \
+		ir.tol=1.e-45 ix.tol=1.e-45 \
+		cx.tol=1.e-20 cr.tol=1.e-28 \
+		px.tol=1.e-20 pr.tol=1.e-35
+#METHOD newton
+#method climit=1e-20 maxtraps=30 itlimit=30 \
+       ir.tol=1.e-35 ix.tol=1.e-35 \
+       px.tol=1.e-22 pr.tol=1.e-43 \
+       cx.tol=1.e-22 cr.tol=1.e-35
+METHOD newton trap maxtrap=30 climit=1e-4 \
+  weak=1 itlimit=50
+ # autostep=1e-2  \
+      carr.limit=1e18   damping.factor=0.8
+
+
+OUTPUT con.band val.band FLOWLINES EX.VELO EY.VELO e.line e.mobility h.mobility band.param band.temp
+
+
+#  Wf'$workf'_C'$Cchannel'_W'$Cwell'_U'$Cuid'_S'$Csub'
+#  Lgs'$Lgs'_FPr'$FPr'
+#### SOURCE-OFF STATIC PREFLIGHT SEQUENCE ####
+
+# Establish VGS=0 and preserve the original gate-state OUTF/LOAD semantics.
+solve init
+solve prev
+solve vgate=0 vfinal=0 name=gate \
+  outf=OFAT_$arm_gate_vg0_state.str onefile
+load infile=OFAT_$arm_gate_vg0_state.str
+
+# Reuse the convergent BV ramp only up to the selected SEB bias.
+solve vdrain=0.01
+solve vdrain=0.1
+solve vdrain=0.5
+solve vdrain=1 vstep=1 vfinal=10 name=drain
+solve vstep=5 vfinal=50 name=drain
+solve vstep=10 vfinal=200 name=drain
+save outf=OFAT_$arm_static_200V.str
+solve vstep=15 vfinal=300 name=drain
+
+save outf=OFAT_$arm_static_300V_sourceoff.str
+
+# Five repeated accepted source-off records at the same VGS/VDS state.
+# Runtime evidence must prove that all five were accepted and remained at 300 V.
+log outf=OFAT_$arm_static_300V_sourceoff_baseline.log
+solve previous
+solve previous
+solve previous
+solve previous
+solve previous
+log off
+
+# Future transient output contract (comments only; not executable in this stage):
+# accepted terminal-current records at 10, 20, 50 and 100 us;
+# identical STR fields/times in Arms A and B; plotting occurs outside the runner.
+# No floor/KCL/trend/charge-integration/classification logic belongs in this deck.
+
+# Static comparison points to extract from the accepted 300 V STR:
+# gate lower edge (4.0,-0.12), thick-gate FP end (6.0,-0.17),
+# and future strike center (10.25,0.30): potential and |E|.
+
+# === SHARED STATIC PHYSICS AND BIAS BLOCK END ===
+quit

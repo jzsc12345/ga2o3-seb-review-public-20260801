@@ -1,0 +1,16 @@
+--- a/04_reports/attachments/20260806_bv_to_seb_ofat/next_stage/OFAT_B_bv_direct_atlas_static300_sourceoff_preflight.in
++++ b/04_reports/attachments/20260806_bv_to_seb_ofat/stage_packets_20260807/packets/OFAT_B2_sourceoff_300V_static_packet.in
+@@ -1,3 +1,13 @@
++# DERIVED_STAGE_PACKET / NOT_RUNTIME_VALIDATED / B2
++# Stage: SOURCE_OFF_300V_STATIC_PACKET
++# Source candidate: 04_reports/attachments/20260806_bv_to_seb_ofat/next_stage/OFAT_B_bv_direct_atlas_static300_sourceoff_preflight.in
++# Source fixed commit: 994d83bc444e7a17695f003b65f0d90da25c8023
++# Retained original line ranges: 1-228
++# Deleted later/non-stage ranges: none
++# Added active control lines: none
++# LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
++# NO SSH EXECUTION / NO VM UPLOAD / NO DECKBUILD EXECUTION / NO DEVEDIT EXECUTION / NO ATLAS EXECUTION / NO 300V STATIC EXECUTION / NO SEU TRANSIENT / NO PAIRED TRANSIENT / NO AUTO_FIX AFTER FAILURE / NO AUTOMATIC EXPANSION OF AUTHORIZATION
++
+ # Candidate identity: OFAT Arm B / direct ATLAS mesh route
+ # Provenance: mechanical transcription of the original bv.in coordinate contract.
+ # Status: CONDITIONAL_NOT_DEMONSTRATED / NOT_RUNTIME_VALIDATED
