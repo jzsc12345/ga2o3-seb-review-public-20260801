@@ -1,0 +1,29 @@
+{
+  "case": "VM_SEB_STAGE1",
+  "str": "E:\\silvaco2425\\bulk\\str\\VICTORYMESH_SEB_20260807\\VM_SEB_STAGE1_conformal_baseline.str",
+  "points": 38359,
+  "triangles": 75458,
+  "obtuse_triangles_computed": 0,
+  "runtime_region_records": 13,
+  "semantic_region_count": 12,
+  "electrode_count": 3,
+  "thick_gate_preserved": true,
+  "roi": {
+    "xmin_um": 10.1,
+    "xmax_um": 10.4,
+    "ymin_um": 0.0,
+    "ymax_um": 0.6
+  },
+  "roi_intersecting_triangles": 659,
+  "track_max_dx_um": 0.03660471163441947,
+  "track_max_dy_um": 0.040000000000000036,
+  "xion_um": 10.25,
+  "full_y_continuity": true,
+  "max_y_gap_um": 0.0,
+  "merged_y_intervals": [
+    [
+      0.0,
+      0.6
+    ]
+  ]
+}

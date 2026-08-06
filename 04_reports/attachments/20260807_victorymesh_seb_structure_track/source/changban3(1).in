@@ -1,0 +1,251 @@
+# ================================================================
+# Parameterized three-layer dielectric field-plate geometry deck
+# DevEdit builds the structure, then Victory Mesh remeshes it.
+#
+# Dielectric stack under field plate:
+#   bottom: Al2O3
+#   middle: SiO2
+#   top:    Si3N4
+#
+# The two dielectric/dielectric interfaces are horizontal.
+# Their left endpoints are constrained to lie on the first field-plate slope:
+#   (2.5, 0) -> (2.95, y_fp_top_knee)
+# ================================================================
+
+# ------------------------------------------------------------
+# 1. Field-plate vertical shift
+# ------------------------------------------------------------
+set fp_y_shift=0
+
+# Original starred coordinates
+set y_fp_top_knee=-0.61+$fp_y_shift
+set y_fp_top_flat=-0.775+$fp_y_shift
+set y_fp_bottom_knee=-0.81+$fp_y_shift
+set y_fp_bottom_flat=-0.975+$fp_y_shift
+
+# ------------------------------------------------------------
+# 2. Three-layer dielectric stack parameters
+#
+# Units: um
+#
+# t_al2o3:
+#   Al2O3 thickness from Ga2O3 surface
+#
+# t_sio2_mid:
+#   middle SiO2 thickness
+#
+# Requirement:
+#   t_al2o3 + t_sio2_mid < 0.61 - fp_y_shift
+#
+# This guarantees both interfaces are inside the first slope height.
+# ------------------------------------------------------------
+set t_al2o3=0.105
+set t_sio2_mid=0.299
+
+# ------------------------------------------------------------
+# 3. Derived geometry parameters
+# ------------------------------------------------------------
+
+# First field-plate slope:
+# from (2.5, 0) to (2.95, y_fp_top_knee)
+set x_fp_start=2.5
+set x_fp_knee=2.95
+set fp_first_dx=0.45
+set fp_first_depth=0.61-$fp_y_shift
+
+# Interface depths from Ga2O3 surface, positive values
+set t_if12=$t_al2o3
+set t_if23=$t_al2o3+$t_sio2_mid
+
+# Interface y coordinates, negative because dielectric is above y=0
+set y_if_al2o3_sio2=0-$t_if12
+set y_if_sio2_si3n4=0-$t_if23
+
+# Interface x coordinates on the first slope
+set x_if_al2o3_sio2=$x_fp_start+$fp_first_dx*$t_if12/$fp_first_depth
+set x_if_sio2_si3n4=$x_fp_start+$fp_first_dx*$t_if23/$fp_first_depth
+
+# ================================================================
+# DevEdit structure generation
+# ================================================================
+
+go devedit
+
+DevEdit version="2.0" library="1.14"
+
+work.area x1=0 y1=-1.1 x2=5 y2=15.5
+
+# ------------------------------------------------------------
+# Region 1: n- epilayer
+# ------------------------------------------------------------
+region reg=1 name=n_epilayer mat="UD1(BetaGa2O3)" color=0xffcccc \
+    polygon="0,0 5,0 5,10 0,10 0,0"
+
+impurity id=1 region.id=1 imp=Phosphorus peak.value=2e16 ref.value=2e16 comb.func=Multiply
+
+constr.mesh region=1 default
+
+# ------------------------------------------------------------
+# Region 2: n+ substrate
+# ------------------------------------------------------------
+region reg=2 name=n_substrate mat="UD1(BetaGa2O3)" color=0x9999ff \
+    polygon="0,10 5,10 5,15 0,15 0,10"
+
+impurity id=1 region.id=2 imp=Phosphorus peak.value=5e18 ref.value=5e18 comb.func=Multiply
+
+constr.mesh region=2 default
+
+# ------------------------------------------------------------
+# Region 3: Anode / field plate metal, Nickel
+# ------------------------------------------------------------
+region reg=3 name=anode mat=Nickel elec.id=1 work.func=5.1 color=0xffff00 \
+    polygon="0,0 2.5,0 2.95,$y_fp_top_knee 3.5,$y_fp_top_flat 5,$y_fp_top_flat 5,$y_fp_bottom_flat 3.5,$y_fp_bottom_flat 2.95,$y_fp_bottom_knee 2.5,-0.2 0,-0.2 0,0"
+
+constr.mesh region=3 default
+
+# ------------------------------------------------------------
+# Region 4: Bottom dielectric, Al2O3
+# From Ga2O3 surface to Al2O3/SiO2 interface
+# ------------------------------------------------------------
+region reg=4 name=al2o3 mat=Al2O3 color=0x66ccff \
+    polygon="2.5,0 5,0 5,$y_if_al2o3_sio2 $x_if_al2o3_sio2,$y_if_al2o3_sio2 2.5,0"
+
+constr.mesh region=4 default
+
+# ------------------------------------------------------------
+# Region 6: Middle dielectric, SiO2
+# From Al2O3/SiO2 interface to SiO2/Si3N4 interface
+# ------------------------------------------------------------
+region reg=6 name=sio2 mat=SiO2 color=0x00ff00 \
+    polygon="$x_if_al2o3_sio2,$y_if_al2o3_sio2 5,$y_if_al2o3_sio2 5,$y_if_sio2_si3n4 $x_if_sio2_si3n4,$y_if_sio2_si3n4 $x_if_al2o3_sio2,$y_if_al2o3_sio2"
+
+constr.mesh region=6 default
+
+# ------------------------------------------------------------
+# Region 7: Top dielectric, Si3N4
+# From SiO2/Si3N4 interface to metal field plate
+#
+# If your Silvaco version does not recognize mat=Si3N4,
+# try changing mat=Si3N4 to mat=Nitride.
+# ------------------------------------------------------------
+region reg=7 name=si3n4 mat=Si3N4 color=0xcc66ff \
+    polygon="$x_if_sio2_si3n4,$y_if_sio2_si3n4 5,$y_if_sio2_si3n4 5,$y_fp_top_flat 3.5,$y_fp_top_flat 2.95,$y_fp_top_knee $x_if_sio2_si3n4,$y_if_sio2_si3n4"
+
+constr.mesh region=7 default
+
+# ------------------------------------------------------------
+# Region 5: Cathode metal, Aluminum
+# ------------------------------------------------------------
+region reg=5 name=cathode mat=Aluminum elec.id=2 work.func=0 color=0xffc8c8 \
+    polygon="0,15 5,15 5,15.1 0,15.1 0,15"
+
+constr.mesh region=5 default
+
+# ------------------------------------------------------------
+# DevEdit mesh settings
+# ------------------------------------------------------------
+base.mesh height=0.5 width=0.25
+
+bound.cond apply max.slope=28 max.ratio=50 rnd.unit=0.001 line.straightening=1 align.points when=automatic
+
+constr.mesh max.angle=90 max.ratio=300 max.height=2.0 max.width=0.5 \
+    min.height=0.001 min.width=0.001
+
+constr.mesh type=Semiconductor default
+constr.mesh type=Insulator default
+constr.mesh type=Metal default
+constr.mesh type=Other default
+
+Mesh Mode=MeshBuild
+
+structure outf=devedit_raw_fp_yshift.str
+
+# ================================================================
+# Victory Mesh remeshing
+# ================================================================
+
+go victorymesh simflags="-P 4"
+
+load in="devedit_raw_fp_yshift.str"
+
+info
+info fields="*"
+
+# ------------------------------------------------------------
+# Local x-direction mesh constraints
+# ------------------------------------------------------------
+line x location=0.0 spacing=0.20
+line x location=2.3 spacing=0.08
+line x location=2.5 spacing=0.025
+line x location=$x_if_al2o3_sio2 spacing=0.015
+line x location=$x_if_sio2_si3n4 spacing=0.015
+line x location=2.95 spacing=0.025
+line x location=3.5 spacing=0.025
+line x location=3.7 spacing=0.08
+line x location=5.0 spacing=0.20
+
+# ------------------------------------------------------------
+# Local y-direction mesh constraints
+# ------------------------------------------------------------
+line y location=$y_fp_bottom_flat spacing=0.025
+line y location=$y_fp_bottom_knee spacing=0.025
+line y location=$y_fp_top_flat spacing=0.025
+line y location=$y_fp_top_knee spacing=0.025
+line y location=$y_if_al2o3_sio2 spacing=0.010
+line y location=$y_if_sio2_si3n4 spacing=0.010
+line y location=-0.20 spacing=0.025
+line y location=0.0 spacing=0.010
+line y location=0.10 spacing=0.020
+line y location=0.50 spacing=0.050
+line y location=9.80 spacing=0.050
+line y location=10.0 spacing=0.050
+line y location=10.2 spacing=0.080
+line y location=15.0 spacing=0.20
+
+# ------------------------------------------------------------
+# Remesh
+# ------------------------------------------------------------
+remesh delaunay
+
+# ------------------------------------------------------------
+# Global boundary refinement
+# ------------------------------------------------------------
+refine max.distance=0.001 regions="*"
+
+# ------------------------------------------------------------
+# Region-based refinement
+# ------------------------------------------------------------
+refine max.size=0.15 regions="n_epilayer,n_substrate"
+refine max.size=0.025 regions="al2o3,sio2,si3n4,anode"
+refine max.size=0.20 regions="cathode"
+
+# ------------------------------------------------------------
+# Interface refinement
+# ------------------------------------------------------------
+
+# Al2O3 / Ga2O3 interface
+refine regions="*" max.interface.size=0.010 \
+    max.interface.distance=0.20 max.interface.distance.size=0.06 \
+    interface.regions="al2o3,n_epilayer" grading=linear
+
+# Al2O3 / SiO2 interface
+refine regions="*" max.interface.size=0.010 \
+    max.interface.distance=0.20 max.interface.distance.size=0.06 \
+    interface.regions="al2o3,sio2" grading=linear
+
+# SiO2 / Si3N4 interface
+refine regions="*" max.interface.size=0.010 \
+    max.interface.distance=0.20 max.interface.distance.size=0.06 \
+    interface.regions="sio2,si3n4" grading=linear
+
+# Si3N4 / anode metal interface
+refine regions="*" max.interface.size=0.012 \
+    max.interface.distance=0.30 max.interface.distance.size=0.08 \
+    interface.regions="si3n4,anode" grading=linear
+
+# ------------------------------------------------------------
+# Save ATLAS-compatible structure
+# ------------------------------------------------------------
+save out="Ga2O3SBD2_vm_delaunay_fp_yshift_3dielectric" mode=atlas
+
+quit

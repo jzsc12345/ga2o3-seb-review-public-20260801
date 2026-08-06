@@ -1,0 +1,75 @@
+diff --git "a/D:\\SILVACO_LOCAL\\decks\\PREFLIGHT_VICTORYMESH_SEB_STAGE1_conformal_baseline.in" "b/D:\\SILVACO_LOCAL\\decks\\PREFLIGHT_VICTORYMESH_SEB_STAGE2_conformal_x10p25.in"
+--- "a/D:\\SILVACO_LOCAL\\decks\\PREFLIGHT_VICTORYMESH_SEB_STAGE1_conformal_baseline.in"
++++ "b/D:\\SILVACO_LOCAL\\decks\\PREFLIGHT_VICTORYMESH_SEB_STAGE2_conformal_x10p25.in"
+@@ -6,9 +6,11 @@
+ # NO PAIRED_TRANSIENT
+ # NO AUTOMATIC_EXPANSION_OF_AUTHORIZATION
+ #
+-# Derived Stage 1 deck. The DevEdit structure body below is copied from the
++# Derived Stage 2 deck. The DevEdit structure body below is copied from the
+ # user-supplied str.txt. Only the raw STR output name and the appended
+-# Victory Mesh conformal block are new.
++# Victory Mesh conformal device-grid block are new.
++# Frozen track contract: xion=10.25 um, r=0.05 um,
++# ROI x=10.10..10.40 um, y=0.00..0.60 um.
+ 
+ #go DevEdit 
+ go devedit
+@@ -210,21 +212,22 @@ base.mesh height=10 width=10
+ bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+ 
+ 
+-structure outf=VM_SEB_STAGE1_devedit_raw.str
++structure outf=VM_SEB_STAGE2_devedit_raw.str
+ 
+ # ----------------------------------------------------------------------
+-# Victory Mesh Stage 1: baseline conformal remesh.
+-# All LINE locations are existing structure/interface coordinates from
+-# str.txt. No device region, electrode, impurity, or material is changed.
++# Victory Mesh Stage 2: same conformal route plus the frozen track grid.
++# Outside x=10.10..10.40 um, x spacing remains the Stage 1 baseline.
++# The conformal Cartesian grid necessarily shares y planes across x, but
++# does not impose the fine track x spacing on the rest of the device.
+ # ----------------------------------------------------------------------
+ go victorymesh simflags="-P 4"
+ 
+-load in="VM_SEB_STAGE1_devedit_raw.str"
++load in="VM_SEB_STAGE2_devedit_raw.str"
+ 
+ info
+ info fields="*"
+ 
+-# Device-grid planes at every x-directed geometry boundary.
++# Baseline geometry-boundary planes, unchanged from Stage 1.
+ line x location=0.0  spacing=0.10
+ line x location=0.5  spacing=0.02
+ line x location=1.0  spacing=0.02
+@@ -236,7 +239,12 @@ line x location=14.0 spacing=0.05
+ line x location=14.5 spacing=0.02
+ line x location=15.0 spacing=0.10
+ 
+-# Device-grid planes at every y-directed geometry/interface boundary.
++# Track x planes: radius is resolved by multiple columns, not one center line.
++line x location=10.10 spacing=0.015
++line x location=10.25 spacing=0.015
++line x location=10.40 spacing=0.015
++
++# Geometry/interface y planes; the semiconductor depth is capped at 0.015 um.
+ line y location=-0.20 spacing=0.010
+ line y location=-0.18 spacing=0.005
+ line y location=-0.17 spacing=0.005
+@@ -246,11 +254,11 @@ line y location=-0.02 spacing=0.005
+ line y location=0.00  spacing=0.005
+ line y location=0.15  spacing=0.015
+ line y location=0.20  spacing=0.015
+-line y location=0.40  spacing=0.040
+-line y location=0.60  spacing=0.040
++line y location=0.40  spacing=0.015
++line y location=0.60  spacing=0.015
+ 
+ remesh conformal
+ 
+-save out="VM_SEB_STAGE1_conformal_baseline.str" mode=atlas
++save out="VM_SEB_STAGE2_conformal_track_x10p25.str" mode=atlas
+ 
+ quit
