@@ -1,6 +1,6 @@
 # RUN038–040、RUN096 与历史正确 SEB 案例的三端电流差异审计计划
 
-> 状态：REVISION_2 / WEB_REVIEW_REQUIRED
+> 状态：REVISION_3 / WEB_REVIEW_REQUIRED
 > 性质：REPORT_ONLY / READ_ONLY
 > 授权边界：NO_SSH / NO_REMOTE / NO_SIMULATION / NO_DECK_CHANGE
 > 本文件只供网页端评审下一步，不授权执行任何仿真、远端读取或 deck 修改。
@@ -22,7 +22,7 @@
 
 这里的“相等”均指**电流**大小接近、符号相反，不是漏极电压等于栅极电压。
 
-## 2. 网页端第一轮裁决及本版响应
+## 2. 网页端两轮裁决及本版响应
 
 网页端第一轮结论为 `REVISE`，本版按以下口径修订：
 
@@ -32,10 +32,49 @@
 - 完整审计需要历史正确案例的原始日志和 STR，因此未来需要单独批准只读远端读取；
 - 当前仍为计划评审，**没有** SSH、远端读取、仿真或修改授权。
 
-## 3. 六类裁决必须分开
+网页端第二轮仍为 `REVISE`，Revision 3 继续补齐：
 
-每个 RUN、每个待解释现象均给出一个主裁决；可附次级事实标签，但不得把不同原因合并成
-“时间或输出不够”。
+- 先判 `PHASE2_*` 观察状态，再按固定优先级选择六类失败解释；
+- 所有电流必须先完成 A/µm、宽度、符号和电极映射，再计算基线/KCL；
+- 明确 `raw_KCL<=5%`、`err_KCL<=10%` 的 PASS 门；
+- 三连续点之外，必须满足历史可比案例给出的绝对保持时间；
+- 阶段二强制门收敛为“端电流漏—源配对 + 基线增强电流路径连通”；
+- 电场、impact 和温度改为独立机制证据，不要求每一帧全部同时成立。
+
+## 3. 先判观察状态，再按固定顺序选择失败解释
+
+本审计使用两层结果，禁止把“是否观察到阶段二”和“为什么没有观察到”写成同一标签。
+
+### 3.0 第一层：阶段二观察状态
+
+每个 RUN 必须先给出且只给出一个观察状态：
+
+- `PHASE2_CONFIRMED`：第 6 节规定的端电流配对、源—漏电流路径连通和绝对持续时间三门
+  同时通过；
+- `PHASE2_NOT_CONFIRMED`：证据足以检查三门，但至少一门明确失败；
+- `PHASE2_NOT_EVALUABLE`：单位、电极映射、accepted 输出、空间帧或参考持续时间不足，
+  无法完成三门检查。
+
+只有观察状态不是 `PHASE2_CONFIRMED` 时，才进入第二层六类失败解释。若阶段二已经确认，
+第二层写 `PRIMARY_FAILURE_EXPLANATION=NONE`；配置或数值异常只能作为有效性警告，不得抹去
+已经观察到的阶段二事实。
+
+### 3.0.1 第二层固定决策顺序
+
+按下面顺序检查，一旦某一项满足就把它作为**唯一主解释**；其他同时存在的事实放入
+`SECONDARY_FLAGS`：
+
+1. `CONFIGURATION_ERROR_CONFIRMED`；
+2. `NUMERICAL_TERMINATION`；
+3. `OUTPUT_SAMPLING_INSUFFICIENT`；
+4. `TIME_WINDOW_INSUFFICIENT`；
+5. `PHYSICS_CONFIGURATION_CANDIDATE`；
+6. `NOT_EVALUABLE`。
+
+这个顺序的含义是：先排除会让数据集本身失效的确定配置错误，再判断是否被数值中止，
+然后区分“运行了但没保存够”“保存够但真实窗口太短”“窗口和输出都够但物理没有形成”，
+最后才使用不可评估。比如一个 RUN 同时存在电极映射错误和 `Cannot trap`，主解释必须是
+`CONFIGURATION_ERROR_CONFIRMED`，`NUMERICAL_TERMINATION` 只能写入次级标志。
 
 ### 3.1 `TIME_WINDOW_INSUFFICIENT`
 
@@ -54,7 +93,8 @@
 
 仿真实际时间可能已经覆盖目标阶段，但 accepted 日志点、端电流输出或 STR 保存过稀，无法
 检验持续性或空间通路。必须指出缺的是哪一个时间区间、哪一种量和哪几帧 STR；不得把文件名
-中的请求时间当作已输出时间。
+中的请求时间当作已输出时间。该类只在运行时间本身可核实且没有更高优先级配置/数值失败时
+使用；因此它不再与兜底的 `NOT_EVALUABLE` 重叠。
 
 ### 3.3 `NUMERICAL_TERMINATION`
 
@@ -90,7 +130,7 @@ SET、SEB 或时间窗不足。
 ### 3.6 `NOT_EVALUABLE`
 
 原始日志/STR 缺失、参考案例不可比、信号低于噪声门、时间点不足或多项证据互相冲突时使用。
-它是允许且优先于猜测的结论。
+只有前五类均不满足时才把它作为主解释。它是允许且优先于猜测的结论。
 
 ## 4. 历史正确案例的可比性与充分时间窗
 
@@ -116,28 +156,61 @@ SET、SEB 或时间窗不足。
   `t_phase2,start + t_phase2,hold`；
 - 仍须检查待审 RUN 自身终点趋势，不能只按钟表时间机械裁决。
 
-## 5. 电流定义、基线、噪声门与持续性
+## 5. 单位归一化、电流定义、基线、KCL 与持续性
 
-### 5.1 同时保留两种电流
+### 5.1 单位与电极映射是所有计算的前置硬门
 
-1. **原始电流** `Ik(t)`：检查符号、单位、电极列映射和原始 KCL；
+计算基线、MAD、信号门、配对误差或 KCL 之前，必须对 source、drain、gate 和 gate_fp
+逐列登记：
+
+| 字段 | 必须记录的内容 |
+|---|---|
+| 原始列名 | 日志/CSV 中的原始名称，不自行重命名后隐去 |
+| 原始单位 | A、A/µm、A/mm、mA/mm 或其他运行时单位 |
+| 电极映射 | 原始列对应的实际 electrode name/number，gate_fp 是否 common=gate |
+| 符号约定 | 正电流流入还是流出器件，并用一个 accepted 静态点核对 |
+| 宽度来源 | deck 的 `mesh width`、日志打印或原始案例说明；必须给出处 |
+| 换算公式 | 原始数值如何得到 A/µm |
+
+允许的常见换算写成显式公式：
+
+```text
+原始为 A，总器件宽度 W_um：I_Aum = I_A / W_um
+原始为 A/mm：              I_Aum = I_Amm * 1e-3
+原始为 mA/mm：             I_Aum = I_mAmm * 1e-6
+原始已为 A/µm：            I_Aum = I_original
+```
+
+如果单位、宽度或电极映射任何一项无法核实，则
+`PHASE2_OBSERVATION_STATUS=PHASE2_NOT_EVALUABLE`，主失败解释按第 3.0.1 节决策树选择；不得继续
+计算看似精确的基线或误差。
+
+若 gate 与 gate_fp 在输出中是两个独立电流列但电学上属于同一栅节点，则先分别完成单位和
+符号核对，再定义 `Ig=Igate+Igate_fp`；若运行时已经合并为一个 common-gate 电流列，则禁止
+重复相加。该选择必须在审计表中显式记录。
+
+### 5.2 同时保留两种电流
+
+完成 A/µm 归一化后，同时保留：
+
+1. **原始电流** `Ik(t)`：检查符号、电极映射和原始 KCL；
 2. **基线扣除电流** `ΔIk(t)=Ik(t)-Ik,base`：识别粒子引起的阶段一、阶段二。
 
 任何图和 CSV 都必须同时保留原始列与基线扣除列，不允许只展示绝对值后判断方向。
 
-### 5.2 打击前基线窗口
+### 5.3 打击前基线窗口
 
 基线必须来自所有静态偏压已经到位、离子源尚未开启的 accepted 点：
 
 - 优先取紧邻打击前的最后 5 个连续 accepted 点；
 - 若只有 3–4 个，则全部使用并标记 `BASELINE_SPARSE`；
-- 少于 3 个则该 RUN 的基线扣除电流主裁决为 `NOT_EVALUABLE`；
+- 少于 3 个则基线与基线扣除指标写 `NOT_EVALUABLE`；
 - `Ik,base` 取该窗口的中位数；
 - 基线波动取 `MADk = median(|Ik-Ik,base|)`。
 
-### 5.3 信号门与近零分母
+### 5.4 信号门与近零分母
 
-每个端子的信号门定义为：
+每个端子的增量信号门定义为：
 
 ```text
 floor_k = max(1e-12 A/µm, 5 * MADk)
@@ -145,9 +218,17 @@ floor_k = max(1e-12 A/µm, 5 * MADk)
 
 一对电流的幅度门为 `floor_pair=max(floor_a,floor_b)`。若
 `max(|ΔIa|,|ΔIb|) < floor_pair`，该点的“大小接近、方向相反”写
-`NOT_EVALUABLE`，不计算相对误差。三端 KCL 的分母门同理取三个端子信号门的最大值。
+`NOT_EVALUABLE`，不计算相对误差。三端增量 KCL 的分母门取三个端子信号门的最大值。
 
-### 5.4 误差量
+原始 KCL 使用独立幅度门：
+
+```text
+raw_floor = max(1e-12 A/µm, 5 * max(MADs, MADd, MADg))
+```
+
+若三个原始电流最大幅度低于 `raw_floor`，原始 KCL 只写 `NOT_EVALUABLE`。
+
+### 5.5 误差量与数值 PASS 门
 
 ```text
 raw_KCL = |Id + Is + Ig| / max(|Id|, |Is|, |Ig|)
@@ -156,17 +237,35 @@ err_DS  = |ΔId + ΔIs| / max(|ΔId|, |ΔIs|)
 err_KCL = |ΔId + ΔIs + ΔIg| / max(|ΔId|, |ΔIs|, |ΔIg|)
 ```
 
-只有越过相应信号门后，10% 容差才生效。
+上述公式适用于确认只有 source、drain、合并后的 gate 三个电学端子的 RUN。若运行时存在独立
+substrate、body 或未合并的 field-plate 电学端子，KCL 求和必须纳入全部端子；漏掉端子时不得
+用三端公式判 FAIL。
 
-### 5.5 持续性
+在越过相应信号门后：
 
-“大小接近、方向相反”必须：
+- `raw_KCL <= 0.05` 才记 `RAW_KCL_PASS`；
+- `err_KCL <= 0.10` 才记 `DELTA_KCL_PASS`；
+- `err_DG <= 0.10` 或 `err_DS <= 0.10` 才能进入对应电流配对候选。
 
-- 在至少 3 个连续 accepted 点成立；并且
-- 以 `τ=t-tstrike` 计，首末点满足 `τ_end/τ_start >= 2`。
+原始 KCL 采用更紧的 5% 门，是为了先排除列映射、符号或漏掉 gate_fp 端子的错误；增量 KCL
+保留 10% 门以容纳基线扣除噪声。未过门必须报告实际比值，不得只写“基本守恒”。
 
-若输出过稀而无法满足这两个条件，应裁决为 `OUTPUT_SAMPLING_INSUFFICIENT`，不得用单个峰值
-或单个终点代替持续阶段。
+### 5.6 持续性：三点门 + 绝对保持时间
+
+“大小接近、方向相反”必须同时满足：
+
+1. 至少 3 个连续 accepted 点；
+2. 连续成立的绝对时间跨度 `T_hold,candidate` 不小于可比历史正确案例的
+   `T_hold,reference`；
+3. 这些点的原始与增量 KCL 均通过第 5.5 节门槛。
+
+`τ_end/τ_start >= 2` 只保留为采样跨度的辅助信息，**不得**单独作为持续性门，因为 1–2 ps
+也可能满足倍数条件却不构成持续路径。
+
+`T_hold,reference` 必须在读取历史原始日志/STR、通过第 4 节可比性检查后预先登记，再查看
+候选 RUN 的阶段二帧。若当前还没有可比参考保持时间，则写
+`PERSISTENCE_DURATION_NOT_EVALUABLE`，不得确认 `PHASE2_CONFIRMED`。输出采样本身不足时，按
+第 3.0.1 节优先裁决 `OUTPUT_SAMPLING_INSUFFICIENT`。
 
 ## 6. 两个阶段的端电流与空间联合判据
 
@@ -174,32 +273,84 @@ err_KCL = |ΔId + ΔIs + ΔIg| / max(|ΔId|, |ΔIs|, |ΔIg|)
 
 端电流条件：
 
-- `err_DG <= 0.10` 且满足信号门和持续性；
+- `err_DG <= 0.10` 且满足第 5 节信号门；
 - 源极增量响应显著小于漏—栅配对；
-- 原始 KCL 与电极映射检查通过。
+- `RAW_KCL_PASS` 与 `DELTA_KCL_PASS`；
+- 电流配对至少连续 3 个 accepted 点。
 
 空间证据至少要显示粒子产生载流子、电子/空穴分离和栅极响应。阶段一成立不代表 deck
 错误，也不代表已经发生 SEB。
 
-### 6.2 阶段二：源—漏持续导电路径
+### 6.2 阶段二的两个强制门
 
-端电流必要条件：
+`PHASE2_CONFIRMED` 必须同时通过以下两个强制门，并通过第 5.6 节绝对保持时间门：
 
-- `err_DS <= 0.10` 且满足信号门和持续性；
-- 栅极增量相对其打击后峰值持续回落；
-- 原始与基线扣除 KCL 均通过。
+#### 强制门 A：端电流配对
 
-这些条件只证明端子电流配对，**不能单独证明**源—漏导电丝。阶段二还必须在至少 3 个连续
-accepted STR 中同时具备：
+- `err_DS <= 0.10` 且越过信号门；
+- 栅极增量相对打击后峰值持续回落；
+- `RAW_KCL_PASS` 与 `DELTA_KCL_PASS`；
+- 至少 3 个连续 accepted 点成立。
 
-1. 电子浓度或总/电子电流密度的连通分量从源接触边界延伸到漏接触边界；
-2. 栅区响应回落，不再由 gate 电流承担主要电荷收集；
-3. 电场分布显示源—漏路径及栅/场板附近场重分布；
-4. impact 区域的位置、面积和峰值随时间可追踪；
-5. 晶格温度热点与电流路径空间重合，其增长、平台或衰减趋势可追踪。
+#### 强制门 B：源—漏电流路径连通
 
-空间连通阈值不得事后挑选。审计时应从打击前同场量的基线与数值底噪声明阈值，并同时输出
-阈值敏感性。若缺少连续 STR，主裁决为 `OUTPUT_SAMPLING_INSUFFICIENT`。
+至少 3 个连续 accepted STR 中，基线增强后的 `|Je|` 或 `|Jtotal|` 掩膜必须存在一个从
+source 半导体接触边界连到 drain 半导体接触边界的连通分量。**绝对电子浓度高**不能单独
+代替电流路径连通。
+
+### 6.3 预先冻结的空间连通阈值与敏感性
+
+在查看候选时刻帧之前，使用打击前 STR 定义每个网格位置的 `Jpre=|J(tpre)|`。电流路径
+掩膜必须同时满足绝对门和相对增强门：
+
+```text
+mask_J = (|J(t)| >= J_abs) AND
+         (|J(t)| / max(Jpre, J_noise) >= R_J)
+```
+
+本轮预声明三档，只允许报告三档敏感性，不得看完候选图再改阈值：
+
+| 档位 | `J_abs` | `J_noise` | `R_J` |
+|---|---:|---:|---:|
+| loose | `1e-4 A/cm²` | `1e-12 A/cm²` | 3 |
+| nominal（主裁决） | `1e-3 A/cm²` | `1e-12 A/cm²` | 10 |
+| strict | `1e-2 A/cm²` | `1e-12 A/cm²` | 30 |
+
+主裁决使用 nominal 档。只有 nominal 档连续连通才通过强制门 B；loose/strict 只用于说明
+阈值敏感性。若打击前 STR 的数值噪声高于 `1e-12 A/cm²`，则 `J_noise` 改为打击前
+非接触体区 `|J|` 的第 99 百分位，并在查看候选帧前冻结该数值。
+
+载流子浓度仅作通路佐证，采用同样的“基线增强”而不是绝对浓度：
+
+```text
+mask_n = (n(t) - npre >= n_abs) AND
+         (n(t) / max(npre, n_noise) >= R_n)
+```
+
+预声明敏感性为：
+
+| 档位 | `n_abs` | `n_noise` | `R_n` |
+|---|---:|---:|---:|
+| loose | `1e10 cm^-3` | `1 cm^-3` | 3 |
+| nominal | `1e11 cm^-3` | `1 cm^-3` | 10 |
+| strict | `1e12 cm^-3` | `1 cm^-3` | 30 |
+
+`mask_n` 可以证明载流子增强区，但不能替代 nominal `mask_J` 的源—漏连通门。
+
+### 6.4 机制证据与阶段二观察状态分开
+
+以下三项是解释 SEB 机理强弱的附加证据，不要求它们在每一帧同时成立，也不作为
+`PHASE2_CONFIRMED` 的强制门：
+
+- `E_FIELD_REDISTRIBUTION_SEEN`：电场峰值或高场区相对打击前发生可追踪重分布；
+- `IMPACT_EVOLUTION_SEEN`：impact 峰值、面积或位置出现持续增长/迁移/衰减；
+- `THERMAL_OVERLAP_SEEN`：晶格温度热点与已确认电流路径存在空间重合并可追踪。
+
+每项应分别报告 `SEEN / NOT_SEEN / NOT_EVALUABLE`。由此可以出现“阶段二电流路径已确认，
+但热正反馈未确认”的合法结果，而不强迫所有五种场量每帧同时通过。
+
+若缺少连续 STR，强制门 B 不可评估，并按第 3.0.1 节优先裁决
+`OUTPUT_SAMPLING_INSUFFICIENT`。
 
 ## 7. 终点趋势判据
 
@@ -214,14 +365,20 @@ accepted STR 中同时具备：
 
 裁决规则：
 
-- 源极电流、载流子通路、impact 或温度仍连续朝阶段二发展，且计算正常到达窗口末端：只可列
-  `TIME_WINDOW_INSUFFICIENT_CANDIDATE`；有可比历史时间锚后才升级为
-  `TIME_WINDOW_INSUFFICIENT`；
-- 上述量均已连续回落并稳定接近基线，空间上也没有源—漏连通路径：列
+- 强制门 A、B 和绝对保持时间门全部通过：观察状态为 `PHASE2_CONFIRMED`，不再分配失败
+  主解释；
+- 源极电流或 `mask_J` 连通量仍连续朝阶段二发展，且计算正常到达窗口末端：有可比历史
+  时间锚时按实际窗口裁决 `TIME_WINDOW_INSUFFICIENT`；无可比时间锚时观察状态为
+  `PHASE2_NOT_EVALUABLE`、主解释为 `NOT_EVALUABLE`，仅把
+  `TIME_WINDOW_INSUFFICIENT_CANDIDATE` 放入次级标志；
+- 上述量均已连续回落并稳定接近基线，且已具备充分时间和输出但 nominal `mask_J` 没有
+  源—漏连通：观察状态为 `PHASE2_NOT_CONFIRMED`，主解释为
   `PHYSICS_CONFIGURATION_CANDIDATE`；
-- 末端受 `Cannot trap`、时间步坍缩或人工停止控制：主裁决
+- 末端受 `Cannot trap`、时间步坍缩或人工停止控制：若没有更高优先级确定配置错误，观察
+  状态按现有证据填 `PHASE2_NOT_CONFIRMED` 或 `PHASE2_NOT_EVALUABLE`，主解释为
   `NUMERICAL_TERMINATION`；
-- 只有一个末点或趋势互相矛盾：`NOT_EVALUABLE`。
+- 只有一个末点或趋势互相矛盾：按第 3.0.1 节检查更高优先级类别；均不适用时主解释为
+  `NOT_EVALUABLE`。
 
 ## 8. 已定位的本地证据路径
 
@@ -289,32 +446,40 @@ accepted STR 中同时具备：
 ## 9. 只读审计执行顺序（获批后才执行）
 
 1. 先盘点第 8 节本地文件，登记存在性、真实大小、来源和生成方式；
-2. 从原始日志识别 accepted VGS/VDS、打击时刻、accepted 时间、终止状态和电流列映射；
-3. 按第 5 节生成原始与基线扣除的 Is/Id/Ig、KCL、误差和信号门；
-4. 按第 7 节计算末端多点趋势；
-5. 对 RUN038–040、RUN096 的现有 STR 做三帧以上的电子、空穴、Jtotal/Je、电场、impact、
-   晶格温度空间连续性审计；
-6. 只把可直接证明的错误写 `CONFIGURATION_ERROR_CONFIRMED`，其余差异写候选；
-7. 本地审计完成后列出历史目录的最小只读清单；
-8. 用户另行批准只读 SSH 后，才读取历史正确案例的原始 deck/log/STR；
-9. 先做可比性表，再决定能否使用历史阶段二时间锚；
-10. 汇总六类主裁决与最多三个可证伪候选，不修改 deck、不启动仿真。
+2. 先完成每个端子的原始单位、宽度来源、符号和电极映射表，全部换算为 A/µm；
+3. 从原始日志识别 accepted VGS/VDS、打击时刻、accepted 时间和终止状态；
+4. 按第 5 节生成原始与基线扣除的 Is/Id/Ig、KCL、误差和信号门；
+5. 本地审计完成后列出历史目录的最小只读清单；
+6. 用户另行批准只读 SSH 后，才读取历史正确案例的原始 deck/log/STR；
+7. 完成第 4 节可比性表；若可比，先从历史案例冻结 `T_hold,reference`，若不可比则明确
+   `PERSISTENCE_DURATION_NOT_EVALUABLE`；
+8. 在打开候选时刻 STR 前，按第 6.3 节登记 loose/nominal/strict 阈值及实际 `J_noise`；
+9. 对 RUN038–040、RUN096 的现有 STR 做三帧以上的 `mask_J` 连通审计，并分开记录
+   carrier、电场、impact 和晶格温度机制证据；
+10. 按第 7 节计算末端多点趋势；
+11. 先给 `PHASE2_*` 观察状态，再严格按第 3.0.1 节顺序分配唯一主失败解释；
+12. 只把可直接证明的错误写 `CONFIGURATION_ERROR_CONFIRMED`，其余差异写候选；
+13. 汇总最多三个可证伪候选，不修改 deck、不启动仿真。
 
 ## 10. 交付物
 
 最终只读审计应包含：
 
 1. 五组输入与结果文件清单；
-2. 真实偏压、打击前基线、真实终止时间和求解状态表；
-3. 原始三端电流及原始 KCL 曲线；
-4. 基线扣除三端电流及 `err_DG/err_DS/err_KCL` 曲线；
-5. 每组基线 MAD、信号门、连续点数和持续时间表；
-6. 阶段一/阶段二端电流证据表；
-7. 至少三帧空间证据拼图和源—漏连通性表；
-8. 末端多点趋势表；
-9. 六类主裁决及其直接证据；
-10. 结构、源项、模型和数值差异候选表；
-11. 最多三个可证伪根因与未来最小单变量验证建议。
+2. 原始单位、宽度来源、电极/符号映射与 A/µm 换算表；
+3. 真实偏压、打击前基线、真实终止时间和求解状态表；
+4. 原始三端电流及 `raw_KCL` 曲线和 5% 门判读；
+5. 基线扣除三端电流及 `err_DG/err_DS/err_KCL` 曲线和 10% 门判读；
+6. 每组基线 MAD、信号门、连续点数、`T_hold,candidate` 与
+   `T_hold,reference` 表；
+7. 阶段一端电流证据及阶段二强制门 A 表；
+8. 至少三帧 nominal `mask_J` 源—漏连通图，以及 loose/strict 敏感性表；
+9. carrier、电场、impact、晶格温度机制证据的独立状态表；
+10. 末端多点趋势表；
+11. 每个 RUN 的 `PHASE2_*` 观察状态、唯一主失败解释和次级标志；
+12. 六类主解释的直接证据；
+13. 结构、源项、模型和数值差异候选表；
+14. 最多三个可证伪根因与未来最小单变量验证建议。
 
 ## 11. 完成条件
 
@@ -322,9 +487,14 @@ accepted STR 中同时具备：
 
 - RUN038–040、RUN096 与历史正确案例都有原始日志/STR，或明确标为缺失；
 - 没有把请求时间、文件名电压或拒绝步冒充 accepted 结果；
+- 所有端子已经记录原始单位、宽度来源、符号/电极映射和换算公式；
 - 原始电流和基线扣除电流均已检查；
-- 基线、MAD、绝对噪声门、连续点数和持续时长均已记录；
-- 阶段二具有多帧源—漏空间连通证据，而不只依赖 KCL；
+- `raw_KCL` 与 `err_KCL` 已分别按 5%/10% 数值门判读；
+- 基线、MAD、绝对噪声门、连续点数和参考绝对保持时长均已记录；
+- 阶段二具有多帧 nominal `mask_J` 源—漏空间连通证据，而不只依赖 KCL；
+- loose/nominal/strict 阈值在查看候选帧前冻结并报告敏感性；
+- 电场、impact、温度作为独立机制证据，没有被错误设成每帧同时强制通过；
+- 先给阶段二观察状态，再按固定顺序给唯一主失败解释；
 - 数值中止与时间窗/输出采样不足已经分开；
 - 配置错误只由直接证据确认，物理差异只列候选；
 - 每个关键结论可回指具体日志、CSV 或 STR；
@@ -336,10 +506,13 @@ accepted STR 中同时具备：
 
 ```text
 REVIEW_VERDICT: ACCEPT / REVISE / REJECT
-SIX_CLASS_TAXONOMY: PASS / REVISE
+PHASE2_OBSERVATION_STATUS: PASS / REVISE
+SIX_CLASS_DECISION_ORDER: PASS / REVISE
+UNIT_CONVERSION_AND_KCL: PASS / REVISE
 BASELINE_AND_FLOOR: PASS / REVISE
 PERSISTENCE_RULE: PASS / REVISE
 SPATIAL_PHASE2_RULE: PASS / REVISE
+MECHANISM_EVIDENCE_SEPARATION: PASS / REVISE
 LOCAL_PATHS_SUFFICIENT: YES / NO
 REMOTE_READONLY_REQUIRED: YES / NO
 MANDATORY_REVISIONS:
