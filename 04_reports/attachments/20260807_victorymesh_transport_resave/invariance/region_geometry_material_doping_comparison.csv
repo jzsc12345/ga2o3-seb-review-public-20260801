@@ -1,0 +1,14 @@
+region_id,semantic_name,source_material_code,source_material_label,output_material_code,output_material_label,triangles,source_area_um2,output_area_um2,bbox_exact,geometry_metric_exact_1e-12,doping_exact,electrode_id_source,electrode_id_output
+1,substrate,50,ga2o3,124,GaN,17940,2.9999999999999996,2.9999999999999996,True,True,True,,
+2,uid,50,ga2o3,124,GaN,17940,3.0,3.0,True,True,True,,
+3,channel,50,ga2o3,124,GaN,24300,2.7,2.7,True,True,True,,
+4,oxide,1,SiO\342\202\202,1,SiO\342\202\202,4500,0.22500000000000003,0.22500000000000003,True,True,True,,
+5,oxide,1,SiO\342\202\202,1,SiO\342\202\202,29700,1.5750000000000002,1.5750000000000002,True,True,True,,
+6,,50,ga2o3,124,GaN,1120,0.15,0.15,True,True,True,,
+7,n_d,50,ga2o3,124,GaN,800,0.15,0.15,True,True,True,,
+8,barrier,229,Al\342\202\202O\342\202\203,229,Al\342\202\202O\342\202\203,5360,0.28,0.28,True,True,True,,
+9,p-,304,0,209,ZnO,2000,0.10000000000000002,0.10000000000000002,True,True,True,,
+10,p+,304,0,209,ZnO,2000,0.09999999999999998,0.09999999999999998,True,True,True,,
+11,source,77,Nickel,77,Nickel,720,0.09,0.09,True,True,True,1,1
+12,drain,77,Nickel,77,Nickel,720,0.09,0.09,True,True,True,2,2
+13,gate,77,Nickel,77,Nickel,4250,0.23500000000000004,0.23500000000000004,True,True,True,3,3

@@ -1,0 +1,98 @@
+CONTROLLER_SEND: info regions="MATERIAL:GA2O3"
+info regions="MATERIAL:GA2O3"
+Name: VM_SEB_STAGE2_conformal_track_x10p25
+Region triangles: 
+  Region material: ga2o3
+    conduction: unknown unknown unknown unknown unknown 
+    region: region-1 region-2 region-3 region-6 region-7 
+    type: structure structure structure structure structure 
+    user: substrate uid channel n_d 
+    elements: 62100
+    2D points: 31786
+    1D scalars: 133048
+Total mesh:
+  elements: 62100
+  points: 31786
+VICTORYMESH>
+CONTROLLER_SEND: info regions="MATERIAL:NIO"
+info regions="MATERIAL:NIO"
+Name: VM_SEB_STAGE2_conformal_track_x10p25
+Region triangles: 
+  Region material: nio
+    conduction: semiconductor semiconductor 
+    region: region-9 region-10 
+    type: structure structure 
+    user: p- p+ 
+    elements: 4000
+    2D points: 2121
+    1D scalars: 8888
+Total mesh:
+  elements: 4000
+  points: 2121
+VICTORYMESH>
+CONTROLLER_SEND: info regions="MATERIAL:*"
+info regions="MATERIAL:*"
+Name: VM_SEB_STAGE2_conformal_track_x10p25
+Region triangles: 
+  Region material: al2o3
+    conduction: insulator 
+    region: region-8 
+    type: structure 
+    user: barrier 
+    elements: 5360
+    2D points: 3355
+    1D scalars: 13420
+  Region material: ga2o3
+    conduction: unknown unknown unknown unknown unknown 
+    region: region-1 region-2 region-3 region-6 region-7 
+    type: structure structure structure structure structure 
+    user: substrate uid channel n_d 
+    elements: 62100
+    2D points: 31786
+    1D scalars: 133048
+  Region material: nickel
+    conduction: conductor conductor conductor 
+    name: source drain gate 
+    region: region-11 region-12 region-13 
+    sdb: electrode-1 electrode-2 electrode-3 
+    type: electrode electrode electrode 
+    elements: 5690
+    2D points: 3180
+    1D scalars: 12720
+  Region material: nio
+    conduction: semiconductor semiconductor 
+    region: region-9 region-10 
+    type: structure structure 
+    user: p- p+ 
+    elements: 4000
+    2D points: 2121
+    1D scalars: 8888
+  Region material: sio2
+    conduction: insulator insulator 
+    region: region-4 region-5 
+    type: structure structure 
+    user: oxide oxide 
+    elements: 34200
+    2D points: 17732
+    1D scalars: 70928
+Total mesh:
+  elements: 111350
+  points: 56454
+VICTORYMESH>
+CONTROLLER_SEND: info regions="TYPE:ELECTRODE"
+info regions="TYPE:ELECTRODE"
+Name: VM_SEB_STAGE2_conformal_track_x10p25
+Region triangles: 
+  Region type: electrode
+    conduction: conductor conductor conductor 
+    material: nickel nickel nickel 
+    name: source drain gate 
+    region: region-11 region-12 region-13 
+    sdb: electrode-1 electrode-2 electrode-3 
+    elements: 5690
+    2D points: 3180
+    1D scalars: 12720
+Total mesh:
+  elements: 5690
+  points: 3180
+VICTORYMESH>

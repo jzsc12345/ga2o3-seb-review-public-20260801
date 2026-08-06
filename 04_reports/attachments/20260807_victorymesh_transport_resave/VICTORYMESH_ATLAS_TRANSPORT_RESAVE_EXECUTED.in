@@ -1,0 +1,38 @@
+# APPROVED_FOR_ONE_VICTORY_RESAVE_ONLY
+# SOURCE_COMMIT: d75bfd90bd99a8eba0dfe506a63386673749604e
+# IMPORT_TRANSPORT_STR_ONLY
+# NOT_PHYSICS_VALIDATED
+# NOT_STATIC_READY
+# NOT_SEB_READY
+# GaN / ZnO are ATLAS_IMPORT_TRANSPORT_IDENTITIES only.
+# NO DEVEDIT / NO REMESH / NO REFINE / NO ATLAS / NO SOLVE / NO BIAS
+# NO 300V / NO SEU / NO SECOND LAUNCH / NO AUTO FALLBACK
+
+# STAGE: PREMAP_BEGIN
+load in="VM_SEB_STAGE2_conformal_track_x10p25.str"
+info regions="MATERIAL:GA2O3"
+info regions="MATERIAL:NIO"
+info regions="MATERIAL:*"
+info regions="TYPE:ELECTRODE"
+# STAGE: PREMAP_END
+
+# STAGE: MAPPING_BEGIN
+material regions="MATERIAL:GA2O3" value="GaN"
+material regions="MATERIAL:NIO" value="ZnO"
+# STAGE: MAPPING_END
+
+# STAGE: POSTMAP_BEGIN
+info regions="MATERIAL:GAN"
+info regions="MATERIAL:ZNO"
+info regions="MATERIAL:SIO2"
+info regions="MATERIAL:AL2O3"
+info regions="MATERIAL:NICKEL"
+info regions="MATERIAL:*"
+info regions="TYPE:ELECTRODE"
+# STAGE: POSTMAP_END
+
+# STAGE: SAVE_BEGIN
+save out="VM_SEB_STAGE2_conformal_track_x10p25_atlas_transport_mapped.str" mode=atlas
+# STAGE: SAVE_END
+
+quit

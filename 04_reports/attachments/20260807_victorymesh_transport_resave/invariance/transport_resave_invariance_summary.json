@@ -1,0 +1,140 @@
+{
+  "source_str": "E:\\silvaco2425\\bulk\\str\\VICTORYMESH_SEB_20260807\\VM_SEB_STAGE2_conformal_track_x10p25.str",
+  "output_str": "E:\\silvaco2425\\bulk\\str\\VICTORYMESH_SEB_20260807\\VM_SEB_STAGE2_conformal_track_x10p25_atlas_transport_mapped.str",
+  "node_count_source": 56454,
+  "node_count_output": 56454,
+  "triangle_count_source": 111350,
+  "triangle_count_output": 111350,
+  "coordinates_exact": true,
+  "triangle_connectivity_exact": true,
+  "semantic_names_exact": true,
+  "geometry_area_bbox_exact_1e-12": true,
+  "interface_coordinates_exact_by_mesh_identity": true,
+  "doping_arrays_exact": true,
+  "doping_definition": "first two n-payload scalars: donor and acceptor",
+  "doping_payload_lengths_source": {
+    "13": {
+      "4": 2366
+    },
+    "11": {
+      "4": 407
+    },
+    "12": {
+      "4": 407
+    },
+    "4": {
+      "4": 2356
+    },
+    "5": {
+      "4": 15376
+    },
+    "10": {
+      "4": 1111
+    },
+    "9": {
+      "4": 1111
+    },
+    "8": {
+      "4": 3355
+    },
+    "6": {
+      "4": 612
+    },
+    "3": {
+      "4": 12860
+    },
+    "7": {
+      "4": 442
+    },
+    "2": {
+      "4": 9674
+    },
+    "1": {
+      "4": 9674
+    }
+  },
+  "doping_payload_lengths_output": {
+    "13": {
+      "6": 2366
+    },
+    "11": {
+      "6": 407
+    },
+    "12": {
+      "6": 407
+    },
+    "4": {
+      "6": 2356
+    },
+    "5": {
+      "6": 15376
+    },
+    "10": {
+      "6": 1111
+    },
+    "9": {
+      "6": 1111
+    },
+    "8": {
+      "6": 3355
+    },
+    "6": {
+      "6": 612
+    },
+    "3": {
+      "6": 12860
+    },
+    "7": {
+      "6": 442
+    },
+    "2": {
+      "6": 9674
+    },
+    "1": {
+      "6": 9674
+    }
+  },
+  "derived_doping_payload_layout_changed": true,
+  "electrodes_exact": true,
+  "electrode_count": 3,
+  "thick_stepped_gate_preserved": true,
+  "gate_fp_present": false,
+  "material_only_transformation_exact": true,
+  "output_gan_code": 124,
+  "output_gan_label": "GaN",
+  "output_zno_code": 209,
+  "output_zno_label": "ZnO",
+  "ga2o3_runtime_records_after_resave": 0,
+  "nio_runtime_records_after_resave": 0,
+  "gan_runtime_records_after_resave": 5,
+  "zno_runtime_records_after_resave": 2,
+  "source_track_metrics": {
+    "max_dx_um": 0.015000000000000568,
+    "max_dy_um": 0.01666666666666669,
+    "full_y_continuity": true,
+    "max_y_gap_um": 0.0,
+    "merged_y_intervals": [
+      [
+        0.0,
+        0.6
+      ]
+    ],
+    "obtuse": 0
+  },
+  "output_track_metrics_by_ga2o3_lineage_regions": {
+    "max_dx_um": 0.015000000000000568,
+    "max_dy_um": 0.01666666666666669,
+    "full_y_continuity": true,
+    "max_y_gap_um": 0.0,
+    "merged_y_intervals": [
+      [
+        0.0,
+        0.6
+      ]
+    ],
+    "obtuse": 0
+  },
+  "sio2_unchanged": true,
+  "al2o3_unchanged": true,
+  "nickel_unchanged": true
+}

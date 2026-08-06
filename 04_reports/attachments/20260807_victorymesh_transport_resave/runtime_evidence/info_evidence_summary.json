@@ -1,0 +1,38 @@
+{
+  "premap_ga2o3_selector_count": 5,
+  "premap_ga2o3_region_ids": [
+    1,
+    2,
+    3,
+    6,
+    7
+  ],
+  "premap_ga2o3_elements": 62100,
+  "premap_nio_selector_count": 2,
+  "premap_nio_region_ids": [
+    9,
+    10
+  ],
+  "premap_nio_elements": 4000,
+  "postmap_gan_region_ids": [
+    1,
+    2,
+    3,
+    6,
+    7
+  ],
+  "postmap_zno_region_ids": [
+    9,
+    10
+  ],
+  "postmap_sio2_runtime_records": 2,
+  "postmap_al2o3_runtime_records": 1,
+  "postmap_nickel_electrodes": [
+    "source",
+    "drain",
+    "gate"
+  ],
+  "victory_postmap_gan_conduction": "unknown",
+  "victory_postmap_zno_conduction": "semiconductor",
+  "warning_fatal_hits": 0
+}
