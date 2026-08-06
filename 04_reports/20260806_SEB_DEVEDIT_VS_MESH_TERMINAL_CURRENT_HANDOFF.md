@@ -1,8 +1,8 @@
 # 网页端交接：DevEdit 系列与两组历史 mesh 案例的三端电流配对审计
 
-> Provenance: Codex-generated / post-2026-07-27-09:20 / lower-trust；需网页端独立复核  
-> 日期：2026-08-06  
-> 任务性质：只读证据交接，不包含 SSH、仿真、修改 deck、创建 RUN 或调参授权  
+> Provenance: Codex-generated / post-2026-07-27-09:20 / lower-trust；需网页端独立复核
+> 日期：2026-08-06
+> 任务性质：只读证据交接，不包含 SSH、仿真、修改 deck、创建 RUN 或调参授权
 > 方法合同：已由网页端接受的 Revision 4——端电流配对、保持时间、空间 `Jn` 连通与横截面通量闭合分开裁决
 
 ## 1. 网页端先读的结论
@@ -216,4 +216,3 @@ NO_PARAMETER_SWEEP_AUTHORIZATION
 RUN038–040/RUN096 也存在后段漏—源配对。请独立审查两个历史 mesh 案例能证明什么、
 不能证明什么，并回答第5节三个问题。不得把审阅解释为 SSH、仿真、修改 deck 或新 RUN 授权。
 ```
-
