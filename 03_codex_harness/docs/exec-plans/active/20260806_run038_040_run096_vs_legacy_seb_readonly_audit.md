@@ -1,6 +1,6 @@
 # RUN038–040、RUN096 与历史正确 SEB 案例的三端电流差异审计计划
 
-> 状态：REVISION_3 / WEB_REVIEW_REQUIRED
+> 状态：REVISION_4 / WEB_REVIEW_REQUIRED
 > 性质：REPORT_ONLY / READ_ONLY
 > 授权边界：NO_SSH / NO_REMOTE / NO_SIMULATION / NO_DECK_CHANGE
 > 本文件只供网页端评审下一步，不授权执行任何仿真、远端读取或 deck 修改。
@@ -22,7 +22,7 @@
 
 这里的“相等”均指**电流**大小接近、符号相反，不是漏极电压等于栅极电压。
 
-## 2. 网页端两轮裁决及本版响应
+## 2. 网页端三轮裁决及本版响应
 
 网页端第一轮结论为 `REVISE`，本版按以下口径修订：
 
@@ -41,6 +41,16 @@
 - 阶段二强制门收敛为“端电流漏—源配对 + 基线增强电流路径连通”；
 - 电场、impact 和温度改为独立机制证据，不要求每一帧全部同时成立。
 
+网页端第三轮仍为 `REVISE`，Revision 4 只收紧空间阶段二判据：
+
+- 旧 `mask_J` 不再允许在 `|Je|` 与 `|Jtotal|` 之间任选；唯一主量改名并固定为 β-Ga₂O₃
+  半导体中的电子传导电流密度矢量 `Jn`；
+- 连通图只允许经过预先登记的 β-Ga₂O₃ 半导体 region，禁止穿过介质、金属、NiO 或其他
+  无关 region；
+- 三张空间帧必须来自同一个端电流 `T_hold,candidate` 区间的前、中、后三段；
+- 二值连通之外，新增固定横截面上的带符号 `Jn·n` 通量闭合门，证明连通分量确实承载
+  端电流阶段二增量，而不是一条低电流细丝。
+
 ## 3. 先判观察状态，再按固定顺序选择失败解释
 
 本审计使用两层结果，禁止把“是否观察到阶段二”和“为什么没有观察到”写成同一标签。
@@ -49,8 +59,8 @@
 
 每个 RUN 必须先给出且只给出一个观察状态：
 
-- `PHASE2_CONFIRMED`：第 6 节规定的端电流配对、源—漏电流路径连通和绝对持续时间三门
-  同时通过；
+- `PHASE2_CONFIRMED`：第 6 节规定的端电流配对、`Jn` 源—漏拓扑与通量闭合、绝对持续
+  时间三门同时通过；
 - `PHASE2_NOT_CONFIRMED`：证据足以检查三门，但至少一门明确失败；
 - `PHASE2_NOT_EVALUABLE`：单位、电极映射、accepted 输出、空间帧或参考持续时间不足，
   无法完成三门检查。
@@ -292,33 +302,123 @@ substrate、body 或未合并的 field-plate 电学端子，KCL 求和必须纳�
 - `RAW_KCL_PASS` 与 `DELTA_KCL_PASS`；
 - 至少 3 个连续 accepted 点成立。
 
-#### 强制门 B：源—漏电流路径连通
+#### 强制门 B：源—漏电子传导路径的拓扑与通量
 
-至少 3 个连续 accepted STR 中，基线增强后的 `|Je|` 或 `|Jtotal|` 掩膜必须存在一个从
-source 半导体接触边界连到 drain 半导体接触边界的连通分量。**绝对电子浓度高**不能单独
-代替电流路径连通。
+强制门 B 包含两个不可互换的子门：
 
-### 6.3 预先冻结的空间连通阈值与敏感性
+1. `B1_TOPOLOGY`：在第 6.3 节规定的 3 张 accepted STR 中，基线增强后的 nominal
+   `mask_Jn` 都存在从 source 半导体接触边界连到 drain 半导体接触边界的连通分量；
+2. `B2_FLUX_CLOSURE`：同 3 张 STR 中，第 6.3 节规定的电子电流横截面通量与同一时刻的
+   漏—源端电流增量通过预声明的 20% 闭合门。
 
-在查看候选时刻帧之前，使用打击前 STR 定义每个网格位置的 `Jpre=|J(tpre)|`。电流路径
-掩膜必须同时满足绝对门和相对增强门：
+`B1_TOPOLOGY` 与 `B2_FLUX_CLOSURE` 必须同时通过。**绝对电子浓度高**、`Jtotal` 连通、
+三端 KCL 或某一条很细的低电流分量，都不能单独替代这两个子门。
+
+### 6.3 唯一主电流密度、region 掩膜、三帧取样和横截面闭合
+
+#### 6.3.1 唯一主空间量
+
+主裁决只使用 **ATLAS 电子传导电流密度矢量**：
 
 ```text
-mask_J = (|J(t)| >= J_abs) AND
-         (|J(t)| / max(Jpre, J_noise) >= R_J)
+Jn = (Jnx, Jny)
+|Jn| = sqrt(Jnx^2 + Jny^2)
+```
+
+运行时字段清单必须把 ATLAS/STR 中的精确字段名一次性映射到 `Jnx`、`Jny`；历史文件若以
+`Je,x/Je,y`、`Electron Current Density X/Y` 或其他标签显示，只能在证明它们就是电子传导
+电流密度分量后登记。打击前与瞬态帧必须使用同一字段、同一插值方法和同一单位。
+
+禁止用 `|Jtotal|`、空穴电流、位移电流或电子浓度替换 `|Jn|` 完成主连通裁决。若目标 STR
+没有可核实的 `Jnx/Jny`，空间强制门写 `NOT_EVALUABLE`，不得选择另一个更容易连通的字段。
+
+#### 6.3.2 允许连通的半导体 region
+
+连通图只能在以下 β-Ga₂O₃ 半导体 region 内建立：
+
+- RUN038、RUN039、RUN040：region `3,4,5,6`；
+- RUN096：region `3,4,5,6,7`；
+- 历史正确案例：只读取得原始 deck/STR 后，先登记其中所有且仅有的 β-Ga₂O₃
+  source—drain 有效半导体 region，再打开候选瞬态帧。
+
+介质、Aluminum、电极、NiO、空气以及其他无关 region 全部从图节点和图边中删除；任何跨越
+被排除 region 的插值边也必须删除。source/drain 端点定义为允许半导体域与各自金属电极直接
+接触的边界，不得把金属内部或介质表面当作连通终点。
+
+#### 6.3.3 `mask_Jn` 阈值
+
+在查看候选时刻帧之前，使用打击前 STR 定义每个允许网格位置的
+`Jn_pre=|Jn(tpre)|`。电子电流路径掩膜必须同时满足绝对门和相对增强门：
+
+```text
+mask_Jn = allowed_beta_Ga2O3_region AND
+          (|Jn(t)| >= Jn_abs) AND
+          (|Jn(t)| / max(Jn_pre, Jn_noise) >= R_Jn)
 ```
 
 本轮预声明三档，只允许报告三档敏感性，不得看完候选图再改阈值：
 
-| 档位 | `J_abs` | `J_noise` | `R_J` |
+| 档位 | `Jn_abs` | `Jn_noise` | `R_Jn` |
 |---|---:|---:|---:|
 | loose | `1e-4 A/cm²` | `1e-12 A/cm²` | 3 |
 | nominal（主裁决） | `1e-3 A/cm²` | `1e-12 A/cm²` | 10 |
 | strict | `1e-2 A/cm²` | `1e-12 A/cm²` | 30 |
 
-主裁决使用 nominal 档。只有 nominal 档连续连通才通过强制门 B；loose/strict 只用于说明
-阈值敏感性。若打击前 STR 的数值噪声高于 `1e-12 A/cm²`，则 `J_noise` 改为打击前
-非接触体区 `|J|` 的第 99 百分位，并在查看候选帧前冻结该数值。
+主裁决使用 nominal 档。只有 nominal 档连续连通才通过 `B1_TOPOLOGY`；loose/strict 只用于
+说明阈值敏感性，不能救回 nominal 失败。若打击前 STR 的数值噪声高于
+`1e-12 A/cm²`，则 `Jn_noise` 改为打击前允许半导体非接触体区 `|Jn|` 的第 99 百分位，
+并在查看候选帧前冻结该数值。
+
+#### 6.3.4 三张 STR 必须绑定同一个端电流保持区间
+
+先由第 5.6 节端电流配对确定唯一闭区间 `[tH0,tH1]`，其长度为
+`T_hold,candidate=tH1-tH0`。随后把该区间等分为前、中、后三段，并只从每段选择一张
+accepted STR：
+
+- early：前 1/3 内、最接近 `tH0 + T_hold,candidate/6` 的 accepted STR；
+- middle：中 1/3 内、最接近 `tH0 + T_hold,candidate/2` 的 accepted STR；
+- late：后 1/3 内、最接近 `tH0 + 5*T_hold,candidate/6` 的 accepted STR。
+
+三张 STR 必须都落在同一个 `[tH0,tH1]` 内，并分别代表其前、中、后段；不得用区间外帧、
+拒绝步或插值伪造帧补齐。任一分段没有 accepted STR，强制门 B 不可评估，并按固定顺序裁决
+`OUTPUT_SAMPLING_INSUFFICIENT`。
+
+#### 6.3.5 横截面电子电流通量闭合
+
+在打开候选三帧之前，根据几何冻结 4 条竖直横截面：source implant 出口、gate/field-plate
+右侧瓶颈、中部 drift、drain implant 入口。每条切线的精确 `xcut`、穿过的允许 region 和
+积分 `y` 区间必须从 deck/打击前 STR 登记；积分不得跨介质、金属、NiO 或无关 region。
+
+对每张 early/middle/late STR，在每个切面使用**带符号的横向分量** `Jnx`，而不是 `|Jn|`：
+
+```text
+C_SD(t) = nominal mask_Jn 中每个都同时接触 source 与 drain 的全部连通分量之并集
+Icut_Aum(t) = 1e-4 * integral over [C_SD(t) intersect x=xcut]
+              [Jnx(xcut,y,t) dy_cm]
+Icut_pre_Aum(t) = 1e-4 * integral over the same geometric segments
+                  [Jnx(xcut,y,tpre) dy_cm]
+DeltaIcut(t) = Icut_Aum(t) - Icut_pre_Aum(t)
+Iterm(t) = (|DeltaId(t)| + |DeltaIs(t)|) / 2
+err_flux(t,xcut) = ||DeltaIcut(t)| - Iterm(t)| /
+                   max(|DeltaIcut(t)|, Iterm(t))
+```
+
+`1e-4` 把二维积分所得的 A/cm 换算为 A/µm。`DeltaId/DeltaIs` 必须已经按第 5 节完成单位、
+宽度和符号登记，并取同一 accepted 时刻；不得拿邻近日志点冒充 STR 时刻。
+积分只取 `C_SD(t)` 与切线的交集，不能把连通分量之外的旁路电流加进来凑闭合；若 nominal
+`mask_Jn` 没有任何同时接触 source 与 drain 的连通分量，则 `B1_TOPOLOGY` 已失败，不再计算
+主闭合值。
+
+每一张 early/middle/late 帧都必须满足：
+
+1. source implant 出口与 drain implant 入口两条切线均有 `err_flux <= 0.20`；
+2. 两条内部切线中至少一条有 `err_flux <= 0.20`；
+3. 所有通过切线的 `DeltaIcut` 方向与已登记的 source→drain 电子传导方向一致；
+4. 对应时刻的 `RAW_KCL_PASS`、`DELTA_KCL_PASS` 和端电流强制门 A 均成立。
+
+三张帧全部满足才通过 `B2_FLUX_CLOSURE`。拓扑连通但横截面闭合失败时，只能报告
+`LOW_CURRENT_COMPONENT_CONNECTED / PHASE2_NOT_CONFIRMED`；`Jtotal` 通量可以另作敏感性旁证，
+但不得替代 `Jn` 主门。
 
 载流子浓度仅作通路佐证，采用同样的“基线增强”而不是绝对浓度：
 
@@ -335,7 +435,8 @@ mask_n = (n(t) - npre >= n_abs) AND
 | nominal | `1e11 cm^-3` | `1 cm^-3` | 10 |
 | strict | `1e12 cm^-3` | `1 cm^-3` | 30 |
 
-`mask_n` 可以证明载流子增强区，但不能替代 nominal `mask_J` 的源—漏连通门。
+`mask_n` 可以证明载流子增强区，但不能替代 nominal `mask_Jn` 的源—漏连通门或电子通量
+闭合门。
 
 ### 6.4 机制证据与阶段二观察状态分开
 
@@ -349,7 +450,7 @@ mask_n = (n(t) - npre >= n_abs) AND
 每项应分别报告 `SEEN / NOT_SEEN / NOT_EVALUABLE`。由此可以出现“阶段二电流路径已确认，
 但热正反馈未确认”的合法结果，而不强迫所有五种场量每帧同时通过。
 
-若缺少连续 STR，强制门 B 不可评估，并按第 3.0.1 节优先裁决
+若缺少同一保持区间前、中、后三段的 accepted STR，强制门 B 不可评估，并按第 3.0.1 节优先裁决
 `OUTPUT_SAMPLING_INSUFFICIENT`。
 
 ## 7. 终点趋势判据
@@ -358,7 +459,7 @@ mask_n = (n(t) - npre >= n_abs) AND
 在 `log10(τ)` 轴上报告 Theil–Sen 斜率或相邻点稳健中位斜率，至少覆盖：
 
 - `|ΔIs|`、`|ΔId|`、`|ΔIg|`；
-- 电子/总电流路径连通量；
+- nominal `mask_Jn` 连通量与 `B2_FLUX_CLOSURE` 误差；
 - electron/hole 最大值与关键路径上的低分位值；
 - `ImpactMax`；
 - `Tmax`。
@@ -367,12 +468,13 @@ mask_n = (n(t) - npre >= n_abs) AND
 
 - 强制门 A、B 和绝对保持时间门全部通过：观察状态为 `PHASE2_CONFIRMED`，不再分配失败
   主解释；
-- 源极电流或 `mask_J` 连通量仍连续朝阶段二发展，且计算正常到达窗口末端：有可比历史
+- 源极电流、`mask_Jn` 连通量或横截面 `DeltaIcut` 仍连续朝阶段二发展，且计算正常到达
+  窗口末端：有可比历史
   时间锚时按实际窗口裁决 `TIME_WINDOW_INSUFFICIENT`；无可比时间锚时观察状态为
   `PHASE2_NOT_EVALUABLE`、主解释为 `NOT_EVALUABLE`，仅把
   `TIME_WINDOW_INSUFFICIENT_CANDIDATE` 放入次级标志；
-- 上述量均已连续回落并稳定接近基线，且已具备充分时间和输出但 nominal `mask_J` 没有
-  源—漏连通：观察状态为 `PHASE2_NOT_CONFIRMED`，主解释为
+- 上述量均已连续回落并稳定接近基线，且已具备充分时间和输出，但 nominal `mask_Jn`
+  没有源—漏连通或 `B2_FLUX_CLOSURE` 失败：观察状态为 `PHASE2_NOT_CONFIRMED`，主解释为
   `PHYSICS_CONFIGURATION_CANDIDATE`；
 - 末端受 `Cannot trap`、时间步坍缩或人工停止控制：若没有更高优先级确定配置错误，观察
   状态按现有证据填 `PHASE2_NOT_CONFIRMED` 或 `PHASE2_NOT_EVALUABLE`，主解释为
@@ -453,9 +555,11 @@ mask_n = (n(t) - npre >= n_abs) AND
 6. 用户另行批准只读 SSH 后，才读取历史正确案例的原始 deck/log/STR；
 7. 完成第 4 节可比性表；若可比，先从历史案例冻结 `T_hold,reference`，若不可比则明确
    `PERSISTENCE_DURATION_NOT_EVALUABLE`；
-8. 在打开候选时刻 STR 前，按第 6.3 节登记 loose/nominal/strict 阈值及实际 `J_noise`；
-9. 对 RUN038–040、RUN096 的现有 STR 做三帧以上的 `mask_J` 连通审计，并分开记录
-   carrier、电场、impact 和晶格温度机制证据；
+8. 在打开候选时刻 STR 前，按第 6.3 节登记 `Jnx/Jny` 精确字段映射、允许 region、
+   loose/nominal/strict 阈值、实际 `Jn_noise`、4 条 `xcut` 和 20% 通量闭合门；
+9. 对 RUN038–040、RUN096 的同一 `T_hold,candidate` 区间选择 early/middle/late 三帧，完成
+   nominal `mask_Jn` 连通与 `DeltaIcut`—端电流闭合审计，并分开记录 carrier、电场、impact
+   和晶格温度机制证据；
 10. 按第 7 节计算末端多点趋势；
 11. 先给 `PHASE2_*` 观察状态，再严格按第 3.0.1 节顺序分配唯一主失败解释；
 12. 只把可直接证明的错误写 `CONFIGURATION_ERROR_CONFIRMED`，其余差异写候选；
@@ -473,13 +577,15 @@ mask_n = (n(t) - npre >= n_abs) AND
 6. 每组基线 MAD、信号门、连续点数、`T_hold,candidate` 与
    `T_hold,reference` 表；
 7. 阶段一端电流证据及阶段二强制门 A 表；
-8. 至少三帧 nominal `mask_J` 源—漏连通图，以及 loose/strict 敏感性表；
-9. carrier、电场、impact、晶格温度机制证据的独立状态表；
-10. 末端多点趋势表；
-11. 每个 RUN 的 `PHASE2_*` 观察状态、唯一主失败解释和次级标志；
-12. 六类主解释的直接证据；
-13. 结构、源项、模型和数值差异候选表；
-14. 最多三个可证伪根因与未来最小单变量验证建议。
+8. 同一 `T_hold,candidate` 前、中、后三帧的 nominal `mask_Jn` 源—漏连通图，以及
+   loose/strict 敏感性表；
+9. 4 条冻结横截面的 `DeltaIcut`、`Iterm`、`err_flux`、方向和 20% 门判读表；
+10. carrier、电场、impact、晶格温度机制证据的独立状态表；
+11. 末端多点趋势表；
+12. 每个 RUN 的 `PHASE2_*` 观察状态、唯一主失败解释和次级标志；
+13. 六类主解释的直接证据；
+14. 结构、源项、模型和数值差异候选表；
+15. 最多三个可证伪根因与未来最小单变量验证建议。
 
 ## 11. 完成条件
 
@@ -491,7 +597,10 @@ mask_n = (n(t) - npre >= n_abs) AND
 - 原始电流和基线扣除电流均已检查；
 - `raw_KCL` 与 `err_KCL` 已分别按 5%/10% 数值门判读；
 - 基线、MAD、绝对噪声门、连续点数和参考绝对保持时长均已记录；
-- 阶段二具有多帧 nominal `mask_J` 源—漏空间连通证据，而不只依赖 KCL；
+- 主空间量固定为电子传导电流密度 `Jn`，并在打击前/瞬态使用同一字段、单位与插值；
+- 连通图仅使用预登记的 β-Ga₂O₃ 半导体 region，不跨介质、金属、NiO 或无关 region；
+- 阶段二具有同一 `T_hold,candidate` 前、中、后三帧 nominal `mask_Jn` 源—漏连通证据；
+- 三帧均按冻结横截面完成电子通量—端电流 20% 闭合，而不只依赖二值连通或 KCL；
 - loose/nominal/strict 阈值在查看候选帧前冻结并报告敏感性；
 - 电场、impact、温度作为独立机制证据，没有被错误设成每帧同时强制通过；
 - 先给阶段二观察状态，再按固定顺序给唯一主失败解释；
@@ -512,6 +621,9 @@ UNIT_CONVERSION_AND_KCL: PASS / REVISE
 BASELINE_AND_FLOOR: PASS / REVISE
 PERSISTENCE_RULE: PASS / REVISE
 SPATIAL_PHASE2_RULE: PASS / REVISE
+PRIMARY_J_FIELD_AND_REGION_MASK: PASS / REVISE
+HOLD_INTERVAL_FRAME_BINDING: PASS / REVISE
+CROSS_SECTION_FLUX_CLOSURE: PASS / REVISE
 MECHANISM_EVIDENCE_SEPARATION: PASS / REVISE
 LOCAL_PATHS_SUFFICIENT: YES / NO
 REMOTE_READONLY_REQUIRED: YES / NO
