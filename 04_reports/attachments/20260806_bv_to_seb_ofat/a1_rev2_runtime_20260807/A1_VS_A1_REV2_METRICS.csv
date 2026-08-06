@@ -1,0 +1,14 @@
+metric,original_A1,A1_REV2,comparison_status
+execution_count,1,1,RECORDED
+simulator_exit,"natural completion; STR created",11,REV2_RUNTIME_FAIL
+final_STR_created,YES,NO,REV2_RUNTIME_FAIL
+nodes,5045,"NOT_AVAILABLE; intermediate MeshBuild=2332",NOT_COMPARABLE
+triangles,9802,"NOT_AVAILABLE; intermediate MeshBuild=4557",NOT_COMPARABLE
+obtuse,0,"NOT_AVAILABLE; intermediate MeshBuild=0",NOT_COMPARABLE
+region_count,12,NOT_EVALUABLE,NOT_COMPARABLE
+electrode_count,3,NOT_EVALUABLE,NOT_COMPARABLE
+stepped_gate_topology,PASS,NOT_EVALUABLE,NOT_COMPARABLE
+track_max_dx_um,0.3125,NOT_AVAILABLE,NOT_COMPARABLE
+track_max_dy_um,0.0250,NOT_AVAILABLE,NOT_COMPARABLE
+full_y_continuity,PASS,NOT_EVALUABLE,NOT_COMPARABLE
+mesh_contract,FAIL,"FAIL: no final STR",BOTH_FAIL_FOR_DIFFERENT_REASONS
