@@ -1,0 +1,24 @@
+diff --git a/packets/OFAT_A1_devedit_structure_mesh_packet.in b/packets/OFAT_A1_REV2_devedit_track_mesh_packet.in
+--- a/packets/OFAT_A1_devedit_structure_mesh_packet.in
++++ b/packets/OFAT_A1_REV2_devedit_track_mesh_packet.in
+@@ -1,2 +1,4 @@
+-# DERIVED_STAGE_PACKET / NOT_RUNTIME_VALIDATED / A1
+-# Stage: DEVEDIT_STRUCTURE_MESH_PACKET
++# DERIVED_STAGE_PACKET / DERIVED_MESH_REPAIR_PACKET / NOT_RUNTIME_VALIDATED / A1_REV2_ONLY
++# Stage: A1_REV2_DEVEDIT_TRACK_MESH_PACKET
++# NO A2 / NO ATLAS / NO STATIC_BIAS / NO SEU TRANSIENT / NO AUTOMATIC_EXPANSION_OF_AUTHORIZATION
++# Mesh-only repair: apply the unchanged two-axis track constraint before the existing MeshBuild.
+@@ -177,0 +180,7 @@ constr.mesh region=12 default
++
++# Explicit two-axis track-mesh contract. Runtime STR must still prove actual dx/dy.
++# r/3 = 0.016667 um; use the slightly tighter 0.016 um target.
++# This constraint must exist before MeshBuild so it is applied during mesh construction.
++constr.mesh x1=10.10 y1=0.0 x2=10.40 y2=0.6 \
++  max.width=0.016 max.height=0.016
++
+@@ -226,5 +234,0 @@ refine mode=y x1=0.03 y1=0.0182 x2=13.77 y2=0.0221
+-# Explicit two-axis track-mesh contract. Runtime STR must still prove actual dx/dy.
+-# r/3 = 0.016667 um; use the slightly tighter 0.016 um target.
+-constr.mesh x1=10.10 y1=0.0 x2=10.40 y2=0.6 \
+-  max.width=0.016 max.height=0.016
+-
