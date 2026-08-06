@@ -1,0 +1,7 @@
+check,count,result,evidence
+unknown_material_124,0,PASS,"no Unknown material record; runtime 1/2/3/6/7 are GaN semiconductor"
+unknown_material_209,0,PASS,"no Unknown material record; runtime 9/10 are ZnO semiconductor"
+GaN_lineage_Using_insulator,0,PASS,"no Using insulator record; runtime type is semiconductor"
+ZnO_lineage_Using_insulator,0,PASS,"no Using insulator record; runtime type is semiconductor"
+simulator_warning,0,PASS,"complete typescript"
+simulator_error_or_fatal,0,PASS,"complete typescript"

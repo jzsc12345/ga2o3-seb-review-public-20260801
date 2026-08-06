@@ -1,0 +1,8 @@
+source,severity,event,result_or_action
+ATLAS_typescript,INFO,"short-path Victory Mesh MASTER opened",PASS
+ATLAS_typescript,INFO,"ATLAS version 5.40.0.R finished",PASS
+ATLAS_typescript,WARNING,"simulator warning lines",0
+ATLAS_typescript,ERROR_FATAL,"simulator error/fatal/cannot lines",0
+runner,OBSERVABILITY,"EXIT.txt is zero bytes",archived_without_inventing_exit_code
+monitor,OPERATIONAL,"one SSH status probe returned Permission denied",same_read_only_probe_succeeded_next_attempt_no_relaunch
+prelaunch_text_scan,OPERATIONAL,"first awk display command had host-to-SSH quoting error",repeated_read_only_scan_only_no_input_change_no_launch

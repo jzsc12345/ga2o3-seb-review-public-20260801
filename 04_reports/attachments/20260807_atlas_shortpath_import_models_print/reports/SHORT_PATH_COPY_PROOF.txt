@@ -1,0 +1,28 @@
+SOURCE_COMMIT=70dc90c58a6df77babf361a792736b5c17cdb0be
+ORIGINAL_STR=/root/DECKBUILD/preflight/VICTORYMESH_SEB_ATLAS_TRANSPORT_RESAVE_D75BFD9_20260807/VM_SEB_STAGE2_conformal_track_x10p25_atlas_transport_mapped.str
+SHORT_STR=/root/DECKBUILD/preflight/AI70/t.str
+ORIGINAL_SIZE=12735490
+SHORT_COPY_SIZE=12735490
+CMP_COMMAND=cmp -s ORIGINAL_STR SHORT_STR
+CMP_IDENTICAL=YES
+
+Exact remote operation:
+mkdir -p /root/DECKBUILD/preflight/AI70
+cp --preserve=mode,timestamps ORIGINAL_STR /root/DECKBUILD/preflight/AI70/t.str
+stat -c ORIGINAL_SIZE=%s ORIGINAL_STR
+stat -c SHORT_COPY_SIZE=%s /root/DECKBUILD/preflight/AI70/t.str
+cmp -s ORIGINAL_STR /root/DECKBUILD/preflight/AI70/t.str
+
+Pre-launch remote state:
+hostname=tcad
+atlas_processes=0
+deckbuild_processes=0
+devedit_processes=0
+tmux_sessions=0
+AI70_existed_before_task=NO
+
+Executed deck upload round trip:
+local_size=340
+roundtrip_size=340
+byte_comparison=IDENTICAL
+hash_used=NO

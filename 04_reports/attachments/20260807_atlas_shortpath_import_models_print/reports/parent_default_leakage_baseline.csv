@@ -1,0 +1,101 @@
+category,parameter,GaN_parent_default,ZnO_parent_default,active_or_print_state,evidence,status
+identity,type,semiconductor,semiconductor,imported,"lines 150-153",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+band,permittivity,8.9,8.49,printed,"line 160",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+band,Eg_eV,3.44,3.37,printed,"line 161",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+band,affinity_eV,4.45,4.5,printed,"line 162",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+band,Nc_cm-3,2.24e18,2.2e18,printed,"line 163",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+band,Nv_cm-3,2.51e19,1.8e19,printed,"line 164",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+band,ni_cm-3,1e-10,3.11e-10,printed,"line 165",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+temperature,eg300_eV,0,0,printed,"line 168",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+temperature,egalpha_eV_per_K,0,0,printed,"line 169",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+temperature,egbeta_K,0,0,printed,"line 170",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.e_eV,0.009,0.009,inactive_flag,"lines 173 and 242-248",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.n_cm-3,1e17,1e17,inactive_flag,"lines 174 and 242-248",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.c,0.5,0.5,inactive_flag,"lines 175 and 242-248",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,ubgn.b,3.1e12,3.1e12,inactive_flag,"lines 176 and 243",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,ubgn.c,3.9e-5,3.9e-5,inactive_flag,"lines 177 and 243",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.schenk_me,0.321,0.321,inactive_flag,"lines 178 and 246",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.schenk_mh,0.346,0.346,inactive_flag,"lines 179 and 246",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.schenk_eps,11.7,11.7,inactive_flag,"lines 180 and 246",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.schenk_ge,12,12,inactive_flag,"lines 181 and 246",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.schenk_gh,4,4,inactive_flag,"lines 182 and 246",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.anc,0,0,inactive_flag,"lines 183 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.bnc,0,0,inactive_flag,"lines 184 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.anv,0,0,inactive_flag,"lines 185 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.bnv,0,0,inactive_flag,"lines 186 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.apc,0,0,inactive_flag,"lines 187 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.bpc,0,0,inactive_flag,"lines 188 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.apv,0,0,inactive_flag,"lines 189 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.bpv,0,0,inactive_flag,"lines 190 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.cpv,0,0,inactive_flag,"lines 191 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.nd,0,0,inactive_flag,"lines 192 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind.na,0,0,inactive_flag,"lines 193 and 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+contact,Richardson_An,24,23.7,printed,"line 196",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+contact,Richardson_Ap,120,96.3,printed,"line 197",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+SRH,taun0_s,1.2e-8,1,inactive_flag,"lines 200 and 227",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+SRH,taup0_s,1.2e-8,1,inactive_flag,"lines 201 and 227",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+SRH,lt.taun,1.42,0,inactive_flag,"lines 202 and 227",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+SRH,lt.taup,1.42,0,inactive_flag,"lines 203 and 227",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+SRH,etrap_eV,0,0,inactive_flag,"lines 204 and 227",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,mass.tunnel,0.25,0.25,inactive_flags,"lines 207 and 254-263",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,me.tunnel,0.2,0.197,inactive_flags,"lines 208 and 254-263",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,mh.tunnel,1,0.801,inactive_flags,"lines 209 and 254-263",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+transport,thermal_velocity_n_cm_s,2.61e7,2.63e7,printed,"line 212",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+transport,thermal_velocity_p_cm_s,1.17e7,1.3e7,printed,"line 213",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+high_field,vsatn_cm_s,1.91e7,1e6,printed_impact_inactive,"lines 216 and 264",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+high_field,vsatp_cm_s,1e6,1e6,printed_impact_inactive,"lines 217 and 264",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+piezoelectric,e33_C_m2,0.67,1.34,printed,"line 220",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+piezoelectric,e31_C_m2,-0.34,-0.57,printed,"line 221",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+piezoelectric,Psp_C_m2,-0.034,-0.022,printed,"line 222",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+lattice,Alattice_A,3.19,3.22,printed,"line 223",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+mobility,electron_model,concentration_independent,built_in_numeric_not_printed,default,"lines 274-283 and 376-382",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+mobility,mun_cm2_Vs,400,NOT_NUMERICALLY_PRINTED,default,"lines 280-283 and 376-382",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+mobility,hole_model,concentration_independent,built_in_numeric_not_printed,default,"lines 287-292 and 386-390",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+mobility,mup_cm2_Vs,8,NOT_NUMERICALLY_PRINTED,default,"lines 289-292 and 386-390",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+mobility,tmu,1.5,NOT_NUMERICALLY_PRINTED,default,"lines 282-292 and 376-408",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+statistics,Boltzmann,TRUE,TRUE,active,"line 265",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+statistics,Fermi_Dirac,FALSE,FALSE,inactive,"line 266",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,SRH_model,FALSE,FALSE,inactive,"line 227",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,consrh,FALSE,FALSE,inactive,"line 228",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,klasrh,FALSE,FALSE,inactive,"line 229",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,schsrh,FALSE,FALSE,inactive,"line 230",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,Auger_model,FALSE,FALSE,inactive,"lines 231-238",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,klaaug,FALSE,FALSE,inactive,"line 232",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,picaug,FALSE,FALSE,inactive,"line 233",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,hnsaug,FALSE,FALSE,inactive,"line 234",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,auggen,FALSE,FALSE,inactive,"line 235",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,kerraug,FALSE,FALSE,inactive,"line 236",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,richteraug,FALSE,FALSE,inactive,"line 237",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+recombination,solaraug,FALSE,FALSE,inactive,"line 238",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+optical,optr,FALSE,FALSE,inactive,"line 239",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+optical,solaropt,FALSE,FALSE,inactive,"line 240",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+optical,optr.gb,FALSE,FALSE,inactive,"line 241",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn_std_or_kla,FALSE,FALSE,inactive,"line 242",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,ubgn_model,FALSE,FALSE,inactive,"line 243",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.alamo,FALSE,FALSE,inactive,"line 244",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.bennett,FALSE,FALSE,inactive,"line 245",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.schenk,FALSE,FALSE,inactive,"line 246",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.lind,FALSE,FALSE,inactive,"line 247",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+BGN,bgn.persson,FALSE,FALSE,inactive,"line 248",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+ionization,incomplete,FALSE,FALSE,inactive,"lines 249-253",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+ionization,inc.two_level,FALSE,FALSE,inactive,"line 250",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+ionization,inc.ion,FALSE,FALSE,inactive,"line 251",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+ionization,ioniz,FALSE,FALSE,inactive,"line 252",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+ionization,inc.cryo,FALSE,FALSE,inactive,"line 253",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,bbt,FALSE,FALSE,inactive,"line 254",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,bbtauto,FALSE,FALSE,inactive,"line 255",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,bbthurkx,FALSE,FALSE,inactive,"line 256",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,bbtkane,FALSE,FALSE,inactive,"line 257",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,bbtschenk,FALSE,FALSE,inactive,"line 258",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,bbtheigl,FALSE,FALSE,inactive,"line 259",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,bbtnonlocal,FALSE,FALSE,inactive,"line 260",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,tat_local,FALSE,FALSE,inactive,"line 261",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,tatnonlocal,FALSE,FALSE,inactive,"line 262",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+tunneling,tat_coulombic,FALSE,FALSE,inactive,"line 263",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+impact,impact_model,FALSE,FALSE,inactive,"line 264",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+impact,impact_coefficients,NOT_PRINTED,NOT_PRINTED,inactive,"line 264",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+statistics,cubic35,FALSE,FALSE,inactive,"line 267",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+optical,gain_scale_factor,1,1,printed,"line 270",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+optical,Rsp_scale_factor,1,1,printed,"line 271",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+thermal,thermal_conductivity,NOT_PRINTED,NOT_PRINTED,not_observable,"complete MODELS PRINT",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
+thermal,heat_capacity,NOT_PRINTED,NOT_PRINTED,not_observable,"complete MODELS PRINT",TRANSPORT_PARENT_DEFAULT_NOT_ACCEPTED
