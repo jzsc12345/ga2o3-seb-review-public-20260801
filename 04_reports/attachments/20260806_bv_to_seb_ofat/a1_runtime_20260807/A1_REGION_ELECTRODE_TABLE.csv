@@ -1,0 +1,13 @@
+region_id,name,material_code,triangle_count,electrode_id,observed_status
+1,substrate,50,2100,,present
+2,uid,50,2417,,present
+3,channel,50,2469,,present
+4,oxide,1,1545,,present
+5,<unnamed_by_source>,50,120,,present
+6,N_D,50,113,,present
+7,barrier,229,441,,present
+8,P-,51,128,,present
+9,P+,51,128,,present
+10,source,77,56,1,present
+11,drain,77,83,2,present
+12,gate,77,202,3,present_single_stepped_gate
