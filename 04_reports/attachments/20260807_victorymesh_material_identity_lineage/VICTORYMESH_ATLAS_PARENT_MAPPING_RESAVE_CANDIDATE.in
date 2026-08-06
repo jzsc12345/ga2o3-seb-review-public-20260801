@@ -1,0 +1,22 @@
+# NONEXECUTED_PLAN_ONLY
+# NOT_RUNTIME_VALIDATED
+# LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
+# SOURCE: frozen VM_SEB_STAGE2_conformal_track_x10p25.str
+# PURPOSE: import-identity transport hypothesis only
+# NO DEVEDIT / NO REMESH / NO ATLAS / NO SOLVE / NO STATIC BIAS / NO SEU
+# NO AUTOMATIC FALLBACK
+
+go victorymesh simflags="-V 1.12.0.R -P 4"
+
+load in="VM_SEB_STAGE2_conformal_track_x10p25.str"
+
+# Official Victory Mesh MATERIAL mechanism; selectors remain runtime-unverified.
+# These are ATLAS-recognized transport parents, not final physical materials.
+material regions="MATERIAL:GA2O3" value="GaN"
+material regions="MATERIAL:NIO" value="ZnO"
+
+info regions="MATERIAL:*"
+
+save out="VM_SEB_STAGE2_conformal_track_x10p25_atlas_parent_mapped.str" mode=atlas
+
+quit
