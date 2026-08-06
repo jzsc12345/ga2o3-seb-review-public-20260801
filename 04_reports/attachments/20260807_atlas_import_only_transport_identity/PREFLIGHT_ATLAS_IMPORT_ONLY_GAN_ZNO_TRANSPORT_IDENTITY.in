@@ -1,0 +1,13 @@
+# ATLAS 5.40.0.R import-only material identity gate.
+# Scope: load the frozen transport-mapped STR and stop before all physics/solve commands.
+# VICTORY_CONFORMAL_MESH=FROZEN_PASS
+# VICTORY_TRANSPORT_RESAVE=PASS
+# NO MATERIAL / MODELS / MOBILITY / IMPACT / THERMCONTACT
+# NO SOLVE / SOLVE INIT / BIAS / SAVE / TRANSIENT
+# NO VICTORY MESH / DEVEDIT / SECOND LAUNCH / AUTO FALLBACK
+
+go atlas simflags="-V 5.40.0.R -P 4"
+
+mesh infile="/root/DECKBUILD/preflight/VICTORYMESH_SEB_ATLAS_TRANSPORT_RESAVE_D75BFD9_20260807/VM_SEB_STAGE2_conformal_track_x10p25_atlas_transport_mapped.str"
+
+quit

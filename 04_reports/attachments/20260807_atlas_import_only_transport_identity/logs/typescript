@@ -1,0 +1,128 @@
+脚本启动于 2026年08月07日 星期五 04时15分37秒
+
+*** this is deckbuild version 5.2.40.R ***
+
+# ATLAS 5.40.0.R import-only material identity gate.
+# Scope: load the frozen transport-mapped STR and stop before all physics/solve commands.
+# VICTORY_CONFORMAL_MESH=FROZEN_PASS
+# VICTORY_TRANSPORT_RESAVE=PASS
+# NO MATERIAL / MODELS / MOBILITY / IMPACT / THERMCONTACT
+# NO SOLVE / SOLVE INIT / BIAS / SAVE / TRANSIENT
+# NO VICTORY MESH / DEVEDIT / SECOND LAUNCH / AUTO FALLBACK
+
+go atlas simflags="-V 5.40.0.R -P 4"
+executing /atctools/Synopsys/Silvaco2024/lib/atlas/5.40.0.R/x86_64-linux/atlas.exe -P 4
+
+
+                                   A T L A S
+
+            Version:  atlas 5.40.0.R (Mon Nov 10 09:12:01 PST 2025)
+
+                           Copyright (c) 1984 - 2025
+                        Silvaco Inc. All rights reserved
+
+    We acknowledge the contribution of the following collaborative partners:
+
+                              Stanford University
+
+
+
+               ======================================================
+
+                  ATLAS                           : enabled
+
+                  S-PISCES                        : enabled
+
+                  BLAZE                           : enabled
+
+                  GIGA                            : enabled
+
+                  LUMINOUS                        : enabled
+
+                  LED                             : enabled
+
+                  TFT                             : enabled
+
+                  ORGANIC DISPLAY                 : enabled
+
+                  ORGANIC SOLAR                   : enabled
+
+                  MIXEDMODE                       : enabled
+
+                  LASER                           : enabled
+
+                  VCSEL                           : enabled
+
+                  FERRO                           : enabled
+
+                  QUANTUM                         : enabled
+
+                  NOISE                           : enabled
+
+                  REM                             : enabled
+
+                  MAGNETIC                        : enabled
+
+                  DEVICE3D                        : enabled
+
+                  THERMAL3D                       : enabled
+
+                  GIGA3D                          : enabled
+
+                  MIXEDMODE3D                     : enabled
+
+                  TFT3D                           : enabled
+
+                  QUANTUM3D                       : enabled
+
+                  LUMINOUS3D                      : enabled
+
+                  REM3D                           : enabled
+
+                  MAGNETIC3D                      : enabled
+
+                  LED3D                           : enabled
+
+                  LASER3D                         : enabled
+
+                  MIXEDMODE XL                    : enabled
+
+                  S-PISCES BUNDLE                 : not licensed
+
+                  BLAZE BUNDLE                    : not licensed
+
+                  TFT BUNDLE                      : not licensed
+
+                  ORGANIC BUNDLE                  : not licensed
+
+                  DEVICE3D BUNDLE                 : not licensed
+
+                  TFT3D BUNDLE                    : not licensed
+
+               ======================================================
+
+                           Fri Aug  7 04:15:42 2026
+
+                            Executing on host: tcad
+                     Current SFLM Server: localhost:3162/
+
+
+
+ATLAS> 
+ATLAS> mesh infile="/root/DECKBUILD/preflight/VICTORYMESH_SEB_ATLAS_TRANSPORT_RESAVE_D75BFD9_20260807/VM_SEB_STAGE2_conformal_track_x10p25_atlas_transport_mapped.str"
+	####################################################
+	######                                        ######
+	######           Running on  4 CPUs           ######
+	######            8 CPUs available            ######
+	######                                        ######
+	####################################################
+
+Error: Could not open MASTER file /root/DECKBUILD/preflight/VICTORYMESH_SEB_ATLAS_TRANSPORT_RESAVE_D75BFD9_20260807/VM_SEB_STAGE2_conformal_track_x10p25_atlas_transpo.
+
+ATLAS version 5.40.0.R aborted at Fri Aug  7 04:15:44 2026
+0.066u 0.059s 0:04.50 2.4%	0+0k 0+16io 0pf+0w
+0.06user 0.05system 0:04.50elapsed 2%CPU (0avgtext+0avgdata 154912maxresident)k
+0inputs+16outputs (0major+13846minor)pagefaults 0swaps
+simExited with exitcode1
+
+*** simulator exits with code 1

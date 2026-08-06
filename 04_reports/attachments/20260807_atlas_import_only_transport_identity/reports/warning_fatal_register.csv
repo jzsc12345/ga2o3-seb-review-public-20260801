@@ -1,0 +1,6 @@
+severity,source,evidence,adjudication
+ERROR,ATLAS typescript,"Could not open MASTER file ..._atlas_transpo.",INPUT_OPEN_FAILED
+ABORT,ATLAS typescript,"ATLAS version 5.40.0.R aborted",NO_RETRY
+EXIT,runner EXIT.txt,"simulator exits with code 1",EXECUTION_FAILED_BEFORE_IMPORT
+INFO,remote stat,"frozen STR exists; size 12735490 bytes; mode 644",PATH_OR_OPEN_MECHANISM_REMAINS_CANDIDATE
+INFO,path comparison,"requested path length 145; displayed error path length 133",PATH_TRUNCATION_SUSPECTED_NOT_CONFIRMED
