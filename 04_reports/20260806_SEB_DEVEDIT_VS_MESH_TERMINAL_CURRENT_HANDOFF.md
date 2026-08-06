@@ -18,15 +18,18 @@
 3. 真正没有闭合的是正式空间 Phase 2：现有案例普遍缺少同一保持区间的 early/middle/late 三帧 `Jn` 连通与横截面通量闭合证据。
 4. 两个历史 mesh 案例的热行为不同：第一个到 `1 µs` 仍升温，第二个在微秒段达峰后冷却。只有漏—源端电流相等，不足以证明热失控 SEB。
 
-因此，当前应该把结论拆成两层：
+因此，当前必须把结论拆成三层：
 
 ```text
-TERMINAL_DEFINED_DRAIN_SOURCE_PAIRING
-    与
-SPATIALLY_CONFIRMED_PHASE2 / THERMAL_RUNAWAY_SEB
+RAW_TERMINAL_DS_PAIRING
+    ↓ 不能自动推出
+FORMAL_SPATIAL_PHASE2
+    ↓ 还需持续热正反馈才能推出
+THERMAL_RUNAWAY_SEB
 ```
 
-第一层在两个历史案例中已经实锤；第二层仍未完成。
+第一层在两个历史案例中已经实锤；第二层仍不可评估；第三层在第一历史案例中未确认、
+在第二历史案例中未观察到。
 
 ## 2. 答案一：RUN038–040、RUN096 与第一历史 mesh x=10 案例
 
@@ -66,8 +69,12 @@ Ig = +4.694299133e-8
 ```text
 RAW_TERMINAL_DS_PAIRING = OBSERVED
 FORMAL_SPATIAL_PHASE2 = NOT_EVALUABLE
+THERMAL_RUNAWAY_SEB = NOT_CONFIRMED
 PRIMARY_LIMIT = OUTPUT_SAMPLING_INSUFFICIENT
 ```
+
+`557.83 K @ 1 µs` 且末点仍升温，只说明保存窗口结束时热过程尚未完全回落。没有持续的
+`Id↑ + impact↑ + Tmax↑` 联合证据，不能把它升级为热失控阳性。
 
 ### 2.2 对 RUN038–040、RUN096 原命题的修正
 
@@ -152,7 +159,8 @@ FORMAL_SPATIAL_PHASE2 = NOT_EVALUABLE
 PRIMARY_LIMIT = OUTPUT_SAMPLING_INSUFFICIENT
 ```
 
-这更像一条被粒子打通、但随后逐渐变窄和冷却的漏—源路径，不是 `Id↑ + impact↑ + Tmax↑` 的持续热正反馈。
+该端子响应与一次粒子诱导、随后衰减的漏—源导电响应相一致，但内部 source–drain `Jn`
+路径尚未按照 Revision 4 得到空间确认；不能把“内部路径已经形成”写成空间事实。
 
 ### 3.3 deck 中值得注意但不得复制的历史配置
 
@@ -174,7 +182,7 @@ p 型 `2e6` 衬底和这组三个旧 impact 数值违反当前生产约束，只
 
 | 对象 | 后段漏—源配对 | 温度趋势 | 正式空间 Phase 2 | 当前用途 |
 |---|---|---|---|---|
-| 第一历史 mesh x=10 | 3.588 ns–1 µs，已观察 | 到 557.83 K，终点仍升 | NOT_EVALUABLE | 端电流两阶段参考 |
+| 第一历史 mesh x=10 | 3.588 ns–1 µs，已观察 | 到 557.83 K，终点仍升；热失控未确认 | NOT_EVALUABLE | 低信任端电流波形参考 |
 | 第二历史 mesh x=8 | 4.642 ns–1 s，强观察 | 3.55 µs 达峰后冷却 | NOT_EVALUABLE | 长期 DS 配对阳性参考 |
 | RUN038–040/RUN096 | 日志中也有后段 DS 配对 | 各 RUN 不同 | 未统一通过 | 当前拟合线，不能再标“只有 DG” |
 
@@ -182,15 +190,31 @@ p 型 `2e6` 衬底和这组三个旧 impact 数值违反当前生产约束，只
 
 > **建模方式不是当前已证明的因果变量。** “DevEdit vs mesh”与结构、偏压、xion、衬底厚度、NiO/HfO₂、Fe、粒子源、输出时间共同变化。没有同一结构的 OFAT 对照，不能说“因为 DevEdit 所以没有漏—源通路”。
 
-## 5. 网页端需要独立裁决的三个问题
+## 5. 网页端独立裁决结果（Revision 5）
 
-1. 是否接受把两个历史案例标为 `TERMINAL_DEFINED_PHASE2_POSITIVE`，同时保留 `FORMAL_SPATIAL_PHASE2_NOT_EVALUABLE`？
-2. 第一历史案例缺生成 deck；在无法恢复 deck 时，它是否只能作为现象参考而不能作为参数母线？
-3. 若未来另行授权新实验，最小可证伪实验应否固定同一结构/物理/偏压/粒子源，只比较：
-   - 原 mesh STR；
-   - 从同一结构重建的 DevEdit mesh；
-   - 相同 accepted 时间点和相同 `Jn` 横截面通量闭合；
-   而不是继续跨结构调材料参数？
+### 5.1 三个问题的最终答案
+
+| 问题 | 裁决 |
+|---|---|
+| 是否标为 `TERMINAL_DEFINED_PHASE2_POSITIVE` | **拒绝该标签。** 只保留 `RAW_TERMINAL_DS_PAIRING=OBSERVED/OBSERVED_STRONG`，同时保留 `FORMAL_SPATIAL_PHASE2=NOT_EVALUABLE` |
+| 第一历史案例能否作为参数母线 | **不能。** 只能作为低信任现象、端电流波形和输出采样设计参考，不能作为材料、impact、热边界、粒子源、求解器或严格阶段时间母线 |
+| 最小可证伪实验是否应固定其他变量，只比较 mesh 生成路径 | **是。** 未来若另行授权，应做真正单变量对照，不再跨结构调材料参数 |
+
+优先使用有完整 deck 血统的第二历史 `seb_2` 作为未来候选实验起点。第一历史 x=10 案例缺失
+生成 deck，无法保证重建后的几何和物理仍是同一个实验对象。
+
+### 5.2 未来最小 OFAT 实验合同（尚未授权）
+
+| 必须固定 | 要求 |
+|---|---|
+| 几何与区域 | 相同边界坐标、region、接触和电极拓扑 |
+| 物理配置 | 相同材料、掺杂、陷阱、impact、自热模型和热边界 |
+| 电学条件 | 相同 VGS、VDS、器件宽度和静态母态 |
+| 粒子源 | 相同 xion、径迹、LET、半径和时间函数 |
+| 求解与输出 | 相同 solver、时间步规则、accepted 输出时刻和 STR 字段 |
+| 唯一变量 | 原 mesh 生成路径与 DevEdit mesh 生成路径 |
+| 前置门 | 打击前静态电流、电场、温度和关键几何必须等价 |
+| 最终判据 | 同一保持区间的端电流门、early/middle/late 三帧 `Jn` 连通和相同横截面通量闭合 |
 
 ## 6. 授权边界
 
@@ -207,12 +231,13 @@ NO_PARAMETER_SWEEP_AUTHORIZATION
 ## 7. 可直接发给网页端的提示词
 
 ```text
-请完整读取本交接文档，并区分以下三层：
+请完整读取本 Revision 5 交接文档，并区分以下三层：
 1. raw 三端电流配对事实；
 2. Revision 4 正式空间 Phase 2；
 3. 热失控 SEB。
 
 请不要沿用“DevEdit RUN 完全没有漏—源配对”的旧前提，因为 accepted 日志已经显示
-RUN038–040/RUN096 也存在后段漏—源配对。请独立审查两个历史 mesh 案例能证明什么、
-不能证明什么，并回答第5节三个问题。不得把审阅解释为 SSH、仿真、修改 deck 或新 RUN 授权。
+RUN038–040/RUN096 也存在后段漏—源配对；同时禁止使用
+`TERMINAL_DEFINED_PHASE2_POSITIVE` 标签。请检查第5节裁决与最小 OFAT 合同是否准确，
+不得把审阅解释为 SSH、仿真、修改 deck 或新 RUN 授权。
 ```
