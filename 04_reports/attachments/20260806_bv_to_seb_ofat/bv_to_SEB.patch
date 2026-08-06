@@ -1,0 +1,216 @@
+--- /mnt/data/bv.in	2026-08-06 13:29:15.502744606 +0000
++++ /mnt/data/bv_SEB_x10p25_300V.in	2026-08-06 13:36:32.603892579 +0000
+@@ -2,6 +2,27 @@
+ 
+ #go DevEdit 
+ go devedit
++
++# ================= SEB CONTROL BLOCK =================
++# Normal-incidence strike in the gate-drain drift region.
++# xion=10.25 um is the midpoint between the gate edge (x=6.0 um)
++# and the drain-side metal edge (x=14.5 um).
++# IMPORTANT: xion must equal x0 in mySEU_bv.c.
++set xion=10.25
++
++# Progressive DevEdit refinement windows translated from SEB(4).in.
++# Arithmetic is resolved once here so the entire strike mesh moves with xion.
++set ion_outer_x1=$xion-1.288
++set ion_outer_x2=$xion+1.759
++set ion_coarse_x1=$xion-0.826
++set ion_coarse_x2=$xion+0.859
++set ion_medium_x1=$xion-0.547
++set ion_medium_x2=$xion+0.666
++set ion_inner_x1=$xion-0.250
++set ion_inner_x2=$xion+0.302
++set ion_finest_x1=$xion-0.204
++set ion_finest_x2=$xion+0.226
++# =====================================================
+ #version=2.8.26.R # file written Mon Jan 12 2026 13:04:28 GMT+8 (CST)
+ 
+ 
+@@ -194,18 +215,26 @@
+ refine mode=y x1=0.16 y1=0.0288 x2=13.66 y2=0.0345
+ refine mode=y x1=0.03 y1=0.0182 x2=13.77 y2=0.0221
+ 
++# SEB normal-incidence track mesh: refine only the vertical semiconductor column.
++# The radial source width in mySEU_bv.c is r=0.05 um; these nested boxes
++# reproduce the template's progressive refinement without refining the full device.
++refine mode=x x1=$ion_outer_x1  y1=0.0 x2=$ion_outer_x2  y2=0.6
++refine mode=x x1=$ion_coarse_x1 y1=0.0 x2=$ion_coarse_x2 y2=0.6
++refine mode=x x1=$ion_medium_x1 y1=0.0 x2=$ion_medium_x2 y2=0.6
++refine mode=x x1=$ion_inner_x1  y1=0.0 x2=$ion_inner_x2  y2=0.6
++refine mode=x x1=$ion_finest_x1 y1=0.0 x2=$ion_finest_x2 y2=0.6
+ 
+ base.mesh height=10 width=10
+ 
+ bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+ 
+ 
+-structure outf=mesh_A4.str
++structure outf=bv_SEB_mesh_x10p25.str
+ 
+ go atlas 
+ #simflags="-128"
+ 
+-mesh inf=mesh_A4.str
++mesh inf=bv_SEB_mesh_x10p25.str
+ 
+ 
+ MATERIAL material=Ga2O3 user.default=GaN user.group=semiconductor \
+@@ -243,7 +272,7 @@
+ #doping trap e.level=4.0 acceptor  conc=5e12 uniform region=10 sign=1e-15 sigp=1e-15 degen=2
+ interface qf=-9e12 x.min=2 x.max=4 y.min=-0.02 y.max=0.02
+ 
+-models  analytic   fldmob srh  fermi  incomplete  bgn  print    
++models analytic fldmob srh auger fermi incomplete bgn print lat.temp
+ #conmob auger  lat.temp 
+ #mobility material=Ga2O3 vsatn=2e7 betan=1  mu1n.caug=20 mu2n.caug=$mu2n mu1p.caug=1 mu2p.caug=1 ncritn.caug=1e18 
+ mobility material=Ga2O3 vsatn=2.42e7 betan=1.37 betap=1.09 \
+@@ -258,6 +287,13 @@
+           ap1=5.756e6 ap2=5.75e6 bp1=1.77e7 bp2=1.77e7 betan=1  betap=1 egran=8e6 
+ #material=Ga2O3
+ impact material=Ga2O3 selb an1=2.5e6  bn1=3.96e7 an2=2.5e6  bn2=3.96e7  betan=1.37 egran=8e6
++
++# Self-heating boundary conditions mapped to the present source/drain electrodes.
++thermcontact number=1 elec.num=1 x.min=0.0  x.max=0.5  y.min=-0.18 y.max=0.0 ext.temper=300
++thermcontact number=2 elec.num=2 x.min=14.5 x.max=15.0 y.min=-0.18 y.max=0.0 ext.temper=300
++
++# User-defined normal-incidence heavy-ion generation source.
++singleeventupset F.SEU=mySEU_bv.c
+ #thermcontact num=1 x.min=0 x.max=15 y.min=0.6 y.max=0.6 \
+              alpha=200 ext.temp=300
+ #thermcontact num=2  name=drain  ext.temper=300
+@@ -290,96 +326,63 @@
+        ir.tol=1.e-35 ix.tol=1.e-35 \
+        px.tol=1.e-22 pr.tol=1.e-43 \
+        cx.tol=1.e-22 cr.tol=1.e-35 
+-METHOD newton trap maxtrap=30 climit=1e-4 \
++METHOD newton trap maxtrap=30 climit=1e-4 max.temp=50000 \
+   weak=1 itlimit=50  
+  # autostep=1e-2  \
+       carr.limit=1e18   damping.factor=0.8  
+ 
+ 
+-OUTPUT con.band val.band flowline
++OUTPUT con.band val.band FLOWLINES EX.VELO EY.VELO e.line e.mobility h.mobility band.param band.temp
+ 
+ 
+ #  Wf'$workf'_C'$Cchannel'_W'$Cwell'_U'$Cuid'_S'$Csub'
+ #  Lgs'$Lgs'_FPr'$FPr'
+-#### SOLUTION SOLVING #### 
++#### SEB SOLUTION SEQUENCE ####
+ 
++# Establish the pre-strike off-state at VGS=0 V.
+ solve init
+ solve prev
+-solve vgate=0  vfinal=0 name=gate  outf=$Doping/solve_${name}_ini onefile
+-
+-
+-
+-load infile=$Doping/solve_${name}_ini
++solve vgate=0 name=gate
+ 
+-log outfile=$Doping/MOS_bv_${name}.log
++# Reuse the convergent BV ramp only up to the selected SEB bias.
+ solve vdrain=0.01
+ solve vdrain=0.1
+ solve vdrain=0.5
+ solve vdrain=1 vstep=1 vfinal=10 name=drain
+ solve vstep=5 vfinal=50 name=drain
+ solve vstep=10 vfinal=200 name=drain
+-struct outf=$Doping/MOS_200_${name}.str
+-
+-solve vstep=15 vfinal=300 name=drain
+-struct outf=$Doping/MOS_300_${name}.str
+-
+-solve vstep=15 vfinal=400 name=drain
+-struct outf=$Doping/MOS_400_${name}.str
+-
+-solve vstep=15 vfinal=500 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_500_${name}.str
+-
+-solve vstep=15 vfinal=600 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_600_${name}.str
+-
+-solve vstep=15 vfinal=650 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_650_${name}.str
+-
+-solve vstep=15 vfinal=700 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_700_${name}.str
+-
+-solve vstep=15 vfinal=780 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_780_${name}.str
+-
+-solve vstep=5 vfinal=800 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_800_${name}.str
+-
+-solve vstep=5 vfinal=850 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_850_${name}.str
+-
+-solve vstep=5 vfinal=940 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_940_${name}.str
+-
+-solve vstep=15 vfinal=1000 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1000_${name}.str
+-
+-solve vstep=15 vfinal=1200 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1200_${name}.str
+-
+-solve vstep=15 vfinal=1400 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1400_${name}.str
+-
+-solve vstep=5 vfinal=1500 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1500_${name}.str
+-
+-solve vstep=15 vfinal=1600 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1600_${name}.str
+-
+-solve vstep=15 vfinal=1700 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1700_${name}.str
+-
+-solve vstep=15 vfinal=1800 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1800_${name}.str
++solve vstep=10 vfinal=300 name=drain
+ 
+-solve vstep=15 vfinal=1900 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_1900_${name}.str
++save outf=bv_SEB_dark_300V_x10p25.str
+ 
+-solve vstep=15 vfinal=2000 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_2000_${name}.str
++# Start a fresh log at the particle strike.
++log outf=bv_SEB_300V_x10p25.log
+ 
+-solve vstep=15 vfinal=2100 name=drain compliance=0.0001 cname=drain
+-struct outf=$Doping/MOS_2100_${name}.str
+-go internal
+-SET qf=$qf+1e12
+-l.end
++# Early charge-deposition interval.
++solve tfinal=4e-12  tstep=1e-14
++save outf=bv_SEB_4e-12_x10p25.str
++solve tfinal=1e-11  tstep=1e-13
++save outf=bv_SEB_1e-11_x10p25.str
++solve tfinal=1e-10  tstep=1e-12
++save outf=bv_SEB_1e-10_x10p25.str
++solve tfinal=7e-10  tstep=1e-11
++save outf=bv_SEB_7e-10_x10p25.str
++
++# Current-path formation and early recovery/growth.
++solve tfinal=1e-9   tstep=1e-11
++save outf=bv_SEB_1e-9_x10p25.str
++solve tfinal=1e-8   tstep=1e-10
++save outf=bv_SEB_1e-8_x10p25.str
++solve tfinal=1e-7   tstep=1e-9
++save outf=bv_SEB_1e-7_x10p25.str
++solve tfinal=1e-6   tstep=1e-8
++save outf=bv_SEB_1e-6_x10p25.str
++
++# Late-current discrimination. These stages distinguish recovery from persistent growth;
++# temperature is recorded but is not used as a 1500 K pass/fail gate here.
++solve tfinal=1e-5   tstep=1e-7
++save outf=bv_SEB_1e-5_x10p25.str
++solve tfinal=1e-4   tstep=1e-6
++save outf=bv_SEB_1e-4_x10p25.str
+ 
++tonyplot bv_SEB_300V_x10p25.log
