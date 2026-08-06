@@ -596,20 +596,20 @@ patch 来源完整性已经关闭，不再列为缺口。以上缺口需要未�
 
 | # | 文档裁决 | 当前状态 |
 |---:|---|---|
-| 1 | 关闭原件—patch—候选的来源门 | **CLOSED**：patch 可完整应用于本轮原件，结果与候选一致 |
+| 1 | 关闭原件—patch—候选的来源门 | **CLOSED** — patch 可完整应用于本轮原件，结果与候选一致 |
 | 2 | 冻结唯一静态母态序列，A/B 同 gate 初始化、`vstep=15`、save/load、solver | **NEXT-STAGE TODO** |
-| 3 | 删除 Auger，或显式给出依据与参数并另行核签 | **NEXT-STAGE TODO；默认删除** |
-| 4 | 删除 `max.temp=50000`，或作为共享 solver 变更另行核签 | **NEXT-STAGE TODO；默认删除** |
+| 3 | 删除 Auger，或显式给出依据与参数并另行核签 | **NEXT-STAGE TODO** — 默认动作：删除 |
+| 4 | 删除 `max.temp=50000`，或作为共享 solver 变更另行核签 | **NEXT-STAGE TODO** — 默认动作：删除 |
 | 5 | 真正 source-off/strict-zero 下生成至少 5 个 accepted baseline 点 | **NEXT-STAGE TODO** |
 | 6 | 冻结最大 Δx/Δy，并由 STR 验收中心 spacing 和全 y 连续性 | **NEXT-STAGE TODO** |
 | 7 | 关闭 accepted 300 V、thermcontact、region 10、NiO 热参数 runtime 门 | **NEXT-STAGE TODO** |
 | 8 | deck/计划统一 accepted/STR 时刻 10/20/50/100 µs | **NEXT-STAGE TODO** |
-| 9 | 加入恢复到 floor 以下的 SET 分支 | **PLAN CLOSED；DECK TODO** |
-| 10 | 统一为四段带符号电荷积分 | **PLAN CLOSED；DECK/POSTPROCESS TODO** |
-| 11 | direct twin 保留厚 Nickel、真实接触长度、单一 stepped gate | **CONDITIONAL_NOT_DEMONSTRATED；禁止本轮编制** |
-| 12 | 用户书面批准 benchmark-only exception | **OPEN / USER DECISION REQUIRED** |
-| 13 | `tonyplot` 移出执行链，三段 wall time 分开统计 | **PLAN CLOSED；DECK/RUNNER TODO** |
-| 14 | 重新生成唯一入口并同步索引/技术结论 | **本次文档提交完成后 CLOSED** |
+| 9 | 加入恢复到 floor 以下的 SET 分支 | **NEXT-STAGE TODO** — POSTPROCESS/ANALYSIS |
+| 10 | 统一为四段带符号电荷积分 | **NEXT-STAGE TODO** — POSTPROCESS |
+| 11 | direct twin 保留厚 Nickel、真实接触长度、单一 stepped gate | **NEXT-STAGE TODO** — CONDITIONAL_NOT_DEMONSTRATED；禁止本轮编制 |
+| 12 | 用户书面批准 benchmark-only exception | **OPEN** — USER DECISION REQUIRED |
+| 13 | `tonyplot` 移出执行链，三段 wall time 分开统计 | **NEXT-STAGE TODO** — DECK/RUNNER |
+| 14 | 重新生成唯一入口并同步索引/技术结论 | **CLOSED** |
 
 ## 14. 未来计划审查包的最小交付（本轮不执行）
 
@@ -642,6 +642,12 @@ patch 来源完整性已经关闭，不再列为缺口。以上缺口需要未�
 
 本轮唯一外部动作是将本计划、最新网页裁决报告、唯一交接入口/附件索引和 `lessons.md` 做 scoped
 commit 并推送到既有 `main`。该文档发布授权不产生任何仿真执行权。
+
+```text
+NO SEU TRANSIENT
+NO PAIRED TRANSIENT
+NO AUTOMATIC EXPANSION OF AUTHORIZATION
+```
 
 ## Final recommendation
 

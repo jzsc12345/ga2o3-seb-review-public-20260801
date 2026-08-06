@@ -18,3 +18,10 @@ handoff 入口、附件索引和永久 lessons，并删除已经被新证据关�
 未变，本轮只提交获准修订的文档，不得借机重写或重复提交 deck、C 源、ZIP、patch 等源证据。文档中的
 `REVISE`、未来 parser/mesh/static 待办和 benchmark-only exception 都不产生 SSH、仿真、改 deck 或
 瞬态发射权；每次 scoped push 后必须返回新的固定 `blob/<commit>/...` 唯一入口。
+
+## 2026-08-06 — Deck 输出合同与后处理裁决必须分离
+
+terminal-current classification、floor、KCL、趋势拟合和带符号电荷积分统一归
+postprocess/analysis，禁止错误塞入 ATLAS deck。Deck 只负责产生预声明的 source-off baseline、accepted
+时刻、STR 和原始端电流。计划重构后必须逐项复核 handoff 中的章节定位，禁止保留已经失效的 section
+reference。

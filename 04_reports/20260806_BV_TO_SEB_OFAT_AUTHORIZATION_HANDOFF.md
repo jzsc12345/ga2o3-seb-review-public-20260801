@@ -44,16 +44,18 @@
 
 ```text
 REVIEW_VERDICT = REVISE
-CONTROLLED_LINEAGE_MASTER = original bv.in
-ZIP_DECK = CANDIDATE_PARENT / NOT_RUNTIME_VALIDATED
-CONTROLLED_EXECUTION_PARENT = NONE
-CONVERSION_FIDELITY = PARTIAL_PASS / REVISE
-DEVEDIT_RUNTIME_READINESS = NOT_READY
-DIRECT_MESH_EQUIVALENCE_FEASIBILITY = CONDITIONAL_NOT_DEMONSTRATED
-BENCHMARK_EXCEPTION_REQUIRED = YES
-COMPARISON_READY = NO
-FINAL_RECOMMENDATION = REVISE_BEFORE_COMPARISON
+DOCUMENT_REVISION_COMPLETENESS = REVISE
+CANDIDATE_NORMALIZATION_CONTRACT = PASS
+SOURCE_OFF_AND_RUNTIME_GATES = PASS
+DIRECT_MESH_EQUIVALENCE = CONDITIONAL_NOT_DEMONSTRATED
+CURRENT_ONLY_CRITERION = REVISE
+BENCHMARK_ONLY_EXCEPTION = USER_DECISION_REQUIRED
+NEXT_AUTHORIZATION_SCOPE = PASS
+ATTACHMENT_COMPLETENESS = PASS
 ```
+
+稳定身份不变：`CONTROLLED_LINEAGE_MASTER=original bv.in`、
+`ZIP_DECK=CANDIDATE_PARENT / NOT_RUNTIME_VALIDATED`、`CONTROLLED_EXECUTION_PARENT=NONE`。
 
 已经关闭的事实门：patch 可应用于本轮原始 `bv.in`，结果与 ZIP 候选一致；原器件是一个连续的厚
 Nickel gate，没有独立 `gate_fp`；几何、12 个 region、厚 Nickel 电极、active impurity、mobility、
@@ -109,11 +111,16 @@ LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
 
 该例外只服务于 DevEdit/direct-mesh 数值路线比较；不能提升为生产物理参数，也不能静默改值绕过门禁。
 
-### 4.5 current-only 判据还需落入 deck
+### 4.5 输出合同与 current-only 分类逻辑必须分层落位
 
 计划已经补入“回落到噪声底”的 SET 分支：如果曾存在可分辨峰值，且 ΔId/ΔIs 在至少两个连续晚期 accepted
 点低于各自 floor、50→100 µs 无回升并通过 KCL，可判 `SET_LIKE_CURRENT_RESPONSE`，不强迫对噪声底下点
-计算 log slope。该判据仍需与四段电荷积分、`OFAT_INVALID` 优先级一起落实到候选正文。
+计算 log slope。正式落位规则是：
+
+- deck 只负责生成至少五个 source-off baseline 点、预声明的 accepted 时刻、对应 STR 和原始三端电流；
+- 统一 postprocess/analysis 负责 baseline/floor、单位和符号、raw/差分 KCL、趋势拟合、四段带符号电荷
+  积分、决策优先级与最终 current-only 标签；
+- ATLAS deck 不承担 `SET_LIKE_CURRENT_RESPONSE` 或 `CURRENT_DEFINED_SEB_CANDIDATE` 的分类逻辑。
 
 ## 5. 完整附件索引
 
@@ -138,12 +145,12 @@ LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
 |---|---|
 | 父本身份与 ZIP 候选边界 | 本入口 §0、§3；计划 §0、§2 |
 | 三层术语边界 | 本入口 §2；计划 §1 |
-| 转换保真与额外物理/数值变化 | 本入口 §3–§4.1；计划 §2.2、§7 |
-| source-off baseline | 本入口 §4.2；计划 §7.4、§8 |
-| 网格和 runtime 门 | 本入口 §4.3；计划 §7.5–§7.7、§11 |
-| current-only 分类和低于 floor 的 SET | 本入口 §4.5；计划 §5、§9 |
-| direct-mesh 等价与 OFAT 失效条件 | 计划 §7、§11、§12 |
-| benchmark-only 例外 | 本入口 §4.4；计划 §7.9、§13 |
+| 转换保真与额外物理/数值变化 | 本入口 §3–§4.1；计划 §2.2–§2.3 |
+| source-off baseline | 本入口 §4.2；计划 §2.3、§6.1 |
+| 网格和 runtime 门 | 本入口 §4.3；计划 §4.5、§5、§13.2 |
+| current-only 分类和低于 floor 的 SET | 本入口 §4.5；计划 §6–§9 |
+| direct-mesh 等价与 OFAT 失效条件 | 计划 §3–§5、§12–§13 |
+| benchmark-only 例外 | 本入口 §4.4；计划 §2.3、§13.3 |
 
 ## 7. 请网页端回答的精确问题
 
@@ -156,12 +163,13 @@ LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB
    是否完整，且没有被文本核对冒充为运行验证？
 4. direct-mesh 可行性是否正确保持为 `CONDITIONAL_NOT_DEMONSTRATED`，并在厚 Nickel、实际接触长度、
    单一 stepped gate、接口或热边界改变时直接判 `OFAT_INVALID`？
-5. “恢复到 floor 以下”的 SET 分支、四段带符号电荷积分和
+5. “恢复到 floor 以下”的 SET 分支、四段带符号电荷积分和统一 postprocess/analysis 职责，以及
    `OFAT_INVALID → NUMERICAL_TERMINATION → INSUFFICIENT_TIME_WINDOW → current-only classification`
    优先级是否一致？
 6. legacy `benchmark-only exception` 是否仍被明确保留为用户另行书面决定，而不是由本次修订自动批准？
 7. 下一阶段可能申请的范围是否严格止于“本地候选编制 + parser-only + 两路线结构/网格检查 +
-   300 V 静态等价预检”，且明确不含 SEU 瞬态？
+   300 V 静态等价预检”，且明确 `NO SEU TRANSIENT / NO PAIRED TRANSIENT /
+   NO AUTOMATIC EXPANSION OF AUTHORIZATION`？
 8. 附件索引、相对链接和最新网页裁决是否足以从本唯一入口独立复核？
 
 ## 8. 建议网页端回复格式
@@ -200,6 +208,12 @@ NEXT_AUTHORIZATION:
 创建新 RUN、调整物理参数、创建 branch/worktree、覆盖结果或处理无关仓库文件。网页端建议也不自动产生
 执行权；后续动作仍需用户把明确核签发回执行端。
 
+```text
+NO SEU TRANSIENT
+NO PAIRED TRANSIENT
+NO AUTOMATIC EXPANSION OF AUTHORIZATION
+```
+
 ## 11. 期望的下一裁决
 
 当前推荐保持：
@@ -209,4 +223,13 @@ REVISE_BEFORE_COMPARISON
 ```
 
 只有网页端确认候选规范化合同和 benchmark-only 边界后，才讨论一次独立、受限的本地候选准备授权；
-该授权仍不得自动扩大为 paired SEB transient。
+其范围只能是：
+
+```text
+local candidate-deck preparation
++ parser-only check
++ DevEdit/direct-mesh structure and mesh-generation inspection
++ 300 V static-state equivalence preflight
+```
+
+该授权仍不得自动扩大为 SEU 或 paired transient。

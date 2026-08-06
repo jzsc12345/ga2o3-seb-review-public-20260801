@@ -1,4 +1,4 @@
-# Latest web-side formal re-review — BV→SEB conversion and mesh-route OFAT
+# Latest web-side formal re-review — OFAT documentation alignment
 
 > Source: user-pasted formal web-side re-review
 >
@@ -10,14 +10,36 @@
 
 ```text
 REVIEW_VERDICT: REVISE
+DOCUMENT_REVISION_COMPLETENESS: REVISE
+CANDIDATE_NORMALIZATION_CONTRACT: PASS
+SOURCE_OFF_AND_RUNTIME_GATES: PASS
+DIRECT_MESH_EQUIVALENCE: CONDITIONAL_NOT_DEMONSTRATED
+CURRENT_ONLY_CRITERION: REVISE
+BENCHMARK_ONLY_EXCEPTION: USER_DECISION_REQUIRED
+NEXT_AUTHORIZATION_SCOPE: PASS
+ATTACHMENT_COMPLETENESS: PASS
+```
+
+Stable identities remain unchanged:
+
+```text
 CONTROLLED_LINEAGE_MASTER: original bv.in
 ZIP_DECK: CANDIDATE_PARENT / NOT_RUNTIME_VALIDATED
-CONVERSION_FIDELITY: PARTIAL_PASS / REVISE
-DEVEDIT_RUNTIME_READINESS: NOT_READY
-DIRECT_MESH_EQUIVALENCE_FEASIBILITY: CONDITIONAL_NOT_DEMONSTRATED
-BENCHMARK_EXCEPTION_REQUIRED: YES
-FINAL_RECOMMENDATION: REVISE_BEFORE_COMPARISON
+CONTROLLED_EXECUTION_PARENT: NONE
 ```
+
+## Six documentation revisions required by this re-review
+
+1. Mark item 14 in plan §13.3 directly and unconditionally as `CLOSED`.
+2. Restrict every primary status in §13.3 to `CLOSED`, `NEXT-STAGE TODO` or `OPEN`; details may follow only as qualifiers.
+3. Assign the recovered-to-floor SET classification to `NEXT-STAGE TODO — POSTPROCESS/ANALYSIS`, never to the deck.
+4. Assign four-segment signed-charge integration to `NEXT-STAGE TODO — POSTPROCESS`, never to the deck.
+5. Replace the stale section references in handoff §6 with references to sections that exist in the current plan.
+6. State explicitly that the deck owns only the output contract, while unified postprocess/analysis owns floor, KCL,
+   trend fitting, signed-charge integration, decision order and final current-only labels.
+
+These are documentation corrections only. They do not close any parser, mesh, accepted-300 V, thermal-binding or
+transient execution gate.
 
 The original `bv.in` is the only structure/physics lineage master. `RUN238` is excluded. The historical direct-mesh
 `seb_2` may supply runtime and late-window references only; it must not supply material, doping, impact, thermal or solver
@@ -114,22 +136,20 @@ A separate written user approval is required before both arms may retain, solely
 The exception must be labeled `LEGACY_BENCHMARK_ONLY / NOT_PRODUCTION_QUALIFIED_SEB`. It cannot qualify the parameters
 for production, bypass preflight silently, or import historical `seb_2` physics.
 
-## Mandatory revisions
+## Previously confirmed technical gates remain in force
 
-1. Remove the stale original-file/patch-provenance gap; it is closed.
-2. Freeze one static-state sequence shared by A/B: gate initialization, 15 V ramp step, save/load and solver.
-3. Remove Auger or justify it with explicit parameters and separate approval.
-4. Remove `max.temp=50000` or review it as a shared solver change.
-5. Require at least five accepted baseline points with source truly off/zero.
-6. Freeze maximum Δx/Δy and verify center spacing and full-y continuity from generated STR.
-7. Close accepted-300 V, thermcontact, region-10 and NiO thermal runtime gates.
-8. Align deck/plan accepted and STR times at 10/20/50/100 µs.
-9. Add the below-floor recovered-SET branch.
-10. Use one consistent four-segment signed-charge integration definition.
-11. Preserve thick Nickel, actual contact lengths and one stepped-gate electrode in the direct twin.
-12. Obtain the written benchmark-only exception; do not bypass production preflight.
-13. Move `tonyplot` out of execution and time structure build, static bias and transient separately.
-14. Regenerate the single handoff entry with synchronized attachment index and conclusions.
+- Freeze one static-state sequence shared by A/B: gate initialization, 15 V ramp step, save/load and solver.
+- Remove Auger or justify it with explicit parameters and separate approval.
+- Remove `max.temp=50000` or review it as a shared solver change.
+- Require at least five accepted baseline points with source truly off/zero.
+- Freeze maximum Δx/Δy and verify center spacing and full-y continuity from generated STR.
+- Close accepted-300 V, thermcontact, region-10 and NiO thermal runtime gates.
+- Align deck/plan accepted and STR times at 10/20/50/100 µs.
+- Preserve thick Nickel, actual contact lengths and one stepped-gate electrode in any future direct twin.
+- Obtain the written benchmark-only exception; do not bypass production preflight.
+- Move `tonyplot` out of execution and time structure build, static bias and transient separately.
+- Implement recovered-to-floor classification and four-segment signed-charge integration only in unified
+  postprocess/analysis.
 
 ## Next authorization boundary
 
@@ -146,3 +166,9 @@ local candidate-deck preparation
 ```
 
 That future preflight must not automatically enter a particle transient.
+
+```text
+NO SEU TRANSIENT
+NO PAIRED TRANSIENT
+NO AUTOMATIC EXPANSION OF AUTHORIZATION
+```
