@@ -1,0 +1,874 @@
+脚本启动于 2026年08月07日 星期五 14时05分01秒
+
+*** this is deckbuild version 5.2.40.R ***
+
+
+# VICTORYMESH_STRUCTURE_MESH_ONLY
+# NO ATLAS
+# NO STATIC_BIAS
+# NO SEU_TRANSIENT
+# NO PAIRED_TRANSIENT
+# NO AUTOMATIC_EXPANSION_OF_AUTHORIZATION
+#
+# One-shot conformal-minimal candidate.  Lines 15..214 preserve the Stage 2
+# DevEdit structure body mechanically.  Only unique STR names and the Victory
+# Mesh policy after the raw structure output are changed.
+# Frozen track contract: xion=10.25 um, r=0.05 um,
+# ROI x=10.10..10.40 um, y=0.00..0.60 um.
+
+#go DevEdit
+go devedit
+
+                                 D E V E D I T
+
+                      Copyright (c) 1992-2016 SILVACO Inc.
+
+                              All rights reserved
+
+                devedit 2.8.26.R (Tue Jan 26 05:23:40 PST 2016)
+              libMeshBuild 1.24.23 (Tue Jan 26 05:22:55 PST 2016)
+                  libSSS 2.8.14 (Tue Jan 19 16:38:10 PST 2016)
+               libSVC_Misc 1.28.13 (Tue Jan 19 16:37:06 PST 2016)
+                 libsflm 7.10.1 (Tue May 19 19:52:32 PDT 2015)
+                 libSDB 1.12.36 (Wed Jan 13 04:01:54 PST 2016)
+               libGeometry 1.30.16 (Tue May 19 19:51:51 PDT 2015)
+               libCardDeck 1.32.22 (Fri Jan 22 18:42:45 PST 2016)
+                libDW_Set 1.28.13 (Tue Jan 19 16:36:26 PST 2016)
+               libSvcFile 1.14.19 (Tue May 19 19:51:56 PDT 2015)
+                 libsstl 1.10.11 (Tue May 19 19:51:57 PDT 2015)
+               libDW_Misc 1.40.20 (Tue Jan 19 16:14:10 PST 2016)
+                libQSilCore 1.2.8 (Wed May 13 18:39:12 PDT 2015)
+                libDW_crypt 3.0.0 (Mon May 18 04:43:00 PDT 2015)
+               libDW_Version 3.8.0 (Fri Oct  3 16:08:41 PDT 2014)
+
+                  MeshBuild Library based on MeshBuild v1.9.0
+   Copyright (c) 1991 Integrated Systems Laboratory, ETH Zurich, Switzerland
+
+               Executing on host: tcad  Fri Aug  7 14:05:04 2026
+
+SFLM_SERVERS=localhost:3162/
+Current Server: localhost:3162/
+
+DevEdit> #version=2.8.26.R # file written Mon Jan 12 2026 13:04:28 GMT+8 (CST)
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> work.area x1=0 y1=-0.2 x2=15 y2=0.6
+DevEdit> # devedit 2.8.26.R (Tue Jan 26 05:23:40 PST 2016)
+DevEdit> # libMeshBuild 1.24.23 (Tue Jan 26 05:22:55 PST 2016)
+DevEdit> # libSSS 2.8.14 (Tue Jan 19 16:38:10 PST 2016)
+DevEdit> # libSVC_Misc 1.28.13 (Tue Jan 19 16:37:06 PST 2016)
+DevEdit> # libsflm 7.10.1 (Tue May 19 19:52:32 PDT 2015)
+DevEdit> # libSDB 1.12.36 (Wed Jan 13 04:01:54 PST 2016)
+DevEdit> # libGeometry 1.30.16 (Tue May 19 19:51:51 PDT 2015)
+DevEdit> # libCardDeck 1.32.22 (Fri Jan 22 18:42:45 PST 2016)
+DevEdit> # libDW_Set 1.28.13 (Tue Jan 19 16:36:26 PST 2016)
+DevEdit> # libSvcFile 1.14.19 (Tue May 19 19:51:56 PDT 2015)
+DevEdit> # libsstl 1.10.11 (Tue May 19 19:51:57 PDT 2015)
+DevEdit> # libDW_Misc 1.40.20 (Tue Jan 19 16:14:10 PST 2016)
+DevEdit> # libQSilCore 1.2.8 (Wed May 13 18:39:12 PDT 2015)
+DevEdit> # libDW_crypt 3.0.0 (Mon May 18 04:43:00 PDT 2015)
+DevEdit> # libDW_Version 3.8.0 (Fri Oct  3 16:08:41 PDT 2014)
+DevEdit> region reg=1 name=substrate mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 polygon="0,0.4 15,0.4 15,0.6 0,0.6"
+DevEdit> #
+DevEdit> impurity id=1 region.id=1 imp=Acceptors peak.value=2000000 ref.value=1000000000000 comb.func=Multiply
+DevEdit> #
+DevEdit> constr.mesh region=1 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=2 name=uid mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 polygon="0,0.2 15,0.2 15,0.4 0,0.4"
+Material WARNING: Using material by number (50). Extraneous text ignore '
+Q'.
+Material WARNING: Using material by number (50). Extraneous text ignore '
+Q'.
+DevEdit> #
+DevEdit> impurity id=1 region.id=2 imp=Donors peak.value=1.5e+15 ref.value=1000000000000 comb.func=Multiply
+DevEdit> #
+DevEdit> constr.mesh region=2 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=3 name=channel mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 polygon="14,0.15 15,0.15 15,0.2 0,0.2 0,0.15 1,0.15 1,0 14,0"
+DevEdit> #
+DevEdit> impurity id=1 region.id=3 imp=Donors peak.value=1e+17 ref.value=1000000000000 comb.func=Multiply
+DevEdit> #
+DevEdit> constr.mesh region=3 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=4 name=oxide mat=SiO2 color=0xff pattern=0x2 polygon="4,-0.17 6,-0.17 14.5,-0.17 14.5,-0.02 4,-0.02 4,-0.07 4,-0.12" polygon="2,-0.12 2,-0.07 2,-0.02 0.5,-0.02 0.5,-0.17 1.5,-0.17 2,-0.17"
+DevEdit> #
+DevEdit> constr.mesh region=4 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=5 mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 polygon="0,0 0.5,0 1,0 1,0.15 0,0.15"
+DevEdit> #
+DevEdit> impurity id=1 region.id=5 imp=Donors peak.value=5e+19 ref.value=1000000000000 comb.func=Multiply
+DevEdit> #
+DevEdit> constr.mesh region=5 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=6 name=N_D mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 polygon="15,0 15,0.15 14,0.15 14,0 14.5,0"
+DevEdit> #
+DevEdit> impurity id=1 region.id=6 imp=Donors peak.value=5e+19 ref.value=1000000000000 comb.func=Multiply
+DevEdit> #
+DevEdit> constr.mesh region=6 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=7 name=barrier mat=Al2O3 color=0xcc9426 pattern=0x6 polygon="14.5,0 14,0 1,0 0.5,0 0.5,-0.02 2,-0.02 4,-0.02 14.5,-0.02"
+DevEdit> #
+DevEdit> constr.mesh region=7 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=8 name=P- mat="UD2(NiO)" color=0x7a3d99 pattern=0x4 polygon="2,-0.07 4,-0.07 4,-0.02 2,-0.02"
+DevEdit> #
+DevEdit> impurity id=1 region.id=8 imp=Acceptors peak.value=1.3e+18 ref.value=1000000000000 comb.func=Multiply
+DevEdit> #
+DevEdit> constr.mesh region=8 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=9 name=P+ mat="UD2(NiO)" color=0x7a3d99 pattern=0x4 polygon="2,-0.12 4,-0.12 4,-0.07 2,-0.07"
+DevEdit> #
+DevEdit> impurity id=1 region.id=9 imp=Acceptors peak.value=3e+19 ref.value=1000000000000 comb.func=Multiply
+DevEdit> #
+DevEdit> constr.mesh region=9 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=10 name=source mat=Nickel elec.id=1 work.func=0 color=0xffff96 pattern=0xe polygon="0,-0.18 0.5,-0.18 0.5,-0.17 0.5,-0.02 0.5,0 0,0"
+DevEdit> #
+DevEdit> constr.mesh region=10 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=11 name=drain mat=Nickel elec.id=2 work.func=0 color=0xffff96 pattern=0xe polygon="15,0 14.5,0 14.5,-0.02 14.5,-0.17 14.5,-0.18 15,-0.18"
+DevEdit> #
+DevEdit> constr.mesh region=11 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> region reg=12 name=gate mat=Nickel elec.id=3 work.func=0 color=0xffff96 pattern=0xe polygon="6,-0.2 6,-0.17 4,-0.17 4,-0.12 2,-0.12 2,-0.17 1.5,-0.17 1.5,-0.2"
+DevEdit> #
+DevEdit> constr.mesh region=12 default
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> # Set Meshing Parameters
+DevEdit> #
+DevEdit> base.mesh height=10 width=10
+DevEdit> #
+DevEdit> bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.points when=automatic
+DevEdit> #
+DevEdit> imp.refine min.spacing=0.02
+DevEdit> #
+DevEdit> constr.mesh max.angle=90 max.ratio=300 max.height=1000 max.width=1000 min.height=0.0001 min.width=0.0001
+DevEdit> #
+DevEdit> constr.mesh type=Semiconductor default
+DevEdit> #
+DevEdit> constr.mesh type=Insulator default
+DevEdit> #
+DevEdit> constr.mesh type=Metal default
+DevEdit> #
+DevEdit> constr.mesh type=Other default
+DevEdit> #
+DevEdit> constr.mesh region=1 default
+DevEdit> #
+DevEdit> constr.mesh region=2 default
+DevEdit> #
+DevEdit> constr.mesh region=3 default
+DevEdit> #
+DevEdit> constr.mesh region=4 default
+DevEdit> #
+DevEdit> constr.mesh region=5 default
+DevEdit> #
+DevEdit> constr.mesh region=6 default
+DevEdit> #
+DevEdit> constr.mesh region=7 default
+DevEdit> #
+DevEdit> constr.mesh region=8 default
+DevEdit> #
+DevEdit> constr.mesh region=9 default
+DevEdit> #
+DevEdit> constr.mesh region=10 default
+DevEdit> #
+DevEdit> constr.mesh region=11 default
+DevEdit> #
+DevEdit> constr.mesh region=12 default
+DevEdit> Mesh Mode=MeshBuild
+Building initial tensor-product mesh...Done
+Refining on geometry... Done
+Refining on size... Done
+Refining on Impurities...Done
+Handling green points...Done
+Dividing to triangles... Done
+Testing Consistency of mesh... Done
+Mesh statistics:
+	Number of points = 101
+	Number of triangles = 159
+	Obtuse triangles 0 (0%)
+DevEdit> refine mode=y x1=0.27 y1=0.3024 x2=14.96 y2=0.468
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.19 y1=0.4699 x2=0.21 y2=0.4718
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=unrefine x1=0.34 y1=0.4249 x2=0.92 y2=0.4823
+Unrefine Region
+Creating list... done.
+UnRefining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.09 y1=0.0431 x2=14.94 y2=0.0785
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.31 y1=0.045 x2=14.81 y2=0.0967
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.39 y1=0.2594 x2=14.74 y2=0.5436
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=4.59 y1=-0.1263 x2=13.57 y2=0.5742
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=4.36 y1=-0.1397 x2=13.54 y2=0.5666
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=2.25 y1=-0.1875 x2=3.69 y2=0.5809
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=2.47 y1=-0.2 x2=2.48 y2=-0.2
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=2.63 y1=-0.1933 x2=3.6 y2=0.5704
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=1.79 y1=-0.1923 x2=5.87 y2=0.578
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=2.04 y1=-0.1923 x2=3.9 y2=0.5819
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=14.17 y1=-0.1425 x2=14.79 y2=0.5857
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=0.3 y1=-0.1406 x2=0.66 y2=0.5905
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=6.32 y1=-0.1311 x2=13.33 y2=0.5857
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=4.18 y1=-0.1377 x2=13.89 y2=0.5819
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=x x1=14.19 y1=-0.1483 x2=14.77 y2=0.5771
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=4.08 y1=-0.1578 x2=14.93 y2=-0.1464
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.19 y1=-0.1569 x2=14.93 y2=-0.1368
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=-0.13 y1=-0.1492 x2=1.85 y2=-0.1416
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=4.05 y1=-0.1588 x2=15.11 y2=-0.1349
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.09 y1=-0.0899 x2=14.91 y2=-0.0382
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.13 y1=-0.111 x2=14.93 y2=-0.0306
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=4.97 y1=-0.1665 x2=6.84 y2=-0.0889
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.39 y1=0.1838 x2=14.94 y2=0.2364
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.07 y1=0.1876 x2=14.9 y2=0.2154
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=-0.03 y1=0.3733 x2=14.92 y2=0.4364
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.2 y1=0.3828 x2=14.85 y2=0.4077
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.14 y1=-0.0124 x2=14.86 y2=0.0297
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=-0.03 y1=-0.0086 x2=14.91 y2=0.0345
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.22 y1=0.0546 x2=13.78 y2=0.1388
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.21 y1=0.2364 x2=13.2 y2=0.2804
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.17 y1=0.2623 x2=13.89 y2=0.3398
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=13.54 y1=0.2316 x2=13.95 y2=0.2938
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=14.3 y1=0.2651 x2=14.97 y2=0.2823
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.25 y1=0.3589 x2=13.49 y2=0.4383
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.21 y1=0.4728 x2=13.54 y2=0.5742
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.14 y1=0.5589 x2=14.9 y2=0.5886
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.14 y1=0.0029 x2=13.92 y2=0.0144
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=14.16 y1=0.4163 x2=14.99 y2=0.4211
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.09 y1=0.4316 x2=0.16 y2=0.446
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0 y1=0.3838 x2=0.16 y2=0.4201
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.09 y1=0.1847 x2=0.11 y2=0.2125
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.16 y1=0.0288 x2=13.66 y2=0.0345
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> refine mode=y x1=0.03 y1=0.0182 x2=13.77 y2=0.0221
+Refine Region
+Creating list... done.
+Refining... done.
+Handling green points... done.
+Dividing to triangles... done.
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> base.mesh height=10 width=10
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> structure outf=VM_SEB_ONESHOT_CANDIDATE_devedit_raw.str
+DevEdit> 
+
+
+DevEdit> DevEdit> DevEdit> # ----------------------------------------------------------------------
+DevEdit> # Victory Mesh one-shot policy: conformal-minimal, region/interface aware,
+DevEdit> # local strike and high-field shapes, with no global LINE refinement.
+DevEdit> # ----------------------------------------------------------------------
+DevEdit> quit
+
+Parse complete:
+	Error(s)   = 0
+	Warning(s) = 0
+
+0.45user 0.06system 0:19.66elapsed 2%CPU (0avgtext+0avgdata 11508maxresident)k
+0inputs+1216outputs (0major+2968minor)pagefaults 0swaps
+go victorymesh simflags="-P 4"
+
+                                  VICTORY MESH
+
+                 Version: 1.12.0.R  (Thu Nov 20 09:43:09 2025)
+                           Copyright (c) 2016 - 2026
+                        Silvaco Inc. All rights reserved
+        ===============================================================
+          Victory Mesh                                      : Enabled 
+          Victory Mesh 2D Device Meshing                    : Enabled 
+          Victory Mesh 3D Device Meshing                    : Enabled 
+          Victory Mesh 2D Solid Modeling                    : Enabled 
+          Victory Mesh 3D Solid Modeling                    : Enabled 
+        ===============================================================
+                            Executing on host: tcad
+                        Using: 4 CPUs (8 CPUs available)
+
+                            Fri Aug  7 14:05:28 2026
+        ===============================================================
+
+VICTORYMESH>
+VICTORYMESH>cuboid from="10.10,0.00" to="10.40,0.60" out="SEB_TRACK_ROI"
+VICTORYMESH>cuboid from="5.95,-0.20" to="6.05,-0.12" out="GATE_DRAIN_EDGE_ROI"
+VICTORYMESH>
+VICTORYMESH>load in="VM_SEB_ONESHOT_CANDIDATE_devedit_raw.str"
+VM_SEB_ONESHOT_CANDIDATE_devedit_raw.str (603.2KB).
+VICTORYMESH>
+VICTORYMESH># Strict-interior semantic tags.  Region 5 is intentionally not renamed.
+VICTORYMESH>tag point="0.25,0.075" value="REGION5"
+found: ga2o3
+VICTORYMESH>tag point="0.25,-0.10" value="SOURCE_METAL"
+found: nickel
+VICTORYMESH>tag point="14.75,-0.10" value="DRAIN_METAL"
+found: nickel
+VICTORYMESH>tag point="3.00,-0.16" value="GATE_METAL"
+found: nickel
+VICTORYMESH>
+VICTORYMESH>info
+Name: VM_SEB_ONESHOT_CANDIDATE_devedit_raw
+Region triangles: 
+  Region type: electrode
+    conduction: conductor conductor conductor 
+    material: nickel nickel nickel 
+    name: source drain gate 
+    region: region-10 region-11 region-12 
+    sdb: electrode-1 electrode-2 electrode-3 
+    user: SOURCE_METAL DRAIN_METAL GATE_METAL 
+    elements: 341
+    2D points: 253
+    1D scalars: 506
+  Region type: structure
+    conduction: unknown unknown unknown insulator insulator unknown unknown insulator semiconductor semiconductor 
+    material: ga2o3 ga2o3 ga2o3 sio2 sio2 ga2o3 ga2o3 al2o3 nio nio 
+    region: region-0 region-1 region-2 region-3 region-4 region-5 region-6 region-7 region-8 region-9 
+    user: substrate uid channel oxide oxide REGION5 n_d barrier p- p+ 
+    elements: 9461
+    2D points: 4877
+    1D scalars: 10496
+Total mesh:
+  elements: 9802
+  points: 5045
+VICTORYMESH>info fields="*"
+Name: VM_SEB_ONESHOT_CANDIDATE_devedit_raw
+Attribute scalars: 
+  Attribute acceptor: al2o3
+    name: "acceptor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute acceptor: ga2o3
+    name: "acceptor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute acceptor: nickel
+    name: "acceptor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute acceptor: nio
+    name: "acceptor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute acceptor: sio2
+    name: "acceptor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute donor: al2o3
+    name: "donor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute donor: ga2o3
+    name: "donor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute donor: nickel
+    name: "donor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute donor: nio
+    name: "donor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute donor: sio2
+    name: "donor conc" 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute name: acceptor conc
+    acceptor: al2o3 ga2o3 nickel nio sio2 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute name: donor conc
+    donor: al2o3 ga2o3 nickel nio sio2 
+    scale: log 
+    type: dopant 
+    unit: /cm^3 
+  Attribute scale: log
+    acceptor: al2o3 ga2o3 nickel nio sio2 
+    donor: al2o3 ga2o3 nickel nio sio2 
+    name: "donor conc" "acceptor conc" 
+    type: dopant dopant 
+    unit: /cm^3 /cm^3 
+  Attribute type: dopant
+    acceptor: al2o3 ga2o3 nickel nio sio2 
+    donor: al2o3 ga2o3 nickel nio sio2 
+    name: "donor conc" "acceptor conc" 
+    scale: log log 
+    unit: /cm^3 /cm^3 
+  Attribute unit: /cm^3
+    acceptor: al2o3 ga2o3 nickel nio sio2 
+    donor: al2o3 ga2o3 nickel nio sio2 
+    name: "donor conc" "acceptor conc" 
+    scale: log log 
+    type: dopant dopant 
+VICTORYMESH>
+VICTORYMESH>remesh conformal simplex.minimal spacing=0.25
+- minimal mesh - 2D - 0% 
+\ minimal mesh - 2D - 10% - 4s (31v)
+| minimal mesh - 2D - 20% - 2s (62v)
+/ minimal mesh - 2D - 30% - 1s (93v)
+- minimal mesh - 2D - 40% - 0s (124v)
+\ minimal mesh - 2D - 50% - 0s (155v)
+| minimal mesh - 2D - 60% - 0s (186v)
+/ minimal mesh - 2D - 70% - 0s (217v)
+- minimal mesh - 2D - 80% - 0s (248v)
+\ minimal mesh - 2D - 90% - 0s (279v)
+| minimal mesh - 2D - 100% (310v)
+VICTORYMESH>
+VICTORYMESH># Region-size policy: coarse bulk, explicit thin-stack and contact limits.
+VICTORYMESH>refine regions="USER:substrate" max.size="0.25,0.05"
+refining: ga2o3
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (13v)
+| refining mesh - 2D - 20% - 2s (25v)
+/ refining mesh - 2D - 30% - 1s (37v)
+- refining mesh - 2D - 40% - 0s (49v)
+\ refining mesh - 2D - 50% - 0s (61v)
+| refining mesh - 2D - 60% - 0s (74v)
+/ refining mesh - 2D - 70% - 0s (86v)
+- refining mesh - 2D - 80% - 0s (98v)
+\ refining mesh - 2D - 90% - 0s (110v)
+| refining mesh - 2D - 100% (122v)
+VICTORYMESH>refine regions="USER:uid" max.size="0.20,0.04"
+refining: ga2o3
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (61v)
+| refining mesh - 2D - 20% - 2s (121v)
+/ refining mesh - 2D - 30% - 1s (181v)
+- refining mesh - 2D - 40% - 0s (241v)
+\ refining mesh - 2D - 50% - 0s (301v)
+| refining mesh - 2D - 60% - 0s (362v)
+/ refining mesh - 2D - 70% - 0s (422v)
+- refining mesh - 2D - 80% - 0s (482v)
+\ refining mesh - 2D - 90% - 0s (542v)
+| refining mesh - 2D - 100% (602v)
+VICTORYMESH>refine regions="USER:channel" max.size="0.10,0.025"
+refining: ga2o3
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (87v)
+| refining mesh - 2D - 20% - 2s (174v)
+/ refining mesh - 2D - 30% - 1s (261v)
+- refining mesh - 2D - 40% - 0s (348v)
+\ refining mesh - 2D - 50% - 0s (434v)
+| refining mesh - 2D - 60% - 0s (521v)
+/ refining mesh - 2D - 70% - 0s (608v)
+- refining mesh - 2D - 80% - 0s (695v)
+\ refining mesh - 2D - 90% - 0s (782v)
+| refining mesh - 2D - 100% (868v)
+VICTORYMESH>refine regions="USER:REGION5" max.size="0.05,0.025"
+refining: ga2o3
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (14v)
+| refining mesh - 2D - 20% - 2s (27v)
+/ refining mesh - 2D - 30% - 1s (41v)
+- refining mesh - 2D - 40% - 0s (54v)
+\ refining mesh - 2D - 50% - 0s (67v)
+| refining mesh - 2D - 60% - 0s (81v)
+/ refining mesh - 2D - 70% - 0s (94v)
+- refining mesh - 2D - 80% - 0s (108v)
+\ refining mesh - 2D - 90% - 0s (121v)
+| refining mesh - 2D - 100% (134v)
+VICTORYMESH>refine regions="USER:n_d" max.size="0.05,0.025"
+refining: ga2o3
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (14v)
+| refining mesh - 2D - 20% - 2s (27v)
+/ refining mesh - 2D - 30% - 1s (41v)
+- refining mesh - 2D - 40% - 0s (54v)
+\ refining mesh - 2D - 50% - 0s (67v)
+| refining mesh - 2D - 60% - 0s (81v)
+/ refining mesh - 2D - 70% - 0s (94v)
+- refining mesh - 2D - 80% - 0s (108v)
+\ refining mesh - 2D - 90% - 0s (121v)
+| refining mesh - 2D - 100% (134v)
+VICTORYMESH>refine regions="USER:oxide" max.size="0.20,0.025"
+refining: sio2
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (59v)
+| refining mesh - 2D - 20% - 2s (117v)
+/ refining mesh - 2D - 30% - 1s (176v)
+- refining mesh - 2D - 40% - 0s (234v)
+\ refining mesh - 2D - 50% - 0s (292v)
+| refining mesh - 2D - 60% - 0s (351v)
+/ refining mesh - 2D - 70% - 0s (409v)
+- refining mesh - 2D - 80% - 0s (468v)
+\ refining mesh - 2D - 90% - 0s (526v)
+| refining mesh - 2D - 100% (584v)
+VICTORYMESH>refine regions="USER:barrier" max.size="0.10,0.005"
+refining: al2o3
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (45v)
+| refining mesh - 2D - 20% - 2s (90v)
+/ refining mesh - 2D - 30% - 1s (135v)
+- refining mesh - 2D - 40% - 0s (180v)
+\ refining mesh - 2D - 50% - 0s (225v)
+| refining mesh - 2D - 60% - 0s (270v)
+/ refining mesh - 2D - 70% - 0s (315v)
+- refining mesh - 2D - 80% - 0s (360v)
+\ refining mesh - 2D - 90% - 0s (405v)
+| refining mesh - 2D - 100% (450v)
+VICTORYMESH>refine regions="USER:p-" max.size="0.05,0.010"
+refining: nio
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (36v)
+| refining mesh - 2D - 20% - 2s (72v)
+/ refining mesh - 2D - 30% - 1s (108v)
+- refining mesh - 2D - 40% - 0s (144v)
+\ refining mesh - 2D - 50% - 0s (180v)
+| refining mesh - 2D - 60% - 0s (216v)
+/ refining mesh - 2D - 70% - 0s (252v)
+- refining mesh - 2D - 80% - 0s (288v)
+\ refining mesh - 2D - 90% - 0s (324v)
+| refining mesh - 2D - 100% (360v)
+VICTORYMESH>refine regions="USER:p+" max.size="0.05,0.010"
+refining: nio
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (26v)
+| refining mesh - 2D - 20% - 2s (52v)
+/ refining mesh - 2D - 30% - 1s (78v)
+- refining mesh - 2D - 40% - 0s (104v)
+\ refining mesh - 2D - 50% - 0s (129v)
+| refining mesh - 2D - 60% - 0s (155v)
+/ refining mesh - 2D - 70% - 0s (181v)
+- refining mesh - 2D - 80% - 0s (207v)
+\ refining mesh - 2D - 90% - 0s (233v)
+| refining mesh - 2D - 100% (258v)
+VICTORYMESH>refine regions="USER:SOURCE_METAL" max.size="0.10,0.025"
+refining: nickel
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 11% - 4s (4v)
+| refining mesh - 2D - 20% - 2s (7v)
+/ refining mesh - 2D - 31% - 1s (11v)
+- refining mesh - 2D - 40% - 0s (14v)
+\ refining mesh - 2D - 51% - 0s (18v)
+| refining mesh - 2D - 60% - 0s (21v)
+/ refining mesh - 2D - 71% - 0s (25v)
+- refining mesh - 2D - 80% - 0s (28v)
+\ refining mesh - 2D - 91% - 0s (32v)
+| refining mesh - 2D - 100% (35v)
+VICTORYMESH>refine regions="USER:DRAIN_METAL" max.size="0.10,0.025"
+refining: nickel
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 11% - 4s (4v)
+| refining mesh - 2D - 20% - 2s (7v)
+/ refining mesh - 2D - 31% - 1s (11v)
+- refining mesh - 2D - 40% - 0s (14v)
+\ refining mesh - 2D - 51% - 0s (18v)
+| refining mesh - 2D - 60% - 0s (21v)
+/ refining mesh - 2D - 71% - 0s (25v)
+- refining mesh - 2D - 80% - 0s (28v)
+\ refining mesh - 2D - 91% - 0s (32v)
+| refining mesh - 2D - 100% (35v)
+VICTORYMESH>refine regions="USER:GATE_METAL" max.size="0.05,0.010"
+refining: nickel
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 4s (33v)
+| refining mesh - 2D - 20% - 2s (66v)
+/ refining mesh - 2D - 30% - 1s (99v)
+- refining mesh - 2D - 40% - 0s (132v)
+\ refining mesh - 2D - 50% - 0s (165v)
+| refining mesh - 2D - 60% - 0s (198v)
+/ refining mesh - 2D - 70% - 0s (231v)
+- refining mesh - 2D - 80% - 0s (264v)
+\ refining mesh - 2D - 90% - 0s (297v)
+| refining mesh - 2D - 100% (330v)
+VICTORYMESH>
+VICTORYMESH># Same-material semantic/doping boundaries.
+VICTORYMESH>refine regions="USER:substrate,USER:uid" interface.regions="USER:substrate" other.interface.regions="USER:uid" max.interface.size="0.10,0.015" grading="linear"
+interface: ga2o3
+other interface: ga2o3
+refining: ga2o3
+- calculating distances - 2D - 0% (0v)
+\ calculating distances - 2D - 10% - 4s (512v)
+| calculating distances - 2D - 20% - 2s (1024v)
+/ calculating distances - 2D - 30% - 1s (1536v)
+- calculating distances - 2D - 40% - 0s (2048v)
+\ calculating distances - 2D - 50% - 0s (2560v)
+| calculating distances - 2D - 60% - 0s (3072v)
+/ calculating distances - 2D - 70% - 0s (3584v)
+- calculating distances - 2D - 80% - 0s (4096v)
+\ calculating distances - 2D - 90% - 0s (4608v)
+| calculating distances - 2D - 100% (5117v)
+- refining mesh - 2D - 0% 
+\ refining mesh - 2D - 10% - 6s (439v)
+| refining mesh - 2D - 20% - 3s (877v)
+/ refining mesh - 2D - 30% - 2s (1316v)
+- refining mesh - 2D - 40% - 1s (1754v)
+\ refining mesh - 2D - 50% - 1s (2192v)
+| refining mesh - 2D - 60% - 0s (2631v)
+/ refining mesh - 2D - 70% - 0s (3069v)
+- refining mesh - 2D - 80% - 0s (3508v)
+\ refining mesh - 2D - 90% - 0s (3946v)
+| refining mesh - 2D - 100% (4384v)
+^Creceived signal 2 terminating simulator
+
+
+*** simulator exits with code 130

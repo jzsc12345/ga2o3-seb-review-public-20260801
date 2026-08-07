@@ -1,0 +1,312 @@
+
+# VICTORYMESH_STRUCTURE_MESH_ONLY
+# NO ATLAS
+# NO STATIC_BIAS
+# NO SEU_TRANSIENT
+# NO PAIRED_TRANSIENT
+# NO AUTOMATIC_EXPANSION_OF_AUTHORIZATION
+#
+# One-shot conformal-minimal candidate.  Lines 15..214 preserve the Stage 2
+# DevEdit structure body mechanically.  Only unique STR names and the Victory
+# Mesh policy after the raw structure output are changed.
+# Frozen track contract: xion=10.25 um, r=0.05 um,
+# ROI x=10.10..10.40 um, y=0.00..0.60 um.
+
+#go DevEdit 
+go devedit
+#version=2.8.26.R # file written Mon Jan 12 2026 13:04:28 GMT+8 (CST)
+
+
+work.area x1=0 y1=-0.2 x2=15 y2=0.6
+# devedit 2.8.26.R (Tue Jan 26 05:23:40 PST 2016)
+# libMeshBuild 1.24.23 (Tue Jan 26 05:22:55 PST 2016)
+# libSSS 2.8.14 (Tue Jan 19 16:38:10 PST 2016)
+# libSVC_Misc 1.28.13 (Tue Jan 19 16:37:06 PST 2016)
+# libsflm 7.10.1 (Tue May 19 19:52:32 PDT 2015)
+# libSDB 1.12.36 (Wed Jan 13 04:01:54 PST 2016)
+# libGeometry 1.30.16 (Tue May 19 19:51:51 PDT 2015)
+# libCardDeck 1.32.22 (Fri Jan 22 18:42:45 PST 2016)
+# libDW_Set 1.28.13 (Tue Jan 19 16:36:26 PST 2016)
+# libSvcFile 1.14.19 (Tue May 19 19:51:56 PDT 2015)
+# libsstl 1.10.11 (Tue May 19 19:51:57 PDT 2015)
+# libDW_Misc 1.40.20 (Tue Jan 19 16:14:10 PST 2016)
+# libQSilCore 1.2.8 (Wed May 13 18:39:12 PDT 2015)
+# libDW_crypt 3.0.0 (Mon May 18 04:43:00 PDT 2015)
+# libDW_Version 3.8.0 (Fri Oct  3 16:08:41 PDT 2014)
+region reg=1 name=substrate mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="0,0.4 15,0.4 15,0.6 0,0.6"
+#
+impurity id=1 region.id=1 imp=Acceptors \
+	peak.value=2000000 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=1 default
+
+region reg=2 name=uid mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="0,0.2 15,0.2 15,0.4 0,0.4"
+#
+impurity id=1 region.id=2 imp=Donors \
+	peak.value=1.5e+15 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=2 default
+
+region reg=3 name=channel mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="14,0.15 15,0.15 15,0.2 0,0.2 0,0.15 1,0.15 1,0 14,0"
+#
+impurity id=1 region.id=3 imp=Donors \
+	peak.value=1e+17 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=3 default
+
+region reg=4 name=oxide mat=SiO2 color=0xff pattern=0x2 \
+	polygon="4,-0.17 6,-0.17 14.5,-0.17 14.5,-0.02 4,-0.02 4,-0.07 4,-0.12" \
+	polygon="2,-0.12 2,-0.07 2,-0.02 0.5,-0.02 0.5,-0.17 1.5,-0.17 2,-0.17"
+#
+constr.mesh region=4 default
+
+region reg=5 mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="0,0 0.5,0 1,0 1,0.15 0,0.15"
+#
+impurity id=1 region.id=5 imp=Donors \
+	peak.value=5e+19 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=5 default
+
+region reg=6 name=N_D mat="UD1(Ga2O3)" color=0xb20000 pattern=0x3 \
+	polygon="15,0 15,0.15 14,0.15 14,0 14.5,0"
+#
+impurity id=1 region.id=6 imp=Donors \
+	peak.value=5e+19 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=6 default
+
+region reg=7 name=barrier mat=Al2O3 color=0xcc9426 pattern=0x6 \
+	polygon="14.5,0 14,0 1,0 0.5,0 0.5,-0.02 2,-0.02 4,-0.02 14.5,-0.02"
+#
+constr.mesh region=7 default
+
+region reg=8 name=P- mat="UD2(NiO)" color=0x7a3d99 pattern=0x4 \
+	polygon="2,-0.07 4,-0.07 4,-0.02 2,-0.02"
+#
+impurity id=1 region.id=8 imp=Acceptors \
+	peak.value=1.3e+18 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=8 default
+
+region reg=9 name=P+ mat="UD2(NiO)" color=0x7a3d99 pattern=0x4 \
+	polygon="2,-0.12 4,-0.12 4,-0.07 2,-0.07"
+#
+impurity id=1 region.id=9 imp=Acceptors \
+	peak.value=3e+19 ref.value=1000000000000 comb.func=Multiply
+#
+constr.mesh region=9 default
+
+region reg=10 name=source mat=Nickel elec.id=1 work.func=0 color=0xffff96 pattern=0xe \
+	polygon="0,-0.18 0.5,-0.18 0.5,-0.17 0.5,-0.02 0.5,0 0,0"
+#
+constr.mesh region=10 default
+
+region reg=11 name=drain mat=Nickel elec.id=2 work.func=0 color=0xffff96 pattern=0xe \
+	polygon="15,0 14.5,0 14.5,-0.02 14.5,-0.17 14.5,-0.18 15,-0.18"
+#
+constr.mesh region=11 default
+
+region reg=12 name=gate mat=Nickel elec.id=3 work.func=0 color=0xffff96 pattern=0xe \
+	polygon="6,-0.2 6,-0.17 4,-0.17 4,-0.12 2,-0.12 2,-0.17 1.5,-0.17 1.5,-0.2"
+#
+constr.mesh region=12 default
+
+
+# Set Meshing Parameters
+#
+base.mesh height=10 width=10
+#
+bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.points when=automatic
+#
+imp.refine min.spacing=0.02
+#
+constr.mesh max.angle=90 max.ratio=300 max.height=1000 \
+	max.width=1000 min.height=0.0001 min.width=0.0001
+#
+constr.mesh type=Semiconductor default
+#
+constr.mesh type=Insulator default
+#
+constr.mesh type=Metal default
+#
+constr.mesh type=Other default
+#
+constr.mesh region=1 default
+#
+constr.mesh region=2 default
+#
+constr.mesh region=3 default
+#
+constr.mesh region=4 default
+#
+constr.mesh region=5 default
+#
+constr.mesh region=6 default
+#
+constr.mesh region=7 default
+#
+constr.mesh region=8 default
+#
+constr.mesh region=9 default
+#
+constr.mesh region=10 default
+#
+constr.mesh region=11 default
+#
+constr.mesh region=12 default
+Mesh Mode=MeshBuild
+refine mode=y x1=0.27 y1=0.3024 x2=14.96 y2=0.468
+refine mode=y x1=0.19 y1=0.4699 x2=0.21 y2=0.4718
+refine mode=unrefine x1=0.34 y1=0.4249 x2=0.92 y2=0.4823
+refine mode=y x1=0.09 y1=0.0431 x2=14.94 y2=0.0785
+refine mode=y x1=0.31 y1=0.045 x2=14.81 y2=0.0967
+refine mode=y x1=0.39 y1=0.2594 x2=14.74 y2=0.5436
+refine mode=x x1=4.59 y1=-0.1263 x2=13.57 y2=0.5742
+refine mode=x x1=4.36 y1=-0.1397 x2=13.54 y2=0.5666
+refine mode=x x1=2.25 y1=-0.1875 x2=3.69 y2=0.5809
+refine mode=x x1=2.47 y1=-0.2 x2=2.48 y2=-0.2
+refine mode=x x1=2.63 y1=-0.1933 x2=3.6 y2=0.5704
+refine mode=x x1=1.79 y1=-0.1923 x2=5.87 y2=0.578
+refine mode=x x1=2.04 y1=-0.1923 x2=3.9 y2=0.5819
+refine mode=y x1=14.17 y1=-0.1425 x2=14.79 y2=0.5857
+refine mode=x x1=0.3 y1=-0.1406 x2=0.66 y2=0.5905
+refine mode=x x1=6.32 y1=-0.1311 x2=13.33 y2=0.5857
+refine mode=x x1=4.18 y1=-0.1377 x2=13.89 y2=0.5819
+refine mode=x x1=14.19 y1=-0.1483 x2=14.77 y2=0.5771
+refine mode=y x1=4.08 y1=-0.1578 x2=14.93 y2=-0.1464
+refine mode=y x1=0.19 y1=-0.1569 x2=14.93 y2=-0.1368
+refine mode=y x1=-0.13 y1=-0.1492 x2=1.85 y2=-0.1416
+refine mode=y x1=4.05 y1=-0.1588 x2=15.11 y2=-0.1349
+refine mode=y x1=0.09 y1=-0.0899 x2=14.91 y2=-0.0382
+refine mode=y x1=0.13 y1=-0.111 x2=14.93 y2=-0.0306
+refine mode=y x1=4.97 y1=-0.1665 x2=6.84 y2=-0.0889
+refine mode=y x1=0.39 y1=0.1838 x2=14.94 y2=0.2364
+refine mode=y x1=0.07 y1=0.1876 x2=14.9 y2=0.2154
+refine mode=y x1=-0.03 y1=0.3733 x2=14.92 y2=0.4364
+refine mode=y x1=0.2 y1=0.3828 x2=14.85 y2=0.4077
+refine mode=y x1=0.14 y1=-0.0124 x2=14.86 y2=0.0297
+refine mode=y x1=-0.03 y1=-0.0086 x2=14.91 y2=0.0345
+refine mode=y x1=0.22 y1=0.0546 x2=13.78 y2=0.1388
+refine mode=y x1=0.21 y1=0.2364 x2=13.2 y2=0.2804
+refine mode=y x1=0.17 y1=0.2623 x2=13.89 y2=0.3398
+refine mode=y x1=13.54 y1=0.2316 x2=13.95 y2=0.2938
+refine mode=y x1=14.3 y1=0.2651 x2=14.97 y2=0.2823
+refine mode=y x1=0.25 y1=0.3589 x2=13.49 y2=0.4383
+refine mode=y x1=0.21 y1=0.4728 x2=13.54 y2=0.5742
+refine mode=y x1=0.14 y1=0.5589 x2=14.9 y2=0.5886
+refine mode=y x1=0.14 y1=0.0029 x2=13.92 y2=0.0144
+refine mode=y x1=14.16 y1=0.4163 x2=14.99 y2=0.4211
+refine mode=y x1=0.09 y1=0.4316 x2=0.16 y2=0.446
+refine mode=y x1=0 y1=0.3838 x2=0.16 y2=0.4201
+refine mode=y x1=0.09 y1=0.1847 x2=0.11 y2=0.2125
+refine mode=y x1=0.16 y1=0.0288 x2=13.66 y2=0.0345
+refine mode=y x1=0.03 y1=0.0182 x2=13.77 y2=0.0221
+
+
+base.mesh height=10 width=10
+
+bound.cond !apply max.slope=30 max.ratio=100 rnd.unit=0.001 line.straightening=1 align.Points when=automatic
+
+
+structure outf=VM_SEB_ONESHOT_CANDIDATE_devedit_raw.str
+
+# ----------------------------------------------------------------------
+# Victory Mesh one-shot policy: conformal-minimal, region/interface aware,
+# local strike and high-field shapes, with no global LINE refinement.
+# ----------------------------------------------------------------------
+go victorymesh simflags="-P 4"
+
+cuboid from="10.10,0.00" to="10.40,0.60" out="SEB_TRACK_ROI"
+cuboid from="5.95,-0.20" to="6.05,-0.12" out="GATE_DRAIN_EDGE_ROI"
+
+load in="VM_SEB_ONESHOT_CANDIDATE_devedit_raw.str"
+
+# Strict-interior semantic tags.  Region 5 is intentionally not renamed.
+tag point="0.25,0.075" value="REGION5"
+tag point="0.25,-0.10" value="SOURCE_METAL"
+tag point="14.75,-0.10" value="DRAIN_METAL"
+tag point="3.00,-0.16" value="GATE_METAL"
+
+info
+info fields="*"
+
+remesh conformal simplex.minimal spacing=0.25
+
+# Region-size policy: coarse bulk, explicit thin-stack and contact limits.
+refine regions="USER:substrate" max.size="0.25,0.05"
+refine regions="USER:uid" max.size="0.20,0.04"
+refine regions="USER:channel" max.size="0.10,0.025"
+refine regions="USER:REGION5" max.size="0.05,0.025"
+refine regions="USER:n_d" max.size="0.05,0.025"
+refine regions="USER:oxide" max.size="0.20,0.025"
+refine regions="USER:barrier" max.size="0.10,0.005"
+refine regions="USER:p-" max.size="0.05,0.010"
+refine regions="USER:p+" max.size="0.05,0.010"
+refine regions="USER:SOURCE_METAL" max.size="0.10,0.025"
+refine regions="USER:DRAIN_METAL" max.size="0.10,0.025"
+refine regions="USER:GATE_METAL" max.size="0.05,0.010"
+
+# Same-material semantic/doping boundaries.
+refine regions="USER:substrate,USER:uid" \
+ interface.regions="USER:substrate" other.interface.regions="USER:uid" \
+ max.interface.size="0.10,0.015" grading="linear"
+refine regions="USER:uid,USER:channel" \
+ interface.regions="USER:uid" other.interface.regions="USER:channel" \
+ max.interface.size="0.10,0.015" grading="linear"
+refine regions="USER:channel,USER:REGION5" \
+ interface.regions="USER:channel" other.interface.regions="USER:REGION5" \
+ max.interface.size="0.025,0.025" grading="linear"
+refine regions="USER:channel,USER:n_d" \
+ interface.regions="USER:channel" other.interface.regions="USER:n_d" \
+ max.interface.size="0.025,0.025" grading="linear"
+
+# Real material interfaces; x/y pairs are normal-biased where orientation is uniform.
+refine regions="MATERIAL:ga2o3,MATERIAL:al2o3" \
+ interface.regions="MATERIAL:ga2o3" other.interface.regions="MATERIAL:al2o3" \
+ max.interface.size="0.05,0.005" grading="linear"
+refine regions="MATERIAL:nio,MATERIAL:al2o3" \
+ interface.regions="MATERIAL:nio" other.interface.regions="MATERIAL:al2o3" \
+ max.interface.size="0.02,0.005" grading="linear"
+refine regions="MATERIAL:sio2,MATERIAL:al2o3" \
+ interface.regions="MATERIAL:sio2" other.interface.regions="MATERIAL:al2o3" \
+ max.interface.size="0.05,0.005" grading="linear"
+refine regions="MATERIAL:al2o3,MATERIAL:nickel" \
+ interface.regions="MATERIAL:al2o3" other.interface.regions="MATERIAL:nickel" \
+ max.interface.size="0.005,0.005" grading="linear"
+refine regions="MATERIAL:sio2,MATERIAL:nio" \
+ interface.regions="MATERIAL:sio2" other.interface.regions="MATERIAL:nio" \
+ max.interface.size="0.010,0.020" grading="linear"
+refine regions="MATERIAL:nio,MATERIAL:nickel" \
+ interface.regions="MATERIAL:nio" other.interface.regions="MATERIAL:nickel" \
+ max.interface.size="0.020,0.010" grading="linear"
+
+# SiO2/metal and Ga2O3/metal are split by terminal to retain orientation-aware sizes.
+refine regions="USER:oxide,USER:SOURCE_METAL" \
+ interface.regions="USER:oxide" other.interface.regions="USER:SOURCE_METAL" \
+ max.interface.size="0.010,0.025" grading="linear"
+refine regions="USER:oxide,USER:DRAIN_METAL" \
+ interface.regions="USER:oxide" other.interface.regions="USER:DRAIN_METAL" \
+ max.interface.size="0.010,0.025" grading="linear"
+refine regions="USER:oxide,USER:GATE_METAL" \
+ interface.regions="USER:oxide" other.interface.regions="USER:GATE_METAL" \
+ max.interface.size="0.010,0.010" grading="linear"
+refine regions="USER:REGION5,USER:SOURCE_METAL" \
+ interface.regions="USER:REGION5" other.interface.regions="USER:SOURCE_METAL" \
+ max.interface.size="0.05,0.025" grading="linear"
+refine regions="USER:n_d,USER:DRAIN_METAL" \
+ interface.regions="USER:n_d" other.interface.regions="USER:DRAIN_METAL" \
+ max.interface.size="0.05,0.025" grading="linear"
+
+# Local two-axis refinements: no fine global y planes.
+refine regions="MATERIAL:ga2o3" shape="SEB_TRACK_ROI" \
+ max.shape.size="0.015,0.015" grading="linear"
+refine regions="*" shape="GATE_DRAIN_EDGE_ROI" \
+ max.shape.size="0.010,0.010" grading="linear"
+
+save out="VM_SEB_ONESHOT_CANDIDATE_conformal_minimal.str" mode=atlas
+
+quit

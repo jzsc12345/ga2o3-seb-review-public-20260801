@@ -1,0 +1,42 @@
+{
+  "case": "STAGE1",
+  "str": "E:\\silvaco2425\\bulk\\str\\VICTORYMESH_SEB_20260807\\VM_SEB_STAGE1_conformal_baseline.str",
+  "points": 38359,
+  "triangles": 75458,
+  "obtuse_triangles_computed": 0,
+  "runtime_region_records": 13,
+  "semantic_region_count": 12,
+  "oxide_connected_components": 2,
+  "electrode_count": 3,
+  "electrode_names": [
+    "source",
+    "drain",
+    "gate"
+  ],
+  "track": {
+    "metric": "track",
+    "xmin": 10.1,
+    "xmax": 10.4,
+    "ymin": 0.0,
+    "ymax": 0.6,
+    "triangles": 640,
+    "dx_min": 0.035383311114323135,
+    "dx_median": 0.03598889417521356,
+    "dx_p95": 0.03660471163441947,
+    "dx_max": 0.03660471163441947,
+    "dy_min": 0.005116069546984734,
+    "dy_median": 0.014948162212825841,
+    "dy_p95": 0.040000000000000036,
+    "dy_max": 0.040000000000000036
+  },
+  "full_y_continuity": true,
+  "max_y_gap_um": 0.0,
+  "merged_y_intervals": [
+    [
+      0.0,
+      0.6
+    ]
+  ],
+  "intervals_per_radius_from_track_max": 1.249999999999999,
+  "intervals_per_diameter_from_track_max": 2.499999999999998
+}

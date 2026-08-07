@@ -1,0 +1,42 @@
+{
+  "case": "CANDIDATE_RAW",
+  "str": "E:\\silvaco2425\\bulk\\str\\VICTORYMESH_CONFORMAL_CONTRACT_20260807\\VM_SEB_ONESHOT_CANDIDATE_devedit_raw.str",
+  "points": 5045,
+  "triangles": 9802,
+  "obtuse_triangles_computed": 0,
+  "runtime_region_records": 12,
+  "semantic_region_count": 12,
+  "oxide_connected_components": 2,
+  "electrode_count": 3,
+  "electrode_names": [
+    "source",
+    "drain",
+    "gate"
+  ],
+  "track": {
+    "metric": "track",
+    "xmin": 10.1,
+    "xmax": 10.4,
+    "ymin": 0.0,
+    "ymax": 0.6,
+    "triangles": 192,
+    "dx_min": 0.3125,
+    "dx_median": 0.3125,
+    "dx_p95": 0.3125,
+    "dx_max": 0.3125,
+    "dy_min": 0.0023437000000000006,
+    "dy_median": 0.012500000000000011,
+    "dy_p95": 0.025000000000000022,
+    "dy_max": 0.025000000000000022
+  },
+  "full_y_continuity": true,
+  "max_y_gap_um": 0.0,
+  "merged_y_intervals": [
+    [
+      0.0,
+      0.6
+    ]
+  ],
+  "intervals_per_radius_from_track_max": 0.16,
+  "intervals_per_diameter_from_track_max": 0.32
+}

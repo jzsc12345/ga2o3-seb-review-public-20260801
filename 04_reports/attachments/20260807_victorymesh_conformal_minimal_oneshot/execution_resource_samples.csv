@@ -1,0 +1,14 @@
+elapsed_min,rss_kib,swap_used_mib,observation
+4.82,4019712,2,region-size refinement progressing
+6.00,5014728,2,region-size refinement progressing
+7.08,5945328,2,region-size refinement progressing
+7.88,6564960,515,swap use begins
+8.60,6801660,690,first semantic-interface refinement active
+9.62,7010012,1356,no command prompt returned
+10.82,7075104,2204,no typescript growth
+11.92,7074368,3091,no typescript growth
+13.05,7196012,4104,no typescript growth
+15.25,7204988,4835,no typescript growth
+16.35,7250516,5510,no typescript growth
+17.50,7258952,6240,no typescript growth
+30.87,7238856,6303,manual stop after sustained swap thrash and no final STR

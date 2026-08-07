@@ -1,0 +1,9 @@
+severity,stage,evidence,result
+INFO,DevEdit,typescript lines 1-528,raw STR generated with 5045 points and 9802 triangles
+INFO,Victory selector,typescript INFO block,REGION5 source drain and gate tags each matched the intended material
+INFO,Victory region refinement,typescript lines 687-830,all twelve region MAX.SIZE commands returned to the prompt
+FAIL,Victory semantic-interface refinement,typescript lines 845-874,first substrate/uid rule completed printed progress but never returned to the prompt
+FAIL,Resource stability,execution_resource_samples.csv,RSS reached about 7.2 GiB and swap about 6.3 GiB with no log progress
+FAIL,Required output,remote directory listing,final remeshed STR was not generated
+INFO,Stop handling,EXIT.txt and typescript,signal 2 ended simulator with exit code 130 after the single authorized execution
+PASS,Scope,deck scan and final remote process check,no Atlas Victory Device solve static bias or transient execution
